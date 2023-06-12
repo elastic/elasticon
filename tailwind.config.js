@@ -6,9 +6,16 @@ module.exports = {
     "./src/app/**/*.{js,ts,jsx,tsx,mdx}",
   ],
   theme: {
+    borderRadius: {
+      none: "0",
+      DEFAULT: "4px",
+      sm: "24px",
+      md: "48px",
+      lg: "96px",
+    },
     colors: {
       white: "#ffffff",
-      black: "#000000",
+      black: "#343741",
       blue: {
         100: "#ffffff", // White
         200: "#E8F6FE", // Lighter Blue

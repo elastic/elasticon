@@ -1,7 +1,10 @@
-export default function Panel({ children, className }) {
-  return (
-    <div className={`bg-blue-900 p-4 sm:p-10 md:p-18 lg:p-24 ${className}`}>
-      {children}
-    </div>
-  );
+import cn from "classnames";
+
+export default function Panel({ children, className, padding = true }) {
+  const paddingClassNames =
+    padding && cn("p-10", "sm:p-14", "md:p-20", "lg:p-24");
+
+  const panelClassNames = cn("bg-blue-900", paddingClassNames, className);
+
+  return <div className={panelClassNames}>{children}</div>;
 }

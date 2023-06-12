@@ -18,10 +18,12 @@ export default function Heading({ children, className, color, size }) {
 
   const fontWeight = fontWeights[size] || "";
 
-  const textColor = color ? `text-${color}` : "";
+  const textColor = color ? `text-${color}` : "text-black";
 
   const tagProps = {
-    className: `${className} ${fontSize} ${fontWeight} ${textColor}`,
+    className: `${
+      className && className
+    } ${fontSize} ${fontWeight} ${textColor}`,
     children,
   };
 
