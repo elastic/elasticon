@@ -2,11 +2,11 @@ export default function Heading({ children, className, color, size }) {
   let Tag = size ? size : "p";
 
   const fontSizes = {
-    h1: "text-7xl",
-    h2: "text-6xl",
-    h3: "text-4xl",
-    h4: "text-3xl",
-    h5: "text-2xl",
+    h1: "text-5xl sm:text-6xl md:text-7xl",
+    h2: "text-4xl sm:text-5xl md:text-6xl",
+    h3: "text-3xl sm:text-3xl md:text-4xl",
+    h4: "text-2xl sm:text-2xl md:text-3xl",
+    h5: "text-2xl sm:text-2xl md:text-2xl",
   };
 
   const fontSize = fontSizes[size] || "";
@@ -18,12 +18,8 @@ export default function Heading({ children, className, color, size }) {
 
   const fontWeight = fontWeights[size] || "";
 
-  const textColor = color ? `text-${color}` : "text-black";
-
   const tagProps = {
-    className: `${
-      className && className
-    } ${fontSize} ${fontWeight} ${textColor}`,
+    className: `${className && className} ${fontSize} ${fontWeight}`,
     children,
   };
 

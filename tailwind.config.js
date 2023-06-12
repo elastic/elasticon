@@ -32,12 +32,16 @@ module.exports = {
         800: "#20377D", // Midnight
         900: "#101C3F", // Developer Blue
       },
-      gray: "#98A2B3",
       orange: "#FF957D",
       peach: "#FF957D",
       pink: "#DD0A73",
       teal: "#7DE2D1",
       yellow: "#FEC514",
+      zinc: {
+        100: "#F5F7FA",
+        400: "#98A2B3",
+        900: "#343741",
+      },
     },
     container: {
       center: true,
@@ -64,4 +68,5 @@ module.exports = {
     },
   },
   plugins: [],
+  safelist: ["bg-zinc-900"],
 };

@@ -3,7 +3,6 @@ import Image from "next/image";
 
 import Button from "@/components/Button";
 import Heading from "@/components/Heading";
-import Panel from "@/components/Panel";
 import Navigation from "@/components/Navigation";
 
 export default function Hero() {
@@ -19,42 +18,21 @@ export default function Hero() {
     "md:pt-24"
   );
 
-  const heroPanelClasses = cn("md:rounded-bl-md", "rounded-bl-sm");
-
-  const subHeroPanelClasses = cn(
-    "lg:px-24",
-    "lg:rounded-br-lg",
-    "md:px-20",
-    "md:rounded-bl-md",
-    "md:rounded-br-md",
-    "md:rounded-tl-md",
-    "px-10",
-    "py-16",
-    "rounded-bl-sm",
-    "rounded-br-sm",
-    "rounded-tl-sm",
-    "sm:px-14",
-    "mb-6"
-  );
-
   return (
     <>
-      <Panel className={heroPanelClasses} padding={false}>
+      <div className="bg-blue-900">
         <Navigation />
         <div className={heroContentClasses}>
           <div className="max-w-xl">
             <Heading
-              className="font-bold mb-8 tracking-wider uppercase"
+              className="font-semibold mb-8 text-peach tracking-widest uppercase"
               color="peach"
               size="h5"
             >
               ElasticON 23/24 Global Series
             </Heading>
-            <Heading color="white" size="h1">
+            <Heading className="text-white" size="h1">
               Find answers—for what’s next
-            </Heading>
-            <Heading color="white" size="h2">
-              Speakers
             </Heading>
             <p className="text-white my-8">
               Get ready to find answers that matter! We’re bringing our biggest
@@ -77,10 +55,10 @@ export default function Hero() {
             />
           </div>
         </div>
-      </Panel>
-      <Panel className={subHeroPanelClasses} padding={false}>
+      </div>
+      <div className="bg-blue-900">
         <Button href="/register">View all events</Button>
-      </Panel>
+      </div>
     </>
   );
 }

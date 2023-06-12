@@ -1,27 +1,75 @@
 import Heading from "@/components/Heading";
 import Hero from "@/components/Hero";
-import Wave from "@/components/Wave";
+import Invited from "@/components/Invited";
+import Panel from "@/components/Panel";
 
 export default function Home() {
   return (
     <>
       <Hero />
-      <div className="border-2 border-dashed border-gray flex flex-col md:flex-row items-center p-9 rounded-md md:rounded-full">
-        <Wave />
-        <div className="max-w-4xl mx-auto md:px-8 text-black text-center">
-          <Heading size="h4">You&apos;re invited!</Heading>
-          <p className="mt-3 text-lg">
-            The entire Elastic community is welcome: Developers, Architects, IT
-            professionals, DevOps Engineers, and anyone working with or
-            interested in the Elasticsearch Platform.
-          </p>
+      <Invited />
+      <Panel className="bg-zinc-100">
+        <Heading className="mb-10 md:mb-16 text-center" size="h3">
+          Meet the latest Elasticsearch advancements
+        </Heading>
+        <div className="gap-x-16 grid grid-cols-3">
+          <div>
+            <Heading className="mb-4" size="h5">
+              Search
+            </Heading>
+            <p>
+              The Elasticsearch Relevance Engine™ (ESRE) is designed to power
+              AI-based search applications. With its flexible toolkit, you can
+              build fast, scalable search for your apps, websites, knowledge
+              base, or ecommerce store.
+            </p>
+          </div>
+          <div>
+            <Heading className="mb-4" size="h5">
+              Observability
+            </Heading>
+            <p>
+              Accelerate problem resolution with open, flexible and unified
+              observability powered by machine learning and analytics. From
+              logging, metrics, APM, synthetic monitoring, and universal
+              profiling, Elastic Observability ingests all of your telemetry
+              data at scale and breaks down silos to help you find answers more
+              quickly.
+            </p>
+          </div>
+          <div>
+            <Heading className="mb-4" size="h5">
+              Security
+            </Heading>
+            <p>
+              Secure the data already in your Elasticsearch clusters with
+              Elastic Security. Advanced security analytics performed across all
+              your data eliminates data silos, automates prevention and
+              detection, and streamlines investigation and response.
+            </p>
+          </div>
         </div>
-        <Wave direction="right" />
-      </div>
-      <Heading size="h3">Meet the latest Elasticsearch advancements</Heading>
-      <Heading size="h5">Search</Heading>
-      <Heading size="h5">Observability</Heading>
-      <Heading size="h5">Security</Heading>
+      </Panel>
+      <Panel className="bg-zinc-900 text-white">
+        <Heading className="mb-10 md:mb-16 text-center text-teal" size="h3">
+          Expert advice. Community connections.
+        </Heading>
+        <Heading className="mb-4" size="h5">
+          What to expect
+        </Heading>
+        <p>
+          Designed for you, ElasticON [Location] will show you how to get the
+          most relevant search, observability, and security results at
+          unprecedented speed with open and flexible enterprise solutions —
+          powered by the Elasticsearch Platform and AI.
+        </p>
+        <ul>
+          <li>See how your peers are using Elastic to lead their industries</li>
+          <li>Get the latest solutions, news, and updates</li>
+          <li>Connect with our experts to get an inside track on how</li>
+          <li>Elastic can help you be even more efficient every day</li>
+        </ul>
+      </Panel>
     </>
   );
 }
