@@ -3,13 +3,14 @@ import cn from "classnames";
 export default function Panel({ children, className }) {
   const panelClassNames = `
     ${className}
-    lg:p-24
-    lg:rounded-lg
-    md:p-20
-    md:rounded-md
+    mb-4
     p-10
-    rounded-sm
     sm:p-14
+    lg:p-24
+    md:p-20
+    rounded-sm
+    lg:rounded-lg
+    md:rounded-md
   `;
 
   return <div className={panelClassNames}>{children}</div>;

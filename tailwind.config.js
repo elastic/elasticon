@@ -68,5 +68,4 @@ module.exports = {
     },
   },
   plugins: [],
-  safelist: ["bg-zinc-900"],
 };

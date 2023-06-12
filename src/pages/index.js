@@ -1,6 +1,7 @@
 import Heading from "@/components/Heading";
 import Hero from "@/components/Hero";
 import Invited from "@/components/Invited";
+import Locations from "@/components/Locations";
 import Panel from "@/components/Panel";
 
 export default function Home() {
@@ -70,6 +71,7 @@ export default function Home() {
           <li>Elastic can help you be even more efficient every day</li>
         </ul>
       </Panel>
+      <Locations />
     </>
   );
 }
