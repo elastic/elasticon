@@ -33,7 +33,8 @@ export default function Hero() {
     "rounded-bl-sm",
     "rounded-br-sm",
     "rounded-tl-sm",
-    "sm:px-14"
+    "sm:px-14",
+    "mb-6"
   );
 
   return (
