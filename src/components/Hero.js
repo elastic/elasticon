@@ -28,6 +28,7 @@ export default function Hero({
       </div>
       <Image
         alt="backgrond pattern and section divider"
+        className="my-2 w-28 md:my-0 md:w-fit"
         height={120}
         src="/images/hero-edge.svg"
         width={144}
