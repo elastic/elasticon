@@ -3,7 +3,7 @@ import Wave from "@/components/Wave";
 
 export default function Invited() {
   return (
-    <div className="border-2 border-dashed border-zinc-400 flex flex-col md:flex-row items-center p-9 rounded-md md:rounded-full">
+    <div className="border-2 border-dashed border-zinc-400 flex flex-col md:flex-row items-center mb-4 p-9 rounded-md md:rounded-full">
       <Wave />
       <div className="max-w-4xl mx-auto md:px-8 text-zinc-900 text-center">
         <Heading size="h4">You&apos;re invited!</Heading>

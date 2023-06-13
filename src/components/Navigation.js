@@ -74,7 +74,7 @@ export default function Navigation() {
       </nav>
 
       <Disclosure.Panel
-        className={`bg-zinc-950 flex flex-col text-white lg:hidden ${paddingX} ${paddingY}`}
+        className={`bg-zinc-950 flex flex-col rounded-br-md text-white lg:hidden ${paddingX} ${paddingY}`}
       >
         <NavElements />
       </Disclosure.Panel>

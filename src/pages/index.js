@@ -1,3 +1,7 @@
+import Link from "next/link";
+import Image from "next/image";
+
+import Button from "@/components/Button";
 import Footer from "@/components/Footer";
 import Heading from "@/components/Heading";
 import Hero from "@/components/Hero";
@@ -8,7 +12,55 @@ import Panel from "@/components/Panel";
 export default function Home() {
   return (
     <>
-      <Hero />
+      <Hero
+        footer={
+          <div className="flex items-center">
+            <Button href="/register">View all events</Button>
+            <Link
+              className="flex gap-4 hover:gap-6 items-center text-blue-400 ml-6"
+              href="/sponsor"
+            >
+              Sponsor and event
+              <Image
+                alt="arrow icon"
+                height={12}
+                src="/images/icon-right.svg"
+                width={25}
+              />
+            </Link>
+          </div>
+        }
+        imageAlt="collage of stars, shapes and lines with a grungy texture and a picture of a crowd looking at a stage"
+        imageHeight={600}
+        imageSrc="/images/hero-home.png"
+        imageWidth={576}
+        mainContent={
+          <>
+            <Heading
+              className="font-semibold mb-8 text-peach tracking-widest uppercase"
+              color="peach"
+              size="h5"
+            >
+              ElasticON 23/24 Global Series
+            </Heading>
+            <Heading className="text-white" size="h1">
+              Find answers—for what’s next
+            </Heading>
+            <p className="text-white my-8">
+              Get ready to find answers that matter! We&apos;re bringing our
+              biggest event of the year to you, so you can get the latest
+              Elastic insights and meet with experts and fellow users.
+              You&apos;ll see how Elasticsearch powered by AI can help you take
+              advantage of all your data to build, secure, and protect — and
+              optimize your infrastructure and talent resources more
+              efficiently.
+            </p>
+            <p className="font-bold text-white">
+              It all stars at an ElasticON Global event near you!
+            </p>
+          </>
+        }
+      />
       <Invited />
       <Panel className="bg-zinc-100">
         <Heading className="mb-10 md:mb-16 text-center" size="h3">
