@@ -28,10 +28,17 @@ const navData = [
 ];
 
 export default function Navigation() {
+  const paddingX = "px-10 sm:px-14 md:px-20 lg:px-24";
+  const paddingY = "py-4 md:py-6";
+
   const NavElements = () => (
     <>
       {navData.map((element, index) => (
-        <Link className="mr-6" href={element.href} key={`nav-link-${index}`}>
+        <Link
+          className="py-2 mr-6"
+          href={element.href}
+          key={`nav-link-${index}`}
+        >
           {element.name}
         </Link>
       ))}
@@ -40,7 +47,9 @@ export default function Navigation() {
 
   return (
     <Disclosure as="Fragment">
-      <nav className="flex flex-row items-center justify-between text-white">
+      <nav
+        className={`flex flex-row items-center justify-between text-white ${paddingX} ${paddingY}`}
+      >
         <Link href="/">
           <p className="sr-only">ElasticON</p>
           <Image
@@ -64,7 +73,9 @@ export default function Navigation() {
         </div>
       </nav>
 
-      <Disclosure.Panel className="bg-zinc-950 flex flex-col text-white lg:hidden">
+      <Disclosure.Panel
+        className={`bg-zinc-950 flex flex-col text-white lg:hidden ${paddingX} ${paddingY}`}
+      >
         <NavElements />
       </Disclosure.Panel>
     </Disclosure>

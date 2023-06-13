@@ -7,10 +7,14 @@ export default function Button({ children, href }) {
     "font-semibold",
     "hover:bg-blue-700",
     "inline-block",
-    "px-6",
-    "py-4",
+    "px-4",
+    "py-2",
+    "md:px-6",
+    "md:py-4",
     "rounded",
     "text-center",
+    "text-sm",
+    "md:text-base",
     "text-white",
     "transition"
   );
