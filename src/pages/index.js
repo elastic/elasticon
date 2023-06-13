@@ -1,3 +1,4 @@
+import Footer from "@/components/Footer";
 import Heading from "@/components/Heading";
 import Hero from "@/components/Hero";
 import Invited from "@/components/Invited";
@@ -72,6 +73,7 @@ export default function Home() {
         </ul>
       </Panel>
       <Locations />
+      <Footer />
     </>
   );
 }

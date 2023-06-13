@@ -90,30 +90,35 @@ export default function Locations() {
         <Tab.Panels className="mt-10">
           <Tab.Panel>
             <div className="gap-10 grid lg:grid-cols-2">
-              {NorthSouthAmerica.map((data, index) => (
-                <Link
-                  className={`block border-2 border-blue-800 px-10 py-6 rounded-sm text-white hover:border-white ${
-                    !data.tier1 &&
-                    "flex md:flex-row md:items-center md:justify-between"
-                  }`}
-                  href="#"
-                  key={`tab-panel-${index}`}
-                >
-                  <Heading
-                    className="font-normal text-peach"
-                    size={data.tier1 ? "h3" : "h4"}
+              {NorthSouthAmerica.map((data, index) => {
+                const newColumn = !data.tier1 && index % 2 !== 0;
+                return (
+                  <Link
+                    className={`block border-2 border-blue-800 ${
+                      newColumn && "col-start-1"
+                    } px-10 py-6 rounded-sm text-white hover:border-white ${
+                      !data.tier1 &&
+                      "flex md:flex-row md:items-center md:justify-between"
+                    }`}
+                    href="#"
+                    key={`tab-panel-${index}`}
                   >
-                    {data.name}
-                  </Heading>
-                  <p
-                    className={`font-normal ${data.tier1 && "text-2xl mt-4"}`}
-                    size="h5"
-                  >
-                    {data.date}
-                  </p>
-                  {data.tier1 && <p className="mt-2">{data.location}</p>}
-                </Link>
-              ))}
+                    <Heading
+                      className="font-normal text-peach"
+                      size={data.tier1 ? "h3" : "h4"}
+                    >
+                      {data.name}
+                    </Heading>
+                    <p
+                      className={`font-normal ${data.tier1 && "text-2xl mt-4"}`}
+                      size="h5"
+                    >
+                      {data.date}
+                    </p>
+                    {data.tier1 && <p className="mt-2">{data.location}</p>}
+                  </Link>
+                );
+              })}
             </div>
           </Tab.Panel>
         </Tab.Panels>

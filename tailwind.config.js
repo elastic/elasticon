@@ -40,7 +40,7 @@ module.exports = {
       zinc: {
         100: "#F5F7FA",
         400: "#98A2B3",
-        900: "#343741",
+        900: "#1C1E23",
       },
     },
     container: {
