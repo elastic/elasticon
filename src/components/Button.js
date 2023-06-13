@@ -10,6 +10,7 @@ export default function Button({ children, href }) {
     "px-6",
     "py-4",
     "rounded",
+    "text-center",
     "text-white",
     "transition"
   );
