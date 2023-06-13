@@ -66,7 +66,7 @@ export default function Locations() {
 
   return (
     <div
-      className={`bg-blue-900 rounded-tl-lg rounded-tr-lg text-white ${containerClasses}`}
+      className={`bg-blue-900 mb-4 rounded-tl-sm rounded-tr-sm md:rounded-tl-md md:rounded-tr-md lg:rounded-tl-lg lg:rounded-tr-lg text-white ${containerClasses}`}
     >
       <Heading className="mb-10 text-center" size="h3">
         Find an event near you
