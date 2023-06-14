@@ -1,5 +1,6 @@
 import { Fragment } from "react";
 import { Tab } from "@headlessui/react";
+import Image from "next/image";
 import Link from "next/link";
 import cn from "classnames";
 
@@ -123,6 +124,13 @@ export default function Locations() {
           </Tab.Panel>
         </Tab.Panels>
       </Tab.Group>
+      <Image
+        alt="illustrative star"
+        className="mx-auto translate-y-2 md:translate-y-6 lg:translate-y-10"
+        height={192}
+        src="/images/locations-star.svg"
+        width={192}
+      />
     </div>
   );
 }
