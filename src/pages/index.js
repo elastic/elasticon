@@ -63,7 +63,7 @@ export default function Home() {
       />
       <Invited />
       <Panel className="bg-zinc-100">
-        <Heading className="mb-10 md:mb-16 text-center" size="h3">
+        <Heading className="mb-10 md:mb-16 text-center text-blue-800" size="h3">
           Meet the latest Elasticsearch advancements
         </Heading>
         <div className="gap-x-16 grid grid-cols-3">
@@ -83,12 +83,10 @@ export default function Home() {
               Observability
             </Heading>
             <p>
-              Accelerate problem resolution with open, flexible and unified
-              observability powered by machine learning and analytics. From
+              Solve problems faster with open, flexible and unified
+              observability powered by machine learning and analytics. Unite
               logging, metrics, APM, synthetic monitoring, and universal
-              profiling, Elastic Observability ingests all of your telemetry
-              data at scale and breaks down silos to help you find answers more
-              quickly.
+              profiling to break down silos to find answers fast.
             </p>
           </div>
           <div>
@@ -96,10 +94,10 @@ export default function Home() {
               Security
             </Heading>
             <p>
-              Secure the data already in your Elasticsearch clusters with
-              Elastic Security. Advanced security analytics performed across all
-              your data eliminates data silos, automates prevention and
-              detection, and streamlines investigation and response.
+              Secure the data already in your clusters with Elastic Security.
+              Advanced security analytics performed across all your data
+              eliminates data silos, automates prevention and detection, and
+              streamlines investigation and response.
             </p>
           </div>
         </div>
