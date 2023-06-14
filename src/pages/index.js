@@ -62,7 +62,7 @@ export default function Home() {
         }
       />
       <Invited />
-      <Panel className="bg-zinc-100">
+      <Panel className="bg-gradient-to-b from-white to-zinc-100">
         <Heading className="mb-10 md:mb-16 text-center text-blue-800" size="h3">
           Meet the latest Elasticsearch advancements
         </Heading>
