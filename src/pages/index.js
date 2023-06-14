@@ -17,7 +17,7 @@ export default function Home() {
           <div className="flex items-center">
             <Button href="/register">View all events</Button>
             <Link
-              className="flex gap-4 hover:gap-6 items-center text-blue-400 ml-6"
+              className="flex gap-2 hover:gap-4 items-center text-blue-400 ml-6"
               href="/sponsor"
             >
               Sponsor and event
