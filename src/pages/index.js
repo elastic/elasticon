@@ -8,6 +8,7 @@ import Hero from "@/components/Hero";
 import Invited from "@/components/Invited";
 import Locations from "@/components/Locations";
 import Panel from "@/components/Panel";
+import Navigation from "@/components/Navigation";
 
 export default function Home() {
   return (
@@ -60,7 +61,9 @@ export default function Home() {
             </p>
           </>
         }
-      />
+      >
+        <Navigation />
+      </Hero>
       <Invited />
       <Panel className="bg-gradient-to-b from-white to-zinc-100">
         <Heading className="mb-10 md:mb-16 text-center text-blue-800" size="h3">

@@ -4,6 +4,7 @@ import Link from "next/link";
 import Button from "@/components/Button";
 import Heading from "@/components/Heading";
 import Hero from "@/components/Hero";
+import Navigation from "@/components/Navigation";
 import Panel from "@/components/Panel";
 import Footer from "@/components/Footer";
 
@@ -89,7 +90,9 @@ export default function Location({ location }) {
             </div>
           </>
         }
-      />
+      >
+        <Navigation location="London" />
+      </Hero>
       <Panel>
         <div className="flex flex-col lg:flex-row gap-10">
           <div>

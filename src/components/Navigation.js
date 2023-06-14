@@ -7,27 +7,27 @@ import Button from "./Button";
 const navData = [
   {
     name: "Speakers",
-    href: "#",
+    href: "/location/speakers",
   },
   {
     name: "Agenda",
-    href: "#",
+    href: "/location/agenda",
   },
   {
     name: "Travel",
-    href: "#",
-  },
-  {
-    name: "Event details",
-    href: "#",
+    href: "/location/travel-info",
   },
   {
     name: "Sponsors",
     href: "#",
   },
+  {
+    name: "Register",
+    href: "/location/registration",
+  },
 ];
 
-export default function Navigation() {
+export default function Navigation({ location }) {
   const paddingX = "px-10 sm:px-14 md:px-20 lg:px-24";
   const paddingY = "py-4 md:py-6";
 
@@ -60,17 +60,19 @@ export default function Navigation() {
           />
         </Link>
 
-        <div className="flex items-center">
-          <Disclosure.Button className="flex items-center justify-center lg:hidden mr-6">
-            Menu
-          </Disclosure.Button>
+        {location && (
+          <div className="flex items-center">
+            <Disclosure.Button className="flex items-center justify-center lg:hidden mr-6">
+              Menu
+            </Disclosure.Button>
 
-          <div className="hidden items-center justify-end lg:flex">
-            <NavElements />
+            <div className="hidden items-center justify-end lg:flex">
+              <NavElements />
+            </div>
+
+            <Button href="/location/registration">Register now</Button>
           </div>
-
-          <Button href="/register">Register now</Button>
-        </div>
+        )}
       </nav>
 
       <Disclosure.Panel
