@@ -1,5 +1,6 @@
 import Link from "next/link";
 import Image from "next/image";
+import Stack from "../../lib/contentstack";
 
 import Button from "@/components/Button";
 import Footer from "@/components/Footer";
@@ -10,7 +11,8 @@ import Locations from "@/components/Locations";
 import Panel from "@/components/Panel";
 import Navigation from "@/components/Navigation";
 
-export default function Home() {
+export default function Home({ data }) {
+  console.log(data);
   return (
     <>
       <Hero
@@ -129,4 +131,17 @@ export default function Home() {
       <Footer />
     </>
   );
+}
+
+export async function getStaticProps() {
+  const query = Stack.ContentType("event");
+  const result = await query.fetch();
+
+  console.log(result);
+
+  return {
+    props: {
+      data: "test",
+    },
+  };
 }
