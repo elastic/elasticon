@@ -46,7 +46,7 @@ export default function Navigation({ location }) {
   );
 
   return (
-    <Disclosure as="Fragment">
+    <Disclosure>
       <nav
         className={`flex flex-row items-center justify-between text-white ${paddingX} ${paddingY}`}
       >
