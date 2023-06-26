@@ -1,6 +1,7 @@
 import Link from "next/link";
 import Image from "next/image";
 import Query from "../../lib/contentstack";
+import { ReactMarkdown } from "react-markdown/lib/react-markdown";
 
 import Button from "@/components/Button";
 import Footer from "@/components/Footer";
@@ -13,7 +14,9 @@ import Navigation from "@/components/Navigation";
 
 export default function Home({ data }) {
   const { footerData, globalData, homepageData } = data;
-  const { invitationData } = homepageData;
+  const { invitationData, solutionData } = homepageData;
+
+  console.log(homepageData);
 
   return (
     <>
@@ -60,42 +63,19 @@ export default function Home({ data }) {
       <Invited data={invitationData} />
       <Panel className="bg-gradient-to-b from-white to-zinc-100">
         <Heading className="mb-10 md:mb-16 text-center text-blue-800" size="h3">
-          Meet the latest Elasticsearch advancements
+          {homepageData.solution_overviews.headline}
         </Heading>
-        <div className="gap-x-16 grid grid-cols-3">
-          <div>
-            <Heading className="mb-4" size="h5">
-              Search
-            </Heading>
-            <p>
-              The Elasticsearch Relevance Engine™ (ESRE) is designed to power
-              AI-based search applications. With its flexible toolkit, you can
-              build fast, scalable search for your apps, websites, knowledge
-              base, or ecommerce store.
-            </p>
-          </div>
-          <div>
-            <Heading className="mb-4" size="h5">
-              Observability
-            </Heading>
-            <p>
-              Solve problems faster with open, flexible and unified
-              observability powered by machine learning and analytics. Unite
-              logging, metrics, APM, synthetic monitoring, and universal
-              profiling to break down silos to find answers fast.
-            </p>
-          </div>
-          <div>
-            <Heading className="mb-4" size="h5">
-              Security
-            </Heading>
-            <p>
-              Secure the data already in your clusters with Elastic Security.
-              Advanced security analytics performed across all your data
-              eliminates data silos, automates prevention and detection, and
-              streamlines investigation and response.
-            </p>
-          </div>
+        <div className="gap-x-24 grid grid-cols-3">
+          {solutionData.map((solution, i) => (
+            <div key={`solution-${i}`}>
+              <Heading className="mb-4" size="h5">
+                {solution.headline}
+              </Heading>
+              <ReactMarkdown className="markdown">
+                {solution.description}
+              </ReactMarkdown>
+            </div>
+          ))}
         </div>
       </Panel>
       <Panel className="bg-zinc-900 text-white">
@@ -132,13 +112,21 @@ export async function getStaticProps() {
   async function QueryHomepageData() {
     try {
       const data = await Query("homepage", "blt1a1fa44a34ef336f");
-      const inviteData = await Query(
+      const invitationData = await Query(
         data.invitation[0]._content_type_uid,
         data.invitation[0].uid
       );
+      const solutionData = await Promise.all(
+        data.solution_overviews.reference.map(async (ref) => {
+          const referenceData = await Query(ref._content_type_uid, ref.uid);
+          return referenceData;
+        })
+      );
+
       return {
         ...data,
-        invitationData: inviteData,
+        invitationData,
+        solutionData,
       };
     } catch (error) {
       console.error(error);

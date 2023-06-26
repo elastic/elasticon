@@ -2,8 +2,6 @@ import Heading from "@/components/Heading";
 import Wave from "@/components/Wave";
 
 export default function Invited({ data }) {
-  console.log(data);
-
   const headingAfterClasses = `
     after:absolute
     after:bg-[url('/images/icon-star.svg')]
