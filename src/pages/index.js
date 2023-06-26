@@ -11,28 +11,11 @@ import Locations from "@/components/Locations";
 import Panel from "@/components/Panel";
 import Navigation from "@/components/Navigation";
 
-export default function Home({ data }) {
-  console.log(data);
+export default function Home({ footerData, globalData, homepageData }) {
+  console.log(homepageData);
   return (
     <>
       <Hero
-        footer={
-          <div className="flex items-center">
-            <Button href="/register">View all events</Button>
-            <Link
-              className="flex gap-2 hover:gap-4 items-center text-blue-400 ml-6"
-              href="/sponsor"
-            >
-              Sponsor and event
-              <Image
-                alt="arrow icon"
-                height={12}
-                src="/images/icon-right.svg"
-                width={25}
-              />
-            </Link>
-          </div>
-        }
         imageAlt="collage of stars, shapes and lines with a grungy texture and a picture of a crowd looking at a stage"
         imageHeight={600}
         imageSrc="/images/hero-home.png"
@@ -44,23 +27,29 @@ export default function Home({ data }) {
               color="peach"
               size="h5"
             >
-              ElasticON 23/24 Global Series
+              {globalData?.series_name} {globalData?.series_year}
             </Heading>
             <Heading className="text-white" size="h1">
-              Find answers—for what’s next
+              {homepageData?.hero.headline}
             </Heading>
-            <p className="text-white my-8">
-              Get ready to find answers that matter! We&apos;re bringing our
-              biggest event of the year to you, so you can get the latest
-              Elastic insights and meet with experts and fellow users.
-              You&apos;ll see how Elasticsearch powered by AI can help you take
-              advantage of all your data to build, secure, and protect — and
-              optimize your infrastructure and talent resources more
-              efficiently.
-            </p>
-            <p className="font-bold text-white">
-              It all stars at an ElasticON Global event near you!
-            </p>
+            <p className="text-white my-8">{homepageData?.hero.description}</p>
+            <div className="flex items-center">
+              <Button href={homepageData?.hero.main_cta.href}>
+                {homepageData?.hero.main_cta.title}
+              </Button>
+              <Link
+                className="flex gap-2 hover:gap-4 items-center text-blue-400 ml-6"
+                href={homepageData?.hero.supporting_cta.href}
+              >
+                {homepageData?.hero.supporting_cta.title}
+                <Image
+                  alt="arrow icon"
+                  height={12}
+                  src="/images/icon-right.svg"
+                  width={25}
+                />
+              </Link>
+            </div>
           </>
         }
       >
@@ -128,20 +117,32 @@ export default function Home({ data }) {
         </ul>
       </Panel>
       <Locations />
-      <Footer />
+      <Footer data={footerData} />
     </>
   );
 }
 
 export async function getStaticProps() {
-  const query = Stack.ContentType("event");
-  const result = await query.fetch();
+  const footerData = await Stack.ContentType("footer")
+    .Entry("blt6f73b6b55468ee3a")
+    .toJSON()
+    .fetch();
 
-  console.log(result);
+  const globalData = await Stack.ContentType("site_config")
+    .Entry("blt6e01f6ef8267a554")
+    .toJSON()
+    .fetch();
+
+  const homepageData = await Stack.ContentType("homepage")
+    .Entry("blt1a1fa44a34ef336f")
+    .toJSON()
+    .fetch();
 
   return {
     props: {
-      data: "test",
+      footerData,
+      globalData,
+      homepageData,
     },
   };
 }

@@ -1,25 +1,26 @@
+import Link from "next/link";
+import Stack from "../../lib/contentstack";
+
 import Button from "@/components/Button";
 import Heading from "@/components/Heading";
-import Link from "next/link";
 
-export default function Footer({ location }) {
+export default function Footer({ data, location = false }) {
+  const { main_cta } = data;
   return (
     <>
       <div className="bg-zinc-900 text-center text-white py-16 md:py-28 rounded-tl-sm md:rounded-tl-md rounded-tr-sm md:rounded-tr-md">
         <Heading className="mb-6 text-peach" size="h3">
-          We&apos;re looking forward to seeing you!
+          {data?.headline}
         </Heading>
-        <p className="mb-10">
-          Register now to take advantage of our early bird pricing!
-        </p>
-        <Button href="#" className="mt-6">
-          Register now
+        <p className="mb-10">{data?.description}</p>
+        <Button href={main_cta?.href} className="mt-6">
+          {main_cta?.title}
         </Button>
       </div>
       {location && (
         <div className="bg-teal text-center p-4 md:p-6">
           <p>
-            Can&apos;t make it to ElasticON {location}?{" "}
+            Can&apos;t make it to this ElasticON location?{" "}
             <Link className="underline" href="/">
               Find a location
             </Link>{" "}
