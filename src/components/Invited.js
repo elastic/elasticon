@@ -2,6 +2,8 @@ import Heading from "@/components/Heading";
 import Wave from "@/components/Wave";
 
 export default function Invited({ data }) {
+  console.log(data);
+
   const headingAfterClasses = `
     after:absolute
     after:bg-[url('/images/icon-star.svg')]
@@ -30,13 +32,9 @@ export default function Invited({ data }) {
           className={`inline-block relative ${headingAfterClasses} ${headingBeforeClasses}`}
           size="h4"
         >
-          You&apos;re invited!
+          {data.headline}
         </Heading>
-        <p className="mt-3 text-lg">
-          The entire Elastic community is welcome: Developers, Architects, IT
-          professionals, DevOps Engineers, and anyone working with or interested
-          in the Elasticsearch Platform.
-        </p>
+        <p className="mt-3 text-lg">{data.description}</p>
       </div>
       <Wave direction="right" />
     </div>

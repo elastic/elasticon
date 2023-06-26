@@ -1,6 +1,6 @@
 import Link from "next/link";
 import Image from "next/image";
-import Stack from "../../lib/contentstack";
+import Query from "../../lib/contentstack";
 
 import Button from "@/components/Button";
 import Footer from "@/components/Footer";
@@ -11,8 +11,10 @@ import Locations from "@/components/Locations";
 import Panel from "@/components/Panel";
 import Navigation from "@/components/Navigation";
 
-export default function Home({ footerData, globalData, homepageData }) {
-  console.log(homepageData);
+export default function Home({ data }) {
+  const { footerData, globalData, homepageData } = data;
+  const { invitationData } = homepageData;
+
   return (
     <>
       <Hero
@@ -55,7 +57,7 @@ export default function Home({ footerData, globalData, homepageData }) {
       >
         <Navigation />
       </Hero>
-      <Invited />
+      <Invited data={invitationData} />
       <Panel className="bg-gradient-to-b from-white to-zinc-100">
         <Heading className="mb-10 md:mb-16 text-center text-blue-800" size="h3">
           Meet the latest Elasticsearch advancements
@@ -123,26 +125,35 @@ export default function Home({ footerData, globalData, homepageData }) {
 }
 
 export async function getStaticProps() {
-  const footerData = await Stack.ContentType("footer")
-    .Entry("blt6f73b6b55468ee3a")
-    .toJSON()
-    .fetch();
+  const footerData = await Query("footer", "blt6f73b6b55468ee3a");
+  const globalData = await Query("site_config", "blt6e01f6ef8267a554");
+  // const homepageData = await Query("homepage", "blt1a1fa44a34ef336f");
 
-  const globalData = await Stack.ContentType("site_config")
-    .Entry("blt6e01f6ef8267a554")
-    .toJSON()
-    .fetch();
+  async function QueryHomepageData() {
+    try {
+      const data = await Query("homepage", "blt1a1fa44a34ef336f");
+      const inviteData = await Query(
+        data.invitation[0]._content_type_uid,
+        data.invitation[0].uid
+      );
+      return {
+        ...data,
+        invitationData: inviteData,
+      };
+    } catch (error) {
+      console.error(error);
+    }
+  }
 
-  const homepageData = await Stack.ContentType("homepage")
-    .Entry("blt1a1fa44a34ef336f")
-    .toJSON()
-    .fetch();
+  const allHomepageData = await QueryHomepageData();
 
   return {
     props: {
-      footerData,
-      globalData,
-      homepageData,
+      data: {
+        footerData,
+        globalData,
+        homepageData: allHomepageData,
+      },
     },
   };
 }
