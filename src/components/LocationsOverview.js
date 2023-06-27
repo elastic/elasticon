@@ -13,61 +13,38 @@ const continents = [
   "Public Sector",
 ];
 
-const NorthSouthAmerica = [
-  {
-    name: "Miami",
-    date: "June 13-14, 2024",
-    location: "South Beach Conference Center",
-    tier1: true,
-  },
-  {
-    name: "Seattle",
-    date: "July 18-19, 2024",
-    location: "Center for The Performing Arts",
-    tier1: true,
-  },
-  {
-    name: "Toronto",
-    date: "August 2-3, 2024",
-    location: "The Distillery District",
-    tier1: true,
-  },
-  {
-    name: "Boston",
-    date: "June 12, 2024",
-  },
-  {
-    name: "Denver",
-    date: "June 29, 2024",
-  },
-  {
-    name: "Houston",
-    date: "July 8, 2024",
-  },
-  {
-    name: "Mexico City",
-    date: "July 20, 2024",
-  },
-  {
-    name: "San Francisco",
-    date: "August 2, 2024",
-  },
-  {
-    name: "Sao Palo",
-    date: "August 21, 2024",
-  },
-  {
-    name: "Washington DC",
-    date: "September 10, 2024",
-  },
+const locationsLists = [
+  [
+    "Atlanta, GA",
+    "Chicago, IL",
+    "Dallas, TX",
+    "New York City, NY",
+    "Sao Paulo, Brazil",
+    "Toronto, Canada",
+  ],
+  ["Barcelona, Spain", "Frankfurt, Germany", "London, UK", "Tel Aviv, Israel"],
+  [],
+  [],
 ];
+
+const beforeClasses = `
+  relative
+  pl-12
+  before:absolute
+  before:bg-[url('/images/icon-star-white.svg')]
+  before:content-[' ']
+  before:h-6
+  before:left-0
+  before:top-1
+  before:w-6
+`;
 
 export default function Locations() {
   const containerClasses = cn("p-10", "sm:p-14", "md:p-20", "lg:p-24");
 
   return (
     <div
-      className={`bg-blue-900 mb-4 rounded-tl-sm rounded-tr-sm md:rounded-tl-md md:rounded-tr-md lg:rounded-tl-lg lg:rounded-tr-lg text-white ${containerClasses}`}
+      className={`bg-blue-900 mb-4 rounded-sm md:rounded-md lg:rounded-lg text-white ${containerClasses}`}
       id="locations"
     >
       <Heading className="mb-10 text-center" size="h3">
@@ -90,39 +67,63 @@ export default function Locations() {
           ))}
         </Tab.List>
         <Tab.Panels className="my-16">
-          <Tab.Panel>
-            <div className="gap-10 grid lg:grid-cols-2 max-w-xl mx-auto">
-              <Heading className="font-normal text-peach" size="h5">
-                Atlanta, USA
-              </Heading>
-              <Heading className="font-normal text-peach" size="h5">
-                Dallas, USA
-              </Heading>
-              <Heading className="font-normal text-peach" size="h5">
-                Sao Palo, Brazil
-              </Heading>
-              <Heading className="font-normal text-peach" size="h5">
-                Chicago, USA
-              </Heading>
-              <Heading className="font-normal text-peach" size="h5">
-                Portland, USA
-              </Heading>
-              <Heading className="font-normal text-peach" size="h5">
-                Toronto, Canada
-              </Heading>
-            </div>
-          </Tab.Panel>
+          {locationsLists.map((area, index) => (
+            <Tab.Panel key={`area-${index}`}>
+              <div className="gap-10 grid md:grid-cols-2 max-w-2xl mx-auto">
+                {area.map((location, index) => (
+                  <Heading
+                    className={`font-normal text-peach ${beforeClasses}`}
+                    key={`location-${index}`}
+                    size="h5"
+                  >
+                    {location}
+                  </Heading>
+                ))}
+              </div>
+            </Tab.Panel>
+          ))}
         </Tab.Panels>
       </Tab.Group>
       <Marquee
-        className="border-blue-800 border-y-2 py-8"
+        className="border-blue-800 border-y-2 h-24"
         gradient
         gradientColor={[16, 28, 63]}
       >
-        <p className="text-2xl text-teal mr-6">
-          Dates and event details coming soon!
-        </p>
-        <p className="text-2xl">Check back soon!</p>
+        <div className="flex flex-nowrap gap-10">
+          <p className="text-2xl text-teal">
+            Dates and event details coming soon!
+          </p>
+          <Image
+            alt="illustrative star"
+            height={24}
+            src="/images/icon-star-pink.svg"
+            width={24}
+          />
+          <p className="text-2xl">Stay tuned for more details.</p>
+          <Image
+            alt="illustrative star"
+            height={24}
+            src="/images/icon-star-pink.svg"
+            width={24}
+          />
+          <p className="text-2xl text-teal">
+            Dates and event details coming soon!
+          </p>
+          <Image
+            alt="illustrative star"
+            height={24}
+            src="/images/icon-star-pink.svg"
+            width={24}
+          />
+          <p className="text-2xl">Stay tuned for more details.</p>
+          <Image
+            alt="illustrative star"
+            className="mr-10"
+            height={24}
+            src="/images/icon-star-pink.svg"
+            width={24}
+          />
+        </div>
       </Marquee>
       <Image
         alt="illustrative star"

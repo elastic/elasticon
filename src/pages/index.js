@@ -17,13 +17,13 @@ export default function Home({ data }) {
   const { benefitData, featuresData, invitationData, solutionData } =
     homepageData;
 
+  console.log(homepageData);
+
   return (
     <>
       <Hero
-        imageAlt="collage of stars, shapes and lines with a grungy texture and a picture of a crowd looking at a stage"
-        imageHeight={600}
-        imageSrc="/images/hero-home.png"
-        imageWidth={576}
+        imageAlt={homepageData.hero.image.description}
+        imageSrc={homepageData.hero.image.url}
         mainContent={
           <>
             <Heading
