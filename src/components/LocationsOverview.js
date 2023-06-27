@@ -40,14 +40,14 @@ const beforeClasses = `
 `;
 
 export default function Locations() {
-  const containerClasses = cn("p-10", "sm:p-14", "md:p-20", "lg:p-24");
+  const containerClasses = cn("px-10", "sm:px-14");
 
   return (
     <div
       className={`bg-blue-900 mb-4 rounded-sm md:rounded-md lg:rounded-lg text-white ${containerClasses}`}
       id="locations"
     >
-      <Heading className="mb-10 text-center" size="h3">
+      <Heading className="mb-10 pt-12 md:pt-20 text-center" size="h3">
         Coming soon to you
       </Heading>
       <Tab.Group>
@@ -127,7 +127,7 @@ export default function Locations() {
       </Marquee>
       <Image
         alt="illustrative star"
-        className="mx-auto translate-y-2 md:translate-y-6 lg:translate-y-10"
+        className="mx-auto"
         height={192}
         src="/images/locations-star.svg"
         width={192}
