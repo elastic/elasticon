@@ -14,7 +14,7 @@ import Navigation from "@/components/Navigation";
 
 export default function Home({ data }) {
   const { footerData, globalData, homepageData } = data;
-  const { invitationData, solutionData } = homepageData;
+  const { benefitData, invitationData, solutionData } = homepageData;
 
   console.log(homepageData);
 
@@ -80,23 +80,18 @@ export default function Home({ data }) {
       </Panel>
       <Panel className="bg-zinc-900 text-white">
         <Heading className="mb-10 md:mb-16 text-center text-teal" size="h3">
-          Expert advice. Community connections.
+          {benefitData.headline}
         </Heading>
-        <Heading className="mb-4" size="h5">
-          What to expect
-        </Heading>
-        <p>
-          Designed for you, ElasticON [Location] will show you how to get the
-          most relevant search, observability, and security results at
-          unprecedented speed with open and flexible enterprise solutions —
-          powered by the Elasticsearch Platform and AI.
-        </p>
-        <ul>
-          <li>See how your peers are using Elastic to lead their industries</li>
-          <li>Get the latest solutions, news, and updates</li>
-          <li>Connect with our experts to get an inside track on how</li>
-          <li>Elastic can help you be even more efficient every day</li>
-        </ul>
+        <div className="gap-10 grid grid-cols-2">
+          <div>
+            <ReactMarkdown className="markdown">
+              {benefitData.description}
+            </ReactMarkdown>
+          </div>
+          <div>
+            <p>Video</p>
+          </div>
+        </div>
       </Panel>
       <Locations />
       <Footer data={footerData} />
@@ -107,11 +102,14 @@ export default function Home({ data }) {
 export async function getStaticProps() {
   const footerData = await Query("footer", "blt6f73b6b55468ee3a");
   const globalData = await Query("site_config", "blt6e01f6ef8267a554");
-  // const homepageData = await Query("homepage", "blt1a1fa44a34ef336f");
 
   async function QueryHomepageData() {
     try {
       const data = await Query("homepage", "blt1a1fa44a34ef336f");
+      const benefitData = await Query(
+        data.benefit[0]._content_type_uid,
+        data.benefit[0].uid
+      );
       const invitationData = await Query(
         data.invitation[0]._content_type_uid,
         data.invitation[0].uid
@@ -125,6 +123,7 @@ export async function getStaticProps() {
 
       return {
         ...data,
+        benefitData,
         invitationData,
         solutionData,
       };
