@@ -17,8 +17,6 @@ export default function Home({ data }) {
   const { benefitData, featuresData, invitationData, solutionData } =
     homepageData;
 
-  console.log(homepageData);
-
   return (
     <>
       <Hero
@@ -66,9 +64,9 @@ export default function Home({ data }) {
         <Heading className="mb-10 md:mb-16 text-center text-blue-800" size="h3">
           {homepageData.solution_overviews.headline}
         </Heading>
-        <div className="gap-x-24 grid grid-cols-3">
+        <div className="gap-x-24 grid lg:grid-cols-3">
           {solutionData.map((solution, i) => (
-            <div key={`solution-${i}`}>
+            <div className="mb-10 lg:mb-0" key={`solution-${i}`}>
               <Heading className="mb-4" size="h5">
                 {solution.headline}
               </Heading>
@@ -98,15 +96,15 @@ export default function Home({ data }) {
         <Heading className="mb-10 md:mb-16 text-center text-blue-800" size="h3">
           {homepageData.event_features.headline}
         </Heading>
-        <div className="gap-12 grid grid-cols-2 items-center">
+        <div className="gap-12 grid lg:grid-cols-2 items-center">
           <img
             alt={homepageData.event_features.image.description}
             src={homepageData.event_features.image.url}
           />
-          <div className="gap-12 grid grid-cols-2 grid-rows-2">
+          <div className="gap-12 grid sm:grid-cols-2 grid-rows-2">
             {featuresData.map((feature, i) => (
               <div key={`feature-${i}`}>
-                <img src={feature.icon.url} />
+                <img alt={feature.icon.description} src={feature.icon.url} />
                 <Heading className="my-4" size="h5">
                   {feature.headline}
                 </Heading>

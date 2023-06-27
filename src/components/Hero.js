@@ -15,8 +15,10 @@ export default function Hero({
   return (
     <div className="bg-blue-900 mb-4 rounded-bl-sm md:rounded-bl-md lg:rounded-bl-lg rounded-br-sm md:rounded-br-md lg:rounded-br-lg">
       {children}
-      <div className="gap-24 grid grid-cols-2 items-center pl-10 sm:pl-14 md:pl-20 lg:pl-24 pt-12 pb-20">
-        <div>{mainContent}</div>
+      <div className="gap-24 grid md:grid-cols-2 items-center md:pl-20 lg:pl-24 pt-12 pb-20">
+        <div className="pl-10 sm:pl-14 md:pl-0 pr-10 sm:pr-14 md:pr-0">
+          {mainContent}
+        </div>
         <div className="flex items-center justify-end">
           <Image
             alt={imageAlt}
