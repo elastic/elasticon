@@ -1,7 +1,4 @@
 import Link from "next/link";
-import Stack from "../../lib/contentstack";
-
-import Button from "@/components/Button";
 import Heading from "@/components/Heading";
 
 export default function Footer({ data, location = false }) {
@@ -9,13 +6,13 @@ export default function Footer({ data, location = false }) {
   return (
     <>
       <div className="bg-zinc-900 text-center text-white py-16 md:py-28 rounded-tl-sm md:rounded-tl-md rounded-tr-sm md:rounded-tr-md">
-        <Heading className="mb-6 text-peach" size="h3">
+        <Heading className="mb-6" size="h3">
           {data?.headline}
         </Heading>
-        <p className="mb-10">{data?.description}</p>
-        <Button href={main_cta?.href} className="mt-6">
+        <p>{data?.description}</p>
+        {/* <Button href={main_cta?.href} className="mt-6">
           {main_cta?.title}
-        </Button>
+        </Button> */}
       </div>
       {location && (
         <div className="bg-teal text-center p-4 md:p-6">

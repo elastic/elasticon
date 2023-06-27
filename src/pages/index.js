@@ -1,5 +1,5 @@
-import Link from "next/link";
 import Image from "next/image";
+import Link from "next/link";
 import Query from "../../lib/contentstack";
 import { ReactMarkdown } from "react-markdown/lib/react-markdown";
 
@@ -8,13 +8,14 @@ import Footer from "@/components/Footer";
 import Heading from "@/components/Heading";
 import Hero from "@/components/Hero";
 import Invited from "@/components/Invited";
-import Locations from "@/components/Locations";
+import LocationsOverview from "@/components/LocationsOverview";
 import Panel from "@/components/Panel";
 import Navigation from "@/components/Navigation";
 
 export default function Home({ data }) {
   const { footerData, globalData, homepageData } = data;
-  const { benefitData, invitationData, solutionData } = homepageData;
+  const { benefitData, featuresData, invitationData, solutionData } =
+    homepageData;
 
   console.log(homepageData);
 
@@ -42,7 +43,7 @@ export default function Home({ data }) {
               <Button href={homepageData?.hero.main_cta.href}>
                 {homepageData?.hero.main_cta.title}
               </Button>
-              <Link
+              {/* <Link
                 className="flex gap-2 hover:gap-4 items-center text-blue-400 ml-6"
                 href={homepageData?.hero.supporting_cta.href}
               >
@@ -53,7 +54,7 @@ export default function Home({ data }) {
                   src="/images/icon-right.svg"
                   width={25}
                 />
-              </Link>
+              </Link> */}
             </div>
           </>
         }
@@ -93,7 +94,29 @@ export default function Home({ data }) {
           </div>
         </div>
       </Panel>
-      <Locations />
+      <Panel>
+        <Heading className="mb-10 md:mb-16 text-center text-blue-800" size="h3">
+          {homepageData.event_features.headline}
+        </Heading>
+        <div className="gap-8 grid grid-cols-2 items-center">
+          <img
+            alt={homepageData.event_features.image.description}
+            src={homepageData.event_features.image.url}
+          />
+          <div className="gap-8 grid grid-cols-2 grid-rows-2">
+            {featuresData.map((feature, i) => (
+              <div key={`feature-${i}`}>
+                <Heading className="mb-4" size="h5">
+                  {feature.headline}
+                </Heading>
+                <p>{feature.description}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </Panel>
+      {/* <Locations /> */}
+      <LocationsOverview />
       <Footer data={footerData} />
     </>
   );
@@ -110,6 +133,12 @@ export async function getStaticProps() {
         data.benefit[0]._content_type_uid,
         data.benefit[0].uid
       );
+      const featuresData = await Promise.all(
+        data.event_features.features.map(async (ref) => {
+          const referenceData = await Query(ref._content_type_uid, ref.uid);
+          return referenceData;
+        })
+      );
       const invitationData = await Query(
         data.invitation[0]._content_type_uid,
         data.invitation[0].uid
@@ -124,6 +153,7 @@ export async function getStaticProps() {
       return {
         ...data,
         benefitData,
+        featuresData,
         invitationData,
         solutionData,
       };
