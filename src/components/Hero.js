@@ -1,8 +1,7 @@
-import cn from "classnames";
 import Image from "next/image";
 
-import Button from "@/components/Button";
-import Navigation from "@/components/Navigation";
+// import Button from "@/components/Button";
+// import Navigation from "@/components/Navigation";
 
 export default function Hero({
   children,
@@ -14,9 +13,9 @@ export default function Hero({
   mainContent,
 }) {
   return (
-    <div className="bg-blue-900 mb-4 rounded-bl-sm md:rounded-bl-md rounded-br-sm md:rounded-br-md">
+    <div className="bg-blue-900 mb-4 rounded-bl-sm md:rounded-bl-md lg:rounded-bl-lg rounded-br-sm md:rounded-br-md lg:rounded-br-lg">
       {children}
-      <div className="gap-24 grid grid-cols-2 items-center pl-10 sm:pl-14 md:pl-20 lg:pl-24 pt-12">
+      <div className="gap-24 grid grid-cols-2 items-center pl-10 sm:pl-14 md:pl-20 lg:pl-24 pt-12 pb-20">
         <div>{mainContent}</div>
         <div className="flex items-center justify-end">
           <Image

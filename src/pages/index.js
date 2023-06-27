@@ -29,7 +29,7 @@ export default function Home({ data }) {
         mainContent={
           <>
             <Heading
-              className="font-semibold mb-8 text-peach tracking-widest uppercase"
+              className="font-semibold mb-8 text-teal"
               color="peach"
               size="h5"
             >
@@ -98,18 +98,19 @@ export default function Home({ data }) {
         <Heading className="mb-10 md:mb-16 text-center text-blue-800" size="h3">
           {homepageData.event_features.headline}
         </Heading>
-        <div className="gap-8 grid grid-cols-2 items-center">
+        <div className="gap-12 grid grid-cols-2 items-center">
           <img
             alt={homepageData.event_features.image.description}
             src={homepageData.event_features.image.url}
           />
-          <div className="gap-8 grid grid-cols-2 grid-rows-2">
+          <div className="gap-12 grid grid-cols-2 grid-rows-2">
             {featuresData.map((feature, i) => (
               <div key={`feature-${i}`}>
-                <Heading className="mb-4" size="h5">
+                <img src={feature.icon.url} />
+                <Heading className="my-4" size="h5">
                   {feature.headline}
                 </Heading>
-                <p>{feature.description}</p>
+                <p className="text-zinc-900">{feature.description}</p>
               </div>
             ))}
           </div>

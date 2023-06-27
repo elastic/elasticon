@@ -68,6 +68,7 @@ export default function Locations() {
   return (
     <div
       className={`bg-blue-900 mb-4 rounded-tl-sm rounded-tr-sm md:rounded-tl-md md:rounded-tr-md lg:rounded-tl-lg lg:rounded-tr-lg text-white ${containerClasses}`}
+      id="locations"
     >
       <Heading className="mb-10 text-center" size="h3">
         Coming soon to you

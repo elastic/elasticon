@@ -19,7 +19,9 @@ export default function Heading({ children, className, color, size }) {
   const fontWeight = fontWeights[size] || "";
 
   const tagProps = {
-    className: `${className && className} ${fontSize} ${fontWeight}`,
+    className: `${
+      className && className
+    } ${fontSize} ${fontWeight} font-display`,
     children,
   };
 
