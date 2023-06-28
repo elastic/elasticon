@@ -15,8 +15,6 @@ export default function Home({ data }) {
   const { benefitData, featuresData, invitationData, solutionData } =
     homepageData;
 
-  console.log(homepageData);
-
   const solutionsAfter = `
     after:absolute
     after:bg-[url('/images/pattern-gray.png')]
