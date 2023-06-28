@@ -164,7 +164,7 @@ export default function Home({ data }) {
                 ></iframe>
               </div>
               <p className="mt-6 text-black text-center">
-                <span className="font-bold">{video.title}</span> |{" "}
+                <span className="font-black">{video.title}</span> |{" "}
                 {video.length}
               </p>
             </div>
