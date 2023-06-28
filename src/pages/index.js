@@ -105,14 +105,18 @@ export default function Home({ data }) {
         <Heading className="mb-10 md:mb-16 text-center text-teal" size="h3">
           {benefitData.headline}
         </Heading>
-        <div className="gap-10 grid grid-cols-2">
+        <div className="gap-10 grid md:grid-cols-2 items-center">
           <div>
             <ReactMarkdown className="markdown">
               {benefitData.description}
             </ReactMarkdown>
           </div>
           <div>
-            <p>Video</p>
+            {/* eslint-disable-next-line */}
+            <img
+              alt={homepageData.event_features.image.description}
+              src={homepageData.event_features.image.url}
+            />
           </div>
         </div>
       </Panel>

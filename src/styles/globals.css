@@ -15,5 +15,9 @@ html {
 }
 
 .markdown ul {
-  @apply list-disc list-inside mt-4;
+  @apply list-disc list-outside mt-10 pl-4 text-xl;
+}
+
+.markdown ul li {
+  @apply mb-3;
 }

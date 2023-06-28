@@ -27,7 +27,7 @@ export default function Invited({ data }) {
       <Wave />
       <div className="max-w-4xl mx-auto md:px-8 text-zinc-900 text-center">
         <Heading
-          className={`inline-block relative ${headingAfterClasses} ${headingBeforeClasses}`}
+          className={`inline-block relative text-black ${headingAfterClasses} ${headingBeforeClasses}`}
           size="h4"
         >
           {data.headline}
