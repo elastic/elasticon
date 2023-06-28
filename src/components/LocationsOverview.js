@@ -44,7 +44,7 @@ export default function Locations() {
 
   return (
     <div
-      className={`bg-blue-900 mb-4 rounded-sm md:rounded-md lg:rounded-lg text-white ${containerClasses}`}
+      className={`md:bg-[url('/images/pattern-planet.png')] bg-[15%_65px] bg-[length:96px_96px] bg-blue-900 bg-no-repeat mb-4 rounded-sm md:rounded-md lg:rounded-lg text-white ${containerClasses}`}
       id="locations"
     >
       <Heading className="mb-10 pt-12 md:pt-20 text-center" size="h3">

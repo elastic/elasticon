@@ -17,7 +17,29 @@ export default function Home({ data }) {
   const { benefitData, featuresData, invitationData, solutionData } =
     homepageData;
 
-  console.log(homepageData);
+  const solutionsAfter = `
+    after:absolute
+    after:bg-[url('/images/pattern-gray.png')]
+    after:bg-contain
+    after:bg-no-repeat
+    after:-bottom-32
+    after:content-[' ']
+    after:h-72
+    after:-right-32
+    after:w-72
+  `;
+
+  const solutionsBefore = `
+    before:absolute
+    before:bg-[url('/images/pattern-gray.png')]
+    before:bg-contain
+    before:bg-no-repeat
+    before:content-[' ']
+    before:h-72
+    before:-left-28
+    before:-top-28
+    before:w-72
+  `;
 
   return (
     <>
@@ -60,7 +82,9 @@ export default function Home({ data }) {
         <Navigation />
       </Hero>
       <Invited data={invitationData} />
-      <Panel className="bg-gradient-to-b from-white to-zinc-100">
+      <Panel
+        className={`bg-gradient-to-b from-white to-zinc-100 overflow-hidden relative ${solutionsAfter} ${solutionsBefore}`}
+      >
         <Heading className="mb-10 md:mb-16 text-center text-blue-800" size="h3">
           {homepageData.solution_overviews.headline}
         </Heading>
@@ -77,7 +101,9 @@ export default function Home({ data }) {
           ))}
         </div>
       </Panel>
-      <Panel className="bg-zinc-900 text-white">
+      <Panel
+        className={`bg-zinc-900 overflow-hidden relative text-white before:opacity-10 ${solutionsBefore}`}
+      >
         <Heading className="mb-10 md:mb-16 text-center text-teal" size="h3">
           {benefitData.headline}
         </Heading>
@@ -97,6 +123,7 @@ export default function Home({ data }) {
           {homepageData.event_features.headline}
         </Heading>
         <div className="gap-12 grid lg:grid-cols-2 items-center">
+          {/* eslint-disable-next-line */}
           <img
             alt={homepageData.event_features.image.description}
             src={homepageData.event_features.image.url}
@@ -104,6 +131,7 @@ export default function Home({ data }) {
           <div className="gap-12 grid sm:grid-cols-2 grid-rows-2">
             {featuresData.map((feature, i) => (
               <div key={`feature-${i}`}>
+                {/* eslint-disable-next-line */}
                 <img alt={feature.icon.description} src={feature.icon.url} />
                 <Heading className="my-4" size="h5">
                   {feature.headline}
