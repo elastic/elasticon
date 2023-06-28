@@ -1,7 +1,5 @@
-import Image from "next/image";
-import Link from "next/link";
-import Query from "../../lib/contentstack";
 import { ReactMarkdown } from "react-markdown/lib/react-markdown";
+import Query from "../../lib/contentstack";
 
 import Button from "@/components/Button";
 import Footer from "@/components/Footer";
@@ -16,6 +14,8 @@ export default function Home({ data }) {
   const { footerData, globalData, homepageData } = data;
   const { benefitData, featuresData, invitationData, solutionData } =
     homepageData;
+
+  console.log(homepageData);
 
   const solutionsAfter = `
     after:absolute
@@ -144,6 +144,28 @@ export default function Home({ data }) {
       </Panel>
       {/* <Locations /> */}
       <LocationsOverview />
+      <Panel>
+        <Heading className="mb-10 text-center text-blue-900" size="h4">
+          {homepageData.watch.headline}
+        </Heading>
+        <div className="gap-10 grid md:grid-cols-2">
+          {homepageData.watchData.map((video, i) => (
+            <div
+              className="aspect-video overflow-hidden rounded-sm shadow-lg w-full"
+              key={`watch-video-${i}`}
+            >
+              <iframe
+                allowfullscreen
+                allowtransparency="true"
+                height="100%"
+                frameborder="0"
+                src={`//play.vidyard.com/${video.vidyard_uuid}.html?`}
+                width="100%"
+              ></iframe>
+            </div>
+          ))}
+        </div>
+      </Panel>
       <Footer data={footerData} />
     </>
   );
@@ -176,6 +198,12 @@ export async function getStaticProps() {
           return referenceData;
         })
       );
+      const watchData = await Promise.all(
+        data.watch.video.map(async (ref) => {
+          const referenceData = await Query(ref._content_type_uid, ref.uid);
+          return referenceData;
+        })
+      );
 
       return {
         ...data,
@@ -183,6 +211,7 @@ export async function getStaticProps() {
         featuresData,
         invitationData,
         solutionData,
+        watchData,
       };
     } catch (error) {
       console.error(error);
