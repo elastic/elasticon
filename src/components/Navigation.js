@@ -53,10 +53,11 @@ export default function Navigation({ location }) {
         <Link href="/">
           <p className="sr-only">ElasticON</p>
           <Image
-            src="/logo.svg"
             alt="the classic elastic cluster logo with the word 'on' added to the right"
-            width={200}
+            className="h-auto w-48"
             height={40}
+            src="/logo.svg"
+            width={200}
           />
         </Link>
 
