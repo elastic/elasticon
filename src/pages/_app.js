@@ -1,4 +1,4 @@
-import { Inter, Space_Grotesk } from "@next/font/google";
+import { Inter, Space_Grotesk } from "next/font/google";
 
 import "@/styles/globals.css";
 
@@ -14,7 +14,7 @@ const spaceGrotesk = Space_Grotesk({
 
 export default function App({ Component, pageProps }) {
   return (
-    <main className={`${spaceGrotesk.variable} ${inter.variable} font-sans`}>
+    <main className={`${spaceGrotesk.variable} ${inter.variable} font-body`}>
       <Component {...pageProps} />
     </main>
   );
