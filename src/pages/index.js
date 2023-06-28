@@ -155,10 +155,9 @@ export default function Home({ data }) {
               key={`watch-video-${i}`}
             >
               <iframe
-                allowfullscreen
+                allowFullScreen
                 allowtransparency="true"
                 height="100%"
-                frameborder="0"
                 src={`//play.vidyard.com/${video.vidyard_uuid}.html?`}
                 width="100%"
               ></iframe>
