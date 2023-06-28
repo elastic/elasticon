@@ -152,17 +152,21 @@ export default function Home({ data }) {
         </Heading>
         <div className="gap-10 grid md:grid-cols-2">
           {homepageData.watchData.map((video, i) => (
-            <div
-              className="aspect-video overflow-hidden rounded-sm shadow-lg w-full"
-              key={`watch-video-${i}`}
-            >
-              <iframe
-                allowFullScreen
-                allowtransparency="true"
-                height="100%"
-                src={`//play.vidyard.com/${video.vidyard_uuid}.html?`}
-                width="100%"
-              ></iframe>
+            <div key={`watch-video-${i}`}>
+              <div className="aspect-video overflow-hidden rounded-sm shadow-lg w-full">
+                <iframe
+                  allowFullScreen
+                  allowtransparency="true"
+                  height="100%"
+                  src={`//play.vidyard.com/${video.vidyard_uuid}.html?`}
+                  title={video.title}
+                  width="100%"
+                ></iframe>
+              </div>
+              <p className="mt-6 text-black text-center">
+                <span className="font-bold">{video.title}</span> |{" "}
+                {video.length}
+              </p>
             </div>
           ))}
         </div>
