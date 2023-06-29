@@ -50,7 +50,7 @@ export default function Navigation({ location }) {
       <nav
         className={`flex flex-row items-center justify-between text-white ${paddingX} ${paddingY}`}
       >
-        <Link href="/">
+        <Link href="/events/elasticon">
           <p className="sr-only">ElasticON</p>
           <Image
             alt="the classic elastic cluster logo with the word 'on' added to the right"
