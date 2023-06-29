@@ -12,7 +12,7 @@ export default function Hero({
 }) {
   const afterImage = `
     after:absolute
-    after:bg-[url('/images/pattern-hero.png')]
+    after:bg-[url('/events/elasticon/images/pattern-hero.png')]
     after:bg-contain
     after:-top-72
     after:content-[' ']
@@ -24,7 +24,7 @@ export default function Hero({
 
   const beforeImage = `
     before:absolute
-    before:bg-[url('/images/pattern-hero.png')]
+    before:bg-[url('/events/elasticon/images/pattern-hero.png')]
     before:bg-contain
     before:-bottom-56
     before:content-[' ']

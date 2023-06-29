@@ -1,6 +1,6 @@
 import { ReactMarkdown } from "react-markdown/lib/react-markdown";
 import Head from "next/head";
-import Query from "../../../../lib/contentstack";
+import Query from "../../lib/contentstack";
 
 import Button from "@/components/Button";
 import Footer from "@/components/Footer";
@@ -18,7 +18,7 @@ export default function Home({ data }) {
 
   const solutionsAfter = `
     after:absolute
-    after:bg-[url('/images/pattern-gray.png')]
+    after:bg-[url('/events/elasticon/images/pattern-gray.png')]
     after:bg-contain
     after:bg-no-repeat
     after:-bottom-32
@@ -30,7 +30,7 @@ export default function Home({ data }) {
 
   const solutionsBefore = `
     before:absolute
-    before:bg-[url('/images/pattern-gray.png')]
+    before:bg-[url('/events/elasticon/images/pattern-gray.png')]
     before:bg-contain
     before:bg-no-repeat
     before:content-[' ']

@@ -31,7 +31,7 @@ const beforeClasses = `
   relative
   pl-12
   before:absolute
-  before:bg-[url('/images/icon-star-white.svg')]
+  before:bg-[url('/events/elasticon/images/icon-star-white.svg')]
   before:content-[' ']
   before:h-6
   before:left-0
@@ -44,7 +44,7 @@ export default function Locations() {
 
   return (
     <div
-      className={`md:bg-[url('/images/pattern-planet.png')] bg-[15%_65px] bg-[length:96px_96px] bg-blue-900 bg-no-repeat mb-4 rounded-sm md:rounded-md lg:rounded-lg text-white ${containerClasses}`}
+      className={`md:bg-[url('/events/elasticon/images/pattern-planet.png')] bg-[15%_65px] bg-[length:96px_96px] bg-blue-900 bg-no-repeat mb-4 rounded-sm md:rounded-md lg:rounded-lg text-white ${containerClasses}`}
       id="locations"
     >
       <Heading className="mb-10 pt-12 md:pt-20 text-center" size="h3">
