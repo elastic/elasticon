@@ -1,6 +1,6 @@
 import { ReactMarkdown } from "react-markdown/lib/react-markdown";
 import Head from "next/head";
-import Query from "../../lib/contentstack";
+import Query from "../../../../lib/contentstack";
 
 import Button from "@/components/Button";
 import Footer from "@/components/Footer";
