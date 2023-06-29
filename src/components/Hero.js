@@ -53,7 +53,7 @@ export default function Hero({
             alt="backgrond pattern and section divider"
             className="my-2 w-28 md:my-0 md:w-fit"
             height={120}
-            src="/images/hero-edge.svg"
+            src="/events/elasticon/images/hero-edge.svg"
             width={144}
           />
           <div className="pb-12 md:pb-20 px-10 sm:px-14 md:px-20 lg:px-24">

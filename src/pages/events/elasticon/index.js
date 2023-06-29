@@ -77,7 +77,7 @@ export default function Home({ data }) {
                 <Image
                   alt="arrow icon"
                   height={12}
-                  src="/images/icon-right.svg"
+                  src="/events/elasticon/images/icon-right.svg"
                   width={25}
                 />
               </Link> */}
