@@ -1,4 +1,5 @@
 import { ReactMarkdown } from "react-markdown/lib/react-markdown";
+import Head from "next/head";
 import Query from "../../lib/contentstack";
 
 import Button from "@/components/Button";
@@ -14,6 +15,8 @@ export default function Home({ data }) {
   const { footerData, globalData, homepageData } = data;
   const { benefitData, featuresData, invitationData, solutionData } =
     homepageData;
+
+  console.log(globalData);
 
   const solutionsAfter = `
     after:absolute
@@ -41,6 +44,13 @@ export default function Home({ data }) {
 
   return (
     <>
+      <Head>
+        <title>{globalData.seo_metadata.title}</title>
+        <meta
+          name="description"
+          content={globalData.seo_metadata.description}
+        />
+      </Head>
       <Hero
         imageAlt={homepageData.hero.image.description}
         imageSrc={homepageData.hero.image.url}
