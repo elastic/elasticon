@@ -99,10 +99,10 @@ export default function Home({ data }) {
         <div className="gap-x-24 grid lg:grid-cols-3">
           {solutionData.map((solution, i) => (
             <div className="mb-10 lg:mb-0" key={`solution-${i}`}>
-              <Heading className="mb-4" size="h5">
+              <Heading className="mb-4 text-black" size="h5">
                 {solution.headline}
               </Heading>
-              <ReactMarkdown className="markdown">
+              <ReactMarkdown className="markdown text-black">
                 {solution.description}
               </ReactMarkdown>
             </div>
@@ -145,7 +145,7 @@ export default function Home({ data }) {
               <div key={`feature-${i}`}>
                 {/* eslint-disable-next-line */}
                 <img alt={feature.icon.description} src={feature.icon.url} />
-                <Heading className="my-4" size="h5">
+                <Heading className="text-black my-4" size="h5">
                   {feature.headline}
                 </Heading>
                 <p className="text-zinc-900">{feature.description}</p>

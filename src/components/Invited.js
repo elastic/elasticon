@@ -32,7 +32,7 @@ export default function Invited({ data }) {
         >
           {data.headline}
         </Heading>
-        <p className="mt-3 text-lg">{data.description}</p>
+        <p className="mt-3 text-black text-lg">{data.description}</p>
       </div>
       <Wave direction="right" />
     </div>
