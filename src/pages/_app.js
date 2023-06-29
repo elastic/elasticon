@@ -1,6 +1,6 @@
 import localFont from "next/font/local";
 
-import "@/styles/globals.css";
+import "../styles/globals.css";
 
 const inter = localFont({
   src: [

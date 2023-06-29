@@ -96,14 +96,14 @@ export default function Locations() {
           <Image
             alt="illustrative star"
             height={24}
-            src="/images/icon-star-pink.svg"
+            src="/events/elasticon/images/icon-star-pink.svg"
             width={24}
           />
           <p className="text-2xl">Stay tuned for more details.</p>
           <Image
             alt="illustrative star"
             height={24}
-            src="/images/icon-star-pink.svg"
+            src="/events/elasticon/images/icon-star-pink.svg"
             width={24}
           />
           <p className="text-2xl text-teal">
@@ -112,7 +112,7 @@ export default function Locations() {
           <Image
             alt="illustrative star"
             height={24}
-            src="/images/icon-star-pink.svg"
+            src="/events/elasticon/images/icon-star-pink.svg"
             width={24}
           />
           <p className="text-2xl">Stay tuned for more details.</p>
@@ -120,7 +120,7 @@ export default function Locations() {
             alt="illustrative star"
             className="mr-10"
             height={24}
-            src="/images/icon-star-pink.svg"
+            src="/events/elasticon/images/icon-star-pink.svg"
             width={24}
           />
         </div>
@@ -129,7 +129,7 @@ export default function Locations() {
         alt="illustrative star"
         className="mx-auto"
         height={192}
-        src="/images/locations-star.svg"
+        src="/events/elasticon/images/locations-star.svg"
         width={192}
       />
     </div>

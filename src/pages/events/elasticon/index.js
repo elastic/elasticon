@@ -123,7 +123,7 @@ export default function Home({ data }) {
             {/* eslint-disable-next-line */}
             <img
               alt={homepageData.event_features.image.description}
-              src="/images/image-advice.png"
+              src="/events/elasticon/images/image-advice.png"
             />
           </div>
         </div>
