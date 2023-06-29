@@ -56,7 +56,7 @@ export default function Navigation({ location }) {
             alt="the classic elastic cluster logo with the word 'on' added to the right"
             className="h-auto w-48"
             height={40}
-            src="/logo.svg"
+            src="/events/elasticon/images/logo.svg"
             width={200}
           />
         </Link>
