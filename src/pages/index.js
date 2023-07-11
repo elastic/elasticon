@@ -18,7 +18,7 @@ export default function Home({ data }) {
 
   const solutionsAfter = `
     after:absolute
-    after:bg-[url('/events/elasticon/images/pattern-gray.png')]
+    after:bg-[url('/images/pattern-gray.png')]
     after:bg-contain
     after:bg-no-repeat
     after:-bottom-32
@@ -30,7 +30,7 @@ export default function Home({ data }) {
 
   const solutionsBefore = `
     before:absolute
-    before:bg-[url('/events/elasticon/images/pattern-gray.png')]
+    before:bg-[url('/images/pattern-gray.png')]
     before:bg-contain
     before:bg-no-repeat
     before:content-[' ']
@@ -77,7 +77,7 @@ export default function Home({ data }) {
                 <Image
                   alt="arrow icon"
                   height={12}
-                  src="/events/elasticon/images/icon-right.svg"
+                  src="/images/icon-right.svg"
                   width={25}
                 />
               </Link> */}
@@ -123,7 +123,7 @@ export default function Home({ data }) {
             {/* eslint-disable-next-line */}
             <img
               alt={homepageData.event_features.image.description}
-              src="/events/elasticon/images/image-advice.png"
+              src="/images/image-advice.png"
             />
           </div>
         </div>

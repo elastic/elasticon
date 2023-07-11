@@ -31,7 +31,7 @@ const beforeClasses = `
   relative
   pl-12
   before:absolute
-  before:bg-[url('/events/elasticon/images/icon-star-white.svg')]
+  before:bg-[url('/images/icon-star-white.svg')]
   before:content-[' ']
   before:h-6
   before:left-0
@@ -44,7 +44,7 @@ export default function Locations() {
 
   return (
     <div
-      className={`md:bg-[url('/events/elasticon/images/pattern-planet.png')] bg-[15%_65px] bg-[length:96px_96px] bg-blue-900 bg-no-repeat mb-4 rounded-sm md:rounded-md lg:rounded-lg text-white ${containerClasses}`}
+      className={`md:bg-[url('/images/pattern-planet.png')] bg-[15%_65px] bg-[length:96px_96px] bg-blue-900 bg-no-repeat mb-4 rounded-sm md:rounded-md lg:rounded-lg text-white ${containerClasses}`}
       id="locations"
     >
       <Heading className="mb-10 pt-12 md:pt-20 text-center" size="h3">
@@ -96,14 +96,14 @@ export default function Locations() {
           <Image
             alt="illustrative star"
             height={24}
-            src="/events/elasticon/images/icon-star-pink.svg"
+            src="/images/icon-star-pink.svg"
             width={24}
           />
           <p className="text-2xl">Stay tuned for more details.</p>
           <Image
             alt="illustrative star"
             height={24}
-            src="/events/elasticon/images/icon-star-pink.svg"
+            src="/images/icon-star-pink.svg"
             width={24}
           />
           <p className="text-2xl text-teal">
@@ -112,7 +112,7 @@ export default function Locations() {
           <Image
             alt="illustrative star"
             height={24}
-            src="/events/elasticon/images/icon-star-pink.svg"
+            src="/images/icon-star-pink.svg"
             width={24}
           />
           <p className="text-2xl">Stay tuned for more details.</p>
@@ -120,7 +120,7 @@ export default function Locations() {
             alt="illustrative star"
             className="mr-10"
             height={24}
-            src="/events/elasticon/images/icon-star-pink.svg"
+            src="/images/icon-star-pink.svg"
             width={24}
           />
         </div>
@@ -129,7 +129,7 @@ export default function Locations() {
         alt="illustrative star"
         className="mx-auto"
         height={192}
-        src="/events/elasticon/images/locations-star.svg"
+        src="/images/locations-star.svg"
         width={192}
       />
     </div>

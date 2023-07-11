@@ -12,7 +12,7 @@ export default function Hero({
 }) {
   const afterImage = `
     after:absolute
-    after:bg-[url('/events/elasticon/images/pattern-hero.png')]
+    after:bg-[url('/images/pattern-hero.png')]
     after:bg-contain
     after:-top-72
     after:content-[' ']
@@ -24,7 +24,7 @@ export default function Hero({
 
   const beforeImage = `
     before:absolute
-    before:bg-[url('/events/elasticon/images/pattern-hero.png')]
+    before:bg-[url('/images/pattern-hero.png')]
     before:bg-contain
     before:-bottom-56
     before:content-[' ']
@@ -53,7 +53,7 @@ export default function Hero({
             alt="backgrond pattern and section divider"
             className="my-2 w-28 md:my-0 md:w-fit"
             height={120}
-            src="/events/elasticon/images/hero-edge.svg"
+            src="/images/hero-edge.svg"
             width={144}
           />
           <div className="pb-12 md:pb-20 px-10 sm:px-14 md:px-20 lg:px-24">
