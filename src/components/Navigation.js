@@ -1,5 +1,7 @@
 import { Disclosure } from "@headlessui/react";
 
+import config from "../../next.config";
+
 import Image from "next/image";
 import Link from "next/link";
 import Button from "./Button";
@@ -56,7 +58,7 @@ export default function Navigation({ location }) {
             alt="the classic elastic cluster logo with the word 'on' added to the right"
             className="h-auto w-48"
             height={40}
-            src="/images/logo.svg"
+            src={config.basePath + "/images/logo.svg"}
             width={200}
           />
         </Link>

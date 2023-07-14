@@ -128,7 +128,7 @@ export default function Locations() {
         alt="illustrative star"
         className="mx-auto translate-y-2 md:translate-y-6 lg:translate-y-10"
         height={192}
-        src="/images/locations-star.svg"
+        src="/events/elasticon/images/locations-star.svg"
         width={192}
       />
     </div>

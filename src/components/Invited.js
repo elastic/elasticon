@@ -4,7 +4,7 @@ import Wave from "@/components/Wave";
 export default function Invited({ data }) {
   const headingAfterClasses = `
     after:absolute
-    after:bg-[url('/images/icon-star-pink.svg')]
+    after:bg-[url('/events/elasticon/images/icon-star-pink.svg')]
     after:content-[' ']
     after:h-6
     after:-right-14
@@ -14,7 +14,7 @@ export default function Invited({ data }) {
 
   const headingBeforeClasses = `
     before:absolute
-    before:bg-[url('/images/icon-star-pink.svg')]
+    before:bg-[url('/events/elasticon/images/icon-star-pink.svg')]
     before:content-[' ']
     before:h-6
     before:-left-14

@@ -45,14 +45,14 @@ export default function Location({ location }) {
               alt="image of Conway Hall East"
               className="flex-shrink-0"
               height={190}
-              src="/images/location.png"
+              src="/events/elasticon/images/location.png"
               width={392}
             />
           </div>
         }
         imageAlt="collage of stars, shapes and lines with a grungy texture and a picture of Big Ben in London"
         imageHeight={552}
-        imagesrc="/images/location-london.png"
+        imagesrc="/events/elasticon/images/location-london.png"
         imageWidth={744}
         mainContent={
           <>
@@ -83,7 +83,7 @@ export default function Location({ location }) {
                 <Image
                   alt="arrow icon"
                   height={12}
-                  src="/images/icon-right.svg"
+                  src="/events/elasticon/images/icon-right.svg"
                   width={25}
                 />
               </Link>
@@ -177,7 +177,7 @@ export default function Location({ location }) {
               alt="placeholder sponsor logo"
               height={36}
               key={index}
-              src={`/images/logo-${name}.png`}
+              src={`/events/elasticon/images/logo-${name}.png`}
               width={189}
             />
           ))}

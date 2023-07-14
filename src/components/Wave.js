@@ -22,7 +22,7 @@ export default function Wave({ direction }) {
         alt="circular text that says you're invited"
         className="animate-spin-slow"
         height={125}
-        src="/images/text-youre-invited.svg"
+        src="/events/elasticon/images/text-youre-invited.svg"
         width={125}
       />
       <span className={emojiClasses}>&#x1F44B;</span>
