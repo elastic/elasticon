@@ -81,36 +81,11 @@ export default function Locations() {
           <p className="text-2xl text-teal">
             Dates and event details coming soon!
           </p>
-          <Image
-            alt="illustrative star"
-            height={24}
-            src="/images/icon-star-pink.svg"
-            width={24}
-          />
           <p className="text-2xl">Stay tuned for more details.</p>
-          <Image
-            alt="illustrative star"
-            height={24}
-            src="/images/icon-star-pink.svg"
-            width={24}
-          />
           <p className="text-2xl text-teal">
             Dates and event details coming soon!
           </p>
-          <Image
-            alt="illustrative star"
-            height={24}
-            src="/images/icon-star-pink.svg"
-            width={24}
-          />
-          <p className="text-2xl">Stay tuned for more details.</p>
-          <Image
-            alt="illustrative star"
-            className="mr-10"
-            height={24}
-            src="/images/icon-star-pink.svg"
-            width={24}
-          />
+          <p className="mr-10 text-2xl">Stay tuned for more details.</p>
         </div>
       </Marquee>
       <Image
