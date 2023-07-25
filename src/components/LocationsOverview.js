@@ -113,22 +113,24 @@ export default function Locations() {
           ))}
         </Tab.Panels>
       </Tab.Group>
-      <Marquee
-        className="border-blue-800 border-y-2 h-24"
-        gradient
-        gradientColor={[16, 28, 63]}
-      >
-        <div className="flex flex-nowrap gap-10">
-          <p className="text-2xl text-teal">
-            Dates and event details coming soon!
-          </p>
-          <p className="text-2xl">Stay tuned for more details.</p>
-          <p className="text-2xl text-teal">
-            Dates and event details coming soon!
-          </p>
-          <p className="mr-10 text-2xl">Stay tuned for more details.</p>
-        </div>
-      </Marquee>
+      <div className="border-blue-800 border-y-2 relative">
+        <Marquee className="h-16 md:h-24">
+          <div className="flex flex-nowrap gap-10">
+            <p className="text-xl md:text-2xl text-teal">
+              Dates and event details coming soon!
+            </p>
+            <p className="text-xl md:text-2xl">Stay tuned for more details.</p>
+            <p className="text-xl md:text-2xl text-teal">
+              Dates and event details coming soon!
+            </p>
+            <p className="mr-10 text-xl md:text-2xl">
+              Stay tuned for more details.
+            </p>
+          </div>
+        </Marquee>
+        <div className="absolute bg-gradient-to-l from-blue-900 inset-y-0 right-0 w-1/4 z-10" />
+        <div className="absolute bg-gradient-to-r from-blue-900 inset-y-0 left-0 w-1/4 z-10" />
+      </div>
       <Image
         alt="illustrative star"
         className="mx-auto"
