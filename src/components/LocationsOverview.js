@@ -27,18 +27,6 @@ const locationsLists = [
   [],
 ];
 
-const beforeClasses = `
-  relative
-  pl-12
-  before:absolute
-  before:bg-[url('/images/icon-star-white.svg')]
-  before:content-[' ']
-  before:h-6
-  before:left-0
-  before:top-1
-  before:w-6
-`;
-
 export default function Locations() {
   const containerClasses = cn("px-10", "sm:px-14");
 
@@ -72,7 +60,7 @@ export default function Locations() {
               <div className="gap-10 grid md:grid-cols-2 max-w-2xl mx-auto">
                 {area.map((location, index) => (
                   <Heading
-                    className={`font-normal text-peach ${beforeClasses}`}
+                    className={`font-normal text-peach`}
                     key={`location-${index}`}
                     size="h5"
                   >
@@ -93,36 +81,11 @@ export default function Locations() {
           <p className="text-2xl text-teal">
             Dates and event details coming soon!
           </p>
-          <Image
-            alt="illustrative star"
-            height={24}
-            src="/images/icon-star-pink.svg"
-            width={24}
-          />
           <p className="text-2xl">Stay tuned for more details.</p>
-          <Image
-            alt="illustrative star"
-            height={24}
-            src="/images/icon-star-pink.svg"
-            width={24}
-          />
           <p className="text-2xl text-teal">
             Dates and event details coming soon!
           </p>
-          <Image
-            alt="illustrative star"
-            height={24}
-            src="/images/icon-star-pink.svg"
-            width={24}
-          />
-          <p className="text-2xl">Stay tuned for more details.</p>
-          <Image
-            alt="illustrative star"
-            className="mr-10"
-            height={24}
-            src="/images/icon-star-pink.svg"
-            width={24}
-          />
+          <p className="mr-10 text-2xl">Stay tuned for more details.</p>
         </div>
       </Marquee>
       <Image
