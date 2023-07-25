@@ -1,4 +1,4 @@
-import { CheckIcon, ChevronUpDownIcon } from '@heroicons/react/20/solid';
+import { CheckIcon, ChevronUpDownIcon } from "@heroicons/react/20/solid";
 import { Fragment, useState } from "react";
 import { Listbox, Tab } from "@headlessui/react";
 import Image from "next/image";
@@ -30,8 +30,8 @@ const locationsLists = [
 
 export default function Locations() {
   const containerClasses = cn("px-10", "sm:px-14");
-  const [selectedLocation, setSelectedLocation] = useState(continents[0])
-  const selectedIndex = continents.indexOf(selectedLocation)
+  const [selectedLocation, setSelectedLocation] = useState(continents[0]);
+  const selectedIndex = continents.indexOf(selectedLocation);
 
   return (
     <div
@@ -62,26 +62,30 @@ export default function Locations() {
         <div className="md:hidden relative">
           <Listbox value={selectedLocation} onChange={setSelectedLocation}>
             <Listbox.Button className="bg-white flex rounded-[4px] px-4 py-3 text-black text-left w-full">
-            <span className="block w-11/12 truncate">{selectedLocation}</span>
-            <span className="pointer-events-none absolute inset-y-0 right-0 flex items-center pr-2">
-              <ChevronUpDownIcon
-                className="h-5 w-5 text-gray-400"
-                aria-hidden="true"
-              />
-            </span>
+              <span className="block w-11/12 truncate">{selectedLocation}</span>
+              <span className="pointer-events-none absolute inset-y-0 right-0 flex items-center pr-2">
+                <ChevronUpDownIcon
+                  className="h-5 w-5 text-gray-400"
+                  aria-hidden="true"
+                />
+              </span>
             </Listbox.Button>
             <Listbox.Options className="absolute bg-white rounded-[4px] p-2 shadow text-black top-14 w-full z-10">
               {continents.map((c, i) => (
-                <Listbox.Option
-                  key={`conteinent-${i}`}
-                  value={c}
-                >
+                <Listbox.Option key={`conteinent-${i}`} value={c}>
                   {({ active, selected }) => (
-                    <div className={`cursor-pointer flex items-center p-2 hover:bg-blue-200 rounded-[2px] ${active && "bg-blue-200"}`}>
+                    <div
+                      className={`cursor-pointer flex items-center p-2 hover:bg-blue-200 rounded-[2px] ${
+                        active && "bg-blue-200"
+                      }`}
+                    >
                       <span className="flex-1">{c}</span>
                       {selected && (
                         <span className="flex-shrink-0">
-                          <CheckIcon className="h-5 w-5 text-gray-400" aria-hidden="true" />
+                          <CheckIcon
+                            className="h-5 w-5 text-gray-400"
+                            aria-hidden="true"
+                          />
                         </span>
                       )}
                     </div>
