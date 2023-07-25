@@ -41,7 +41,7 @@ export default function Locations() {
       <Heading className="mb-10 pt-12 md:pt-20 text-center" size="h3">
         Coming soon to you
       </Heading>
-      <Tab.Group>
+      <Tab.Group selectedIndex={selectedIndex}>
         <Tab.List className="md:block border-b-2 border-blue-800 hidden text-center">
           {continents.map((continent, index) => (
             <Tab as={Fragment} key={`tab-${index}`}>
@@ -50,6 +50,8 @@ export default function Locations() {
                   className={`inline-block -mb-0.5 mx-4 py-2 ${
                     selected ? "border-b-2 border-teal" : ""
                   }`}
+                  onClick={() => setSelectedLocation(continent)}
+                  onKeyUp={() => setSelectedLocation(continent)}
                 >
                   {continent}
                 </button>
