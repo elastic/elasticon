@@ -29,13 +29,12 @@ const locationsLists = [
 ];
 
 export default function Locations() {
-  const containerClasses = cn("px-10", "sm:px-14");
   const [selectedLocation, setSelectedLocation] = useState(continents[0]);
   const selectedIndex = continents.indexOf(selectedLocation);
 
   return (
     <div
-      className={`bg-[url('/images/pattern-planet.png')] bg-[8%_35px] md:bg-[15%_65px] md:bg-[length:96px_96px] bg-[length:74px_74px] bg-blue-900 bg-no-repeat mb-4 rounded-sm md:rounded-md lg:rounded-lg text-white ${containerClasses}`}
+      className={`bg-[url('/images/pattern-planet.png')] bg-[8%_35px] md:bg-[15%_65px] md:bg-[length:96px_96px] bg-[length:74px_74px] bg-blue-900 bg-no-repeat mb-4 pb-5 md:pb-8 px-10 md:px-14 rounded-sm md:rounded-md lg:rounded-lg text-white`}
       id="locations"
     >
       <Heading className="mb-10 pt-12 md:pt-20 text-center" size="h3">
@@ -133,10 +132,10 @@ export default function Locations() {
       </div>
       <Image
         alt="illustrative star"
-        className="mx-auto"
-        height={192}
-        src="/images/locations-star.svg"
-        width={192}
+        className="mx-auto my-10"
+        height={136}
+        src="/images/locations-accent.svg"
+        width={600}
       />
     </div>
   );
