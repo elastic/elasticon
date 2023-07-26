@@ -2,6 +2,8 @@ import { ReactMarkdown } from "react-markdown/lib/react-markdown";
 import Head from "next/head";
 import Query from "../../lib/contentstack";
 
+import config from "../../next.config";
+
 import Button from "@/components/Button";
 import Footer from "@/components/Footer";
 import Heading from "@/components/Heading";
@@ -18,7 +20,7 @@ export default function Home({ data }) {
 
   const solutionsAfter = `
     after:absolute
-    after:bg-[url('/images/pattern-gray.png')]
+    after:bg-[url('/events/elasticon/images/pattern-gray.png')]
     after:bg-contain
     after:bg-no-repeat
     after:-bottom-32
@@ -30,7 +32,7 @@ export default function Home({ data }) {
 
   const solutionsBefore = `
     before:absolute
-    before:bg-[url('/images/pattern-gray.png')]
+    before:bg-[url('/events/elasticon/images/pattern-gray.png')]
     before:bg-contain
     before:bg-no-repeat
     before:content-[' ']
@@ -77,7 +79,7 @@ export default function Home({ data }) {
                 <Image
                   alt="arrow icon"
                   height={12}
-                  src="/images/icon-right.svg"
+                  src="/events/elasticon/images/icon-right.svg"
                   width={25}
                 />
               </Link> */}
@@ -123,7 +125,7 @@ export default function Home({ data }) {
             {/* eslint-disable-next-line */}
             <img
               alt={homepageData.event_features.image.description}
-              src="/images/image-advice.png"
+              src={config.basePath + "/images/image-advice.png"}
             />
           </div>
         </div>
