@@ -18,16 +18,21 @@ const continents = [
 
 const locationsLists = [
   [
-    "Atlanta, GA",
+    "New York City, NY",
     "Chicago, IL",
     "Dallas, TX",
-    "New York City, NY",
-    "Sao Paulo, Brazil",
     "Toronto, Canada",
+    "Sao Paulo, Brazil",
   ],
-  ["Barcelona, Spain", "Frankfurt, Germany", "London, UK", "Tel Aviv, Israel"],
-  [],
-  [],
+  [
+    "Frankfurt, Germany",
+    "Madrid, Spain",
+    "Amsterdam, Netherlands",
+    "Tel Aviv, Israel",
+    "London, UK",
+  ],
+  ["Bangalore, India", "Sydney, Australia", "Singapore", "Thailand"],
+  ["Washington, DC"],
 ];
 
 export default function Locations() {
