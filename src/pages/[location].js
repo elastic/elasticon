@@ -1,5 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
+import { Paths } from "../../lib/contentstack";
 
 import Button from "@/components/Button";
 import Heading from "@/components/Heading";
@@ -95,7 +96,7 @@ export default function Location({ location }) {
         <Navigation location="London" />
       </Hero>
       <Panel>
-        <div className="grid grid-cols-2 gap-10">
+        <div className="grid md:grid-cols-2 gap-10">
           <div>
             <Heading className="mb-6 text-blue-800" size="h3">
               What to expect
@@ -176,21 +177,38 @@ export default function Location({ location }) {
       </Panel>
       <Panel>
         <Heading className="mb-14 text-blue-800 text-center" size="h3">
-          ElasticON sponsors
+          Register for ElasticON Tour
         </Heading>
-        <div className="flex flex-col lg:flex-row justify-center">
-          {logos.map((name, index) => (
-            <Image
-              alt="placeholder sponsor logo"
-              height={36}
-              key={index}
-              src={`/events/elasticon/images/logo-${name}.png`}
-              width={189}
-            />
-          ))}
-        </div>
+        <p>FORM</p>
       </Panel>
-      <Footer location="London" />
+      <Footer />
     </>
   );
+}
+
+export async function getStaticPaths() {
+  const getAllLocationIds = await Paths("event");
+
+  const paths = getAllLocationIds[0].map((location) => {
+    return {
+      params: {
+        location: location.url,
+      },
+    };
+  });
+
+  return {
+    paths,
+    fallback: false,
+  };
+}
+
+export async function getStaticProps({ params }) {
+  console.log(params);
+
+  return {
+    props: {
+      text: "hello",
+    },
+  };
 }
