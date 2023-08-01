@@ -7,6 +7,7 @@ import Hero from "@/components/Hero";
 import Navigation from "@/components/Navigation";
 import Panel from "@/components/Panel";
 import Footer from "@/components/Footer";
+import Wave from "@/components/Wave";
 
 export default function Location({ location }) {
   const logos = ["adobe", "microsoft", "slack", "twilio", "uber"];
@@ -94,33 +95,39 @@ export default function Location({ location }) {
         <Navigation location="London" />
       </Hero>
       <Panel>
-        <div className="flex flex-col lg:flex-row gap-10">
+        <div className="grid grid-cols-2 gap-10">
           <div>
             <Heading className="mb-6 text-blue-800" size="h3">
               What to expect
             </Heading>
             <p className="mb-4">
-              Designed for you, ElasticON London will show you how to get the
+              Designed for you, ElasticON Frankfurt will show you how to get the
               most relevant search, observability, and security results at
-              unprecedented speed with open and flexible enterprise solutions —
-              powered by Elasticsearch Platform and AI.
+              unprecedented speed with open and flexible enterprise
+              solutions&mdash;powered by Elasticsearch Platform and AI. 
             </p>
-            <p>
-              You&apos;ll see how other customers are using Elastic to lead
-              their industries, get the latest solutions, news and updates, and
-              connect with our experts to get an inside track on how Elastic can
-              help you be even more efficient every day.
-            </p>
+            <ul className="list-disc list-outside pl-4">
+              <li>
+                See how your peers are using Elastic to lead their industries
+              </li>
+              <li>Get the latest solutions, news and updates</li>
+              <li>Connect with our team of experts</li>
+              <li>
+                Get an inside track on how Elastic can help you be even more
+                efficient and make smarter decisions every day
+              </li>
+            </ul>
           </div>
           <div>
             <Heading className="mb-6 text-blue-800" size="h3">
-              Who should attend
+              Who should&nbsp;attend
             </Heading>
-            <p>
+            <p className="mb-4">
               The entire Elastic community is welcome: Developers, architects,
               IT professionals, DevOps engineers, and anyone working with or
               interested in the Elasticsearch platform.
             </p>
+            <Wave />
           </div>
         </div>
       </Panel>
