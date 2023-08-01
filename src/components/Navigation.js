@@ -65,13 +65,13 @@ export default function Navigation({ location }) {
 
         {location && (
           <div className="flex items-center">
-            <Disclosure.Button className="flex items-center justify-center lg:hidden mr-6">
+            {/* <Disclosure.Button className="flex items-center justify-center lg:hidden mr-6">
               Menu
-            </Disclosure.Button>
+            </Disclosure.Button> */}
 
-            <div className="hidden items-center justify-end lg:flex">
+            {/* <div className="hidden items-center justify-end lg:flex">
               <NavElements />
-            </div>
+            </div> */}
 
             <Button href="/location/registration">Register now</Button>
           </div>
