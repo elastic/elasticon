@@ -17,14 +17,14 @@ export default function Location({ location }) {
           <div className="flex flex-col lg:flex-row lg:items-center">
             <div className="gap-4 grid md:grid-cols-3 grow text-white">
               <div>
-                <Heading className="text-peach" size="h5">
+                <Heading className="text-teal" size="h5">
                   Cost
                 </Heading>
                 <p>Early bird registration: $299</p>
                 <p>Regular registration: $399</p>
               </div>
               <div>
-                <Heading className="text-peach" size="h5">
+                <Heading className="text-teal" size="h5">
                   Location
                 </Heading>
                 <p>May 2&mdash;3, 2024</p>
@@ -35,7 +35,7 @@ export default function Location({ location }) {
                 </p>
               </div>
               <div>
-                <Heading className="text-peach" size="h5">
+                <Heading className="text-teal" size="h5">
                   Date
                 </Heading>
                 <p>May 2&mdash;3, 2024</p>
@@ -57,7 +57,7 @@ export default function Location({ location }) {
         mainContent={
           <>
             <Heading
-              className="font-semibold mb-8 text-peach"
+              className="font-semibold mb-8 text-teal"
               color="peach"
               size="h5"
             >
