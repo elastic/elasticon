@@ -1,6 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
-import { Paths } from "../../lib/contentstack";
+import Query, { Paths } from "../../lib/contentstack";
 
 import Button from "@/components/Button";
 import Heading from "@/components/Heading";
@@ -10,8 +10,14 @@ import Panel from "@/components/Panel";
 import Footer from "@/components/Footer";
 import Wave from "@/components/Wave";
 
-export default function Location({ location }) {
-  const logos = ["adobe", "microsoft", "slack", "twilio", "uber"];
+export default function Location({ data, footerData, globalData }) {
+  console.log(data);
+  const date = new Date(data.date).toLocaleDateString("en-US", {
+    dateStyle: "long",
+  });
+
+  const address = data.venue_address.replace(/\n/g, "<br>");
+
   return (
     <>
       <Hero
@@ -19,37 +25,37 @@ export default function Location({ location }) {
           <div className="flex flex-col lg:flex-row lg:items-center">
             <div className="gap-4 grid md:grid-cols-3 grow text-white">
               <div>
-                <Heading className="text-teal" size="h5">
-                  Cost
-                </Heading>
-                <p>Early bird registration: $299</p>
-                <p>Regular registration: $399</p>
-              </div>
-              <div>
-                <Heading className="text-teal" size="h5">
-                  Location
-                </Heading>
-                <p>May 2&mdash;3, 2024</p>
-                <p>
-                  25 Red Lion Square
-                  <br />
-                  London, WC1R 4RL
-                </p>
-              </div>
-              <div>
-                <Heading className="text-teal" size="h5">
+                <Heading className="text-teal mb-4" size="h5">
                   Date
                 </Heading>
-                <p>May 2&mdash;3, 2024</p>
+                <p className="md:text-lg">{date}</p>
+              </div>
+              <div>
+                <Heading className="text-teal mb-4" size="h5">
+                  Cost
+                </Heading>
+                <p className="md:text-lg">{data.cost}</p>
+              </div>
+              <div>
+                <Heading className="text-teal mb-4" size="h5">
+                  Location
+                </Heading>
+                <p className="md:text-lg">
+                  <a
+                    className="border-b border-blue-800 hover:border-blue-400 hover:text-blue-400 pb-1"
+                    href={data.venue_name.href}
+                  >
+                    {data.venue_name.title}
+                  </a>
+                </p>
+                <p
+                  className="mt-5 opacity-80"
+                  dangerouslySetInnerHTML={{
+                    __html: address,
+                  }}
+                />
               </div>
             </div>
-            <Image
-              alt="image of Conway Hall East"
-              className="flex-shrink-0"
-              height={190}
-              src="/events/elasticon/images/location.png"
-              width={392}
-            />
           </div>
         }
         imageAlt="collage of stars, shapes and lines with a grungy texture and a picture of Big Ben in London"
@@ -66,7 +72,7 @@ export default function Location({ location }) {
               Find answers for what&apos;s next
             </Heading>
             <Heading className="text-white" size="h1">
-              ElasticON Global London
+              {globalData.series_name} {data.title}
             </Heading>
             <p className="text-white my-8">
               Spend the day with your local Elastic community and leave with
@@ -77,18 +83,6 @@ export default function Location({ location }) {
             </p>
             <div className="flex items-center mb-10">
               <Button href="/register">Register now</Button>
-              <Link
-                className="flex gap-2 hover:gap-4 items-center text-blue-400 ml-6"
-                href="/sponsor"
-              >
-                View agenda
-                <Image
-                  alt="arrow icon"
-                  height={12}
-                  src="/events/elasticon/images/icon-right.svg"
-                  width={25}
-                />
-              </Link>
             </div>
           </>
         }
@@ -177,19 +171,19 @@ export default function Location({ location }) {
       </Panel>
       <Panel>
         <Heading className="mb-14 text-blue-800 text-center" size="h3">
-          Register for ElasticON Tour
+          Register for {globalData.series_name} {data.title}
         </Heading>
         <p>FORM</p>
       </Panel>
-      <Footer />
+      <Footer data={footerData} globalData={globalData} location={data.title} />
     </>
   );
 }
 
 export async function getStaticPaths() {
-  const getAllLocationIds = await Paths("event");
+  const [allLocations] = await Paths("event");
 
-  const paths = getAllLocationIds[0].map((location) => {
+  const paths = allLocations.map((location) => {
     return {
       params: {
         location: location.url,
@@ -204,11 +198,18 @@ export async function getStaticPaths() {
 }
 
 export async function getStaticProps({ params }) {
-  console.log(params);
+  const { location } = params;
+  const [allLocations] = await Paths("event");
+  const footerData = await Query("footer", "blt6f73b6b55468ee3a");
+  const globalData = await Query("site_config", "blt6e01f6ef8267a554");
+
+  const locationData = allLocations.find((loc) => loc.url === location);
 
   return {
     props: {
-      text: "hello",
+      data: locationData,
+      footerData,
+      globalData,
     },
   };
 }
