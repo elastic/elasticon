@@ -17,7 +17,7 @@ export default function Location({
   footerData,
   globalData,
 }) {
-  console.log(eventConfigData);
+  console.log(locationData);
   const date = new Date(locationData.date).toLocaleDateString("en-US", {
     dateStyle: "long",
   });
@@ -68,9 +68,9 @@ export default function Location({
             </div>
           </div>
         }
-        imageAlt="collage of stars, shapes and lines with a grungy texture and a picture of Big Ben in London"
+        imageAlt={locationData.featured_image.description}
         imageHeight={552}
-        imagesrc="/events/elasticon/images/location-london.png"
+        imageSrc={locationData.featured_image.url}
         imageWidth={744}
         mainContent={
           <>
@@ -117,46 +117,20 @@ export default function Location({
         </div>
       </Panel>
       <Panel className="bg-zinc-100">
-        <Heading className="mb-10 text-blue-800 md:text-center" size="h3">
+        <Heading className="mb-14 text-blue-800 md:text-center" size="h3">
           {eventConfigData.features.heading}
         </Heading>
         <div className="gap-8 grid sm:grid-cols-2 lg:grid-cols-4">
-          <div>
-            <Heading className="mb-4" size="h5">
-              The keynote
-            </Heading>
-            <p>
-              We’re moving fast! Hear about the latest product updates and
-              announcements right from our leadership.
-            </p>
-          </div>
-          <div>
-            <Heading className="mb-4" size="h5">
-              The keynote
-            </Heading>
-            <p>
-              We’re moving fast! Hear about the latest product updates and
-              announcements right from our leadership.
-            </p>
-          </div>
-          <div>
-            <Heading className="mb-4" size="h5">
-              The keynote
-            </Heading>
-            <p>
-              We’re moving fast! Hear about the latest product updates and
-              announcements right from our leadership.
-            </p>
-          </div>
-          <div>
-            <Heading className="mb-4" size="h5">
-              The keynote
-            </Heading>
-            <p>
-              We’re moving fast! Hear about the latest product updates and
-              announcements right from our leadership.
-            </p>
-          </div>
+          {eventConfigData.featuresData.map((feature, i) => (
+            <div key={`feature-${i}`}>
+              {/* eslint-disable-next-line */}
+              <img alt={feature.icon.description} src={feature.icon.url} />
+              <Heading className="my-4" size="h5">
+                {feature.title}
+              </Heading>
+              <p>{feature.description}</p>
+            </div>
+          ))}
         </div>
       </Panel>
       <Panel className="flex flex-col items-center">
@@ -194,11 +168,31 @@ export async function getStaticPaths() {
 export async function getStaticProps({ params }) {
   const { location } = params;
   const [allLocations] = await Paths("event");
-  const eventConfigData = await Query("event_config", "blt8e9accc77ae68704");
   const footerData = await Query("footer", "blt6f73b6b55468ee3a");
   const globalData = await Query("site_config", "blt6e01f6ef8267a554");
 
   const locationData = allLocations.find((loc) => loc.url === location);
+
+  async function allEventConfigData() {
+    try {
+      const mainData = await Query("event_config", "blt8e9accc77ae68704");
+      const featuresData = await Promise.all(
+        mainData.features.features.map(async (ref) => {
+          const referenceData = await Query(ref._content_type_uid, ref.uid);
+          return referenceData;
+        })
+      );
+
+      return {
+        ...mainData,
+        featuresData,
+      };
+    } catch (error) {
+      console.log(error);
+    }
+  }
+
+  const eventConfigData = await allEventConfigData();
 
   return {
     props: {
