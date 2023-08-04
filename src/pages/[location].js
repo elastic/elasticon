@@ -1,3 +1,4 @@
+import { ReactMarkdown } from "react-markdown/lib/react-markdown";
 import Image from "next/image";
 import Link from "next/link";
 import Query, { Paths } from "../../lib/contentstack";
@@ -10,20 +11,48 @@ import Panel from "@/components/Panel";
 import Footer from "@/components/Footer";
 import Wave from "@/components/Wave";
 
-export default function Location({ data, footerData, globalData }) {
-  console.log(data);
-  const date = new Date(data.date).toLocaleDateString("en-US", {
+export default function Location({
+  eventConfigData,
+  locationData,
+  footerData,
+  globalData,
+}) {
+  console.log(eventConfigData);
+  const date = new Date(locationData.date).toLocaleDateString("en-US", {
     dateStyle: "long",
   });
 
-  const address = data.venue_address.replace(/\n/g, "<br>");
+  const address = locationData.venue_address.replace(/\n/g, "<br>");
+
+  function replacePlaceholder(text) {
+    return text.replace(/{LOCATION}/g, locationData.title);
+  }
 
   return (
     <>
       <Hero
         footer={
           <div className="flex flex-col lg:flex-row lg:items-center">
-            <div className="gap-4 grid md:grid-cols-3 grow text-white">
+            <div className="gap-4 grid md:grid-cols-4 grow text-white">
+              <div>
+                <Heading className="text-teal mb-4" size="h5">
+                  Location
+                </Heading>
+                <p className="md:text-lg">
+                  <a
+                    className="border-b border-blue-800 hover:border-blue-400 hover:text-blue-400 pb-1"
+                    href={locationData.venue_name.href}
+                  >
+                    {locationData.venue_name.title}
+                  </a>
+                </p>
+                <p
+                  className="mt-5 opacity-80"
+                  dangerouslySetInnerHTML={{
+                    __html: address,
+                  }}
+                />
+              </div>
               <div>
                 <Heading className="text-teal mb-4" size="h5">
                   Date
@@ -34,26 +63,7 @@ export default function Location({ data, footerData, globalData }) {
                 <Heading className="text-teal mb-4" size="h5">
                   Cost
                 </Heading>
-                <p className="md:text-lg">{data.cost}</p>
-              </div>
-              <div>
-                <Heading className="text-teal mb-4" size="h5">
-                  Location
-                </Heading>
-                <p className="md:text-lg">
-                  <a
-                    className="border-b border-blue-800 hover:border-blue-400 hover:text-blue-400 pb-1"
-                    href={data.venue_name.href}
-                  >
-                    {data.venue_name.title}
-                  </a>
-                </p>
-                <p
-                  className="mt-5 opacity-80"
-                  dangerouslySetInnerHTML={{
-                    __html: address,
-                  }}
-                />
+                <p className="md:text-lg">{locationData.cost}</p>
               </div>
             </div>
           </div>
@@ -72,14 +82,10 @@ export default function Location({ data, footerData, globalData }) {
               Find answers for what&apos;s next
             </Heading>
             <Heading className="text-white" size="h1">
-              {globalData.series_name} {data.title}
+              {globalData.series_name} {locationData.title}
             </Heading>
             <p className="text-white my-8">
-              Spend the day with your local Elastic community and leave with
-              answers that matter. Packed with demos, breakout sessions,
-              networking, technical tips and guidance, and exclusive
-              announcements, ElasticON London is the event for anyone working
-              with the Elasticsearch platform.
+              {replacePlaceholder(eventConfigData.description)}
             </p>
             <div className="flex items-center mb-10">
               <Button href="/register">Register now</Button>
@@ -93,34 +99,18 @@ export default function Location({ data, footerData, globalData }) {
         <div className="grid md:grid-cols-2 gap-10">
           <div>
             <Heading className="mb-6 text-blue-800" size="h3">
-              What to expect
+              {eventConfigData.left_content.heading}
             </Heading>
-            <p className="mb-4">
-              Designed for you, ElasticON Frankfurt will show you how to get the
-              most relevant search, observability, and security results at
-              unprecedented speed with open and flexible enterprise
-              solutions&mdash;powered by Elasticsearch Platform and AI. 
-            </p>
-            <ul className="list-disc list-outside pl-4">
-              <li>
-                See how your peers are using Elastic to lead their industries
-              </li>
-              <li>Get the latest solutions, news and updates</li>
-              <li>Connect with our team of experts</li>
-              <li>
-                Get an inside track on how Elastic can help you be even more
-                efficient and make smarter decisions every day
-              </li>
-            </ul>
+            <ReactMarkdown className="markdown mb-4">
+              {replacePlaceholder(eventConfigData.left_content.content)}
+            </ReactMarkdown>
           </div>
           <div>
             <Heading className="mb-6 text-blue-800" size="h3">
-              Who should&nbsp;attend
+              {eventConfigData.right_content.heading}
             </Heading>
-            <p className="mb-4">
-              The entire Elastic community is welcome: Developers, architects,
-              IT professionals, DevOps engineers, and anyone working with or
-              interested in the Elasticsearch platform.
+            <p className="mb-8">
+              {replacePlaceholder(eventConfigData.right_content.content)}
             </p>
             <Wave />
           </div>
@@ -128,7 +118,7 @@ export default function Location({ data, footerData, globalData }) {
       </Panel>
       <Panel className="bg-zinc-100">
         <Heading className="mb-10 text-blue-800 md:text-center" size="h3">
-          Spiffy headline here like this
+          {eventConfigData.features.heading}
         </Heading>
         <div className="gap-8 grid sm:grid-cols-2 lg:grid-cols-4">
           <div>
@@ -169,13 +159,17 @@ export default function Location({ data, footerData, globalData }) {
           </div>
         </div>
       </Panel>
-      <Panel>
-        <Heading className="mb-14 text-blue-800 text-center" size="h3">
-          Register for {globalData.series_name} {data.title}
-        </Heading>
-        <p>FORM</p>
+      <Panel className="flex flex-col items-center">
+        <p className="border border-dashed border-[#FF0000] h-96 mb-10 text-center w-full">
+          Agenda
+        </p>
+        <Button href="/register">Register now</Button>
       </Panel>
-      <Footer data={footerData} globalData={globalData} location={data.title} />
+      <Footer
+        data={footerData}
+        globalData={globalData}
+        location={locationData.title}
+      />
     </>
   );
 }
@@ -200,6 +194,7 @@ export async function getStaticPaths() {
 export async function getStaticProps({ params }) {
   const { location } = params;
   const [allLocations] = await Paths("event");
+  const eventConfigData = await Query("event_config", "blt8e9accc77ae68704");
   const footerData = await Query("footer", "blt6f73b6b55468ee3a");
   const globalData = await Query("site_config", "blt6e01f6ef8267a554");
 
@@ -207,7 +202,8 @@ export async function getStaticProps({ params }) {
 
   return {
     props: {
-      data: locationData,
+      eventConfigData,
+      locationData,
       footerData,
       globalData,
     },

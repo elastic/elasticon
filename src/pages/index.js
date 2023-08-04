@@ -102,7 +102,7 @@ export default function Home({ data }) {
               <Heading className="mb-4 text-black" size="h5">
                 {solution.headline}
               </Heading>
-              <ReactMarkdown className="markdown text-black">
+              <ReactMarkdown className="markdown markdown-lg text-black">
                 {solution.description}
               </ReactMarkdown>
             </div>

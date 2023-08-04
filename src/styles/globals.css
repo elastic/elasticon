@@ -15,9 +15,13 @@ html {
 }
 
 .markdown ul {
-  @apply list-disc list-outside mt-10 pl-4 text-lg md:text-xl;
+  @apply list-disc list-outside mt-8 pl-4;
 }
 
-.markdown ul li {
+.markdown-lg ul {
+  @apply text-lg md:text-xl;
+}
+
+.markdown-lg ul li {
   @apply mb-3;
 }
