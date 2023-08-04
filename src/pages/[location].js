@@ -89,6 +89,18 @@ export default function Location({
             </p>
             <div className="flex items-center mb-10">
               <Button href="/register">Register now</Button>
+              <Link
+                className="flex gap-2 hover:gap-4 items-center text-blue-400 ml-6"
+                href="#agenda"
+              >
+                View agenda
+                <Image
+                  alt="arrow icon"
+                  height={12}
+                  src="/events/elasticon/images/icon-right.svg"
+                  width={25}
+                />
+              </Link>
             </div>
           </>
         }
@@ -134,7 +146,10 @@ export default function Location({
         </div>
       </Panel>
       <Panel className="flex flex-col items-center">
-        <p className="border border-dashed border-[#FF0000] h-96 mb-10 text-center w-full">
+        <p
+          id="agenda"
+          className="border border-dashed border-[#FF0000] h-96 mb-10 text-center w-full"
+        >
           Agenda
         </p>
         <Button href="/register">Register now</Button>

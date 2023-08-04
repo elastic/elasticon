@@ -1,11 +1,9 @@
 import cn from "classnames";
 import Link from "next/link";
 
-export default function Button({ children, href }) {
+export default function Button({ children, href, outlined = false }) {
   const buttonClassNames = cn(
-    "bg-blue-600",
     "font-semibold",
-    "hover:bg-blue-700",
     "inline-block",
     "px-4",
     "py-3",
@@ -19,8 +17,22 @@ export default function Button({ children, href }) {
     "transition"
   );
 
+  const fillClassNames = cn("bg-blue-600", "hover:bg-blue-700");
+
+  const outlinedClassNames = cn(
+    "border-2",
+    "border-white",
+    "hover:border-blue-400",
+    "hover:text-blue-400"
+  );
+
+  const classNames = cn(
+    buttonClassNames,
+    outlined ? outlinedClassNames : fillClassNames
+  );
+
   return (
-    <Link className={buttonClassNames} href={href}>
+    <Link className={classNames} href={href}>
       {children}
     </Link>
   );
