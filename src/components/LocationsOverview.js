@@ -22,8 +22,6 @@ export default function Locations({ data }) {
 
   const events = [eventsAMER, eventsEMEA, eventsAPAC, eventsPUB];
 
-  console.log(events);
-
   return (
     <div
       className={`bg-[url('/events/elasticon/images/pattern-planet.png')] bg-[8%_35px] md:bg-[15%_65px] md:bg-[length:96px_96px] bg-[length:74px_74px] bg-blue-900 bg-no-repeat mb-4 pb-5 md:pb-8 px-10 md:px-14 rounded-sm md:rounded-md lg:rounded-lg text-white`}
@@ -102,7 +100,11 @@ export default function Locations({ data }) {
                       >
                         {e.title}
                       </Heading>
-                      <p className="font-bold text-lg">{e.date}</p>
+                      <p className="font-bold text-lg">
+                        {new Date(e.date).toLocaleDateString("en-US", {
+                          dateStyle: "long",
+                        })}
+                      </p>
                       <p>{e.venue_name.title}</p>
                     </div>
                     <img
