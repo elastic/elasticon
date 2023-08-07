@@ -27,13 +27,27 @@ export default function Location({
     return text.replace(/{LOCATION}/g, locationData.title);
   }
 
+  console.log(locationData);
+
   return (
     <>
       <Hero
         footer={
           <div className="flex flex-col lg:flex-row lg:items-center">
             <div className="gap-4 grid md:grid-cols-4 grow text-white">
-              <div>
+              <div className="mb-4 md:mb-0">
+                <Heading className="text-teal mb-4" size="h5">
+                  Date
+                </Heading>
+                <p className="md:text-lg">{date}</p>
+              </div>
+              <div className="mb-4 md:mb-0">
+                <Heading className="text-teal mb-4" size="h5">
+                  Cost
+                </Heading>
+                <p className="md:text-lg">{locationData.cost}</p>
+              </div>
+              <div className="mb-4 md:mb-0">
                 <Heading className="text-teal mb-4" size="h5">
                   Location
                 </Heading>
@@ -52,18 +66,13 @@ export default function Location({
                   }}
                 />
               </div>
-              <div>
-                <Heading className="text-teal mb-4" size="h5">
-                  Date
-                </Heading>
-                <p className="md:text-lg">{date}</p>
-              </div>
-              <div>
-                <Heading className="text-teal mb-4" size="h5">
-                  Cost
-                </Heading>
-                <p className="md:text-lg">{locationData.cost}</p>
-              </div>
+              {locationData.venue_image && (
+                <img
+                  alt="photo of the venue location"
+                  className="rounded-sm"
+                  src={locationData.venue_image.url}
+                />
+              )}
             </div>
           </div>
         }
