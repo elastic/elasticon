@@ -93,7 +93,7 @@ export default function Locations({ data }) {
                 {event.map((e, i) => (
                   <a
                     href={`/events/elasticon/${e.url}`}
-                    className="border-2 border-blue-800 hover:border-white flex flex-col sm:flex-row sm:items-center p-6 rounded-sm"
+                    className="border-2 border-blue-800 hover:border-white flex flex-col sm:flex-row sm:items-center p-6 rounded-sm hover:shadow-[0_0_30px_0_rgba(255,255,255,0.2)]"
                   >
                     <div className="flex-1 mb-8 sm:mb-0">
                       <Heading
