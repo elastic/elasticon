@@ -46,7 +46,11 @@ export default function Hero({
       className={`bg-blue-900 mb-4 overflow-hidden relative rounded-bl-sm md:rounded-bl-md lg:rounded-bl-lg rounded-br-sm md:rounded-br-md lg:rounded-br-lg`}
     >
       {children}
-      <div className="lg:gap-24 grid lg:grid-cols-2 items-center md:pl-20 lg:pl-24 pt-8 pb-24 lg:pb-36">
+      <div
+        className={`lg:gap-24 grid lg:grid-cols-2 items-center md:pl-20 lg:pl-24 pt-8 ${
+          !footer && "pb-24 lg:pb-36"
+        }`}
+      >
         <div className="pl-10 sm:pl-14 md:pl-0 pr-10 sm:pr-14 lg:pr-0">
           {mainContent}
         </div>
@@ -56,11 +60,21 @@ export default function Hero({
         </div>
       </div>
       {footer && (
-        <div
-          className={`pb-12 md:pb-20 px-10 sm:px-14 md:px-20 lg:px-24 ${afterClasses} ${beforeClasses}`}
-        >
-          {footer}
-        </div>
+        <>
+          <img
+            src="/events/elasticon/images/cut-left.svg"
+            className="float-left h-12 w-6 md:h-24 md:w-12 lg:h-48 lg:w-24 -translate-x-[0.5px]"
+          />
+          <img
+            src="/events/elasticon/images/cut-right.svg"
+            className="float-right h-12 w-6 md:h-24 md:w-12 lg:h-48 lg:w-24 translate-x-[0.5px]"
+          />
+          <div
+            className={`clear-both pb-12 md:pb-20 px-10 sm:px-14 md:px-20 lg:px-24`}
+          >
+            {footer}
+          </div>
+        </>
       )}
     </div>
   );
