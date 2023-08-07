@@ -90,8 +90,9 @@ export default function Locations({ data }) {
               <div className="gap-10 grid lg:grid-cols-2 max-w-6xl mx-auto">
                 {event.map((e, i) => (
                   <a
-                    href={`/events/elasticon/${e.url}`}
                     className="border-2 border-blue-800 hover:border-white flex flex-col sm:flex-row sm:items-center p-6 rounded-sm hover:shadow-[0_0_30px_0_rgba(255,255,255,0.2)]"
+                    href={`/events/elasticon/${e.url}`}
+                    key={`event-${i}`}
                   >
                     <div className="flex-1 mb-8 sm:mb-0">
                       <Heading
