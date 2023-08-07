@@ -17,7 +17,6 @@ export default function Location({
   footerData,
   globalData,
 }) {
-  console.log(locationData);
   const date = new Date(locationData.date).toLocaleDateString("en-US", {
     dateStyle: "long",
   });
@@ -203,7 +202,7 @@ export async function getStaticProps({ params }) {
         featuresData,
       };
     } catch (error) {
-      console.log(error);
+      console.error(error);
     }
   }
 

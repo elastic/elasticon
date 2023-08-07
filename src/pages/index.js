@@ -1,6 +1,6 @@
 import { ReactMarkdown } from "react-markdown/lib/react-markdown";
 import Head from "next/head";
-import Query from "../../lib/contentstack";
+import Query, { Paths } from "../../lib/contentstack";
 
 import config from "../../next.config";
 
@@ -13,34 +13,34 @@ import LocationsOverview from "@/components/LocationsOverview";
 import Panel from "@/components/Panel";
 import Navigation from "@/components/Navigation";
 
+const solutionsAfter = `
+  after:absolute
+  after:bg-[url('/events/elasticon/images/pattern-gray.png')]
+  after:bg-contain
+  after:bg-no-repeat
+  after:-bottom-32
+  after:content-[' ']
+  after:h-72
+  after:-right-32
+  after:w-72
+`;
+
+const solutionsBefore = `
+  before:absolute
+  before:bg-[url('/events/elasticon/images/pattern-gray.png')]
+  before:bg-contain
+  before:bg-no-repeat
+  before:content-[' ']
+  before:h-72
+  before:-left-28
+  before:-top-28
+  before:w-72
+`;
+
 export default function Home({ data }) {
-  const { footerData, globalData, homepageData } = data;
+  const { eventsData, footerData, globalData, homepageData } = data;
   const { benefitData, featuresData, invitationData, solutionData } =
     homepageData;
-
-  const solutionsAfter = `
-    after:absolute
-    after:bg-[url('/events/elasticon/images/pattern-gray.png')]
-    after:bg-contain
-    after:bg-no-repeat
-    after:-bottom-32
-    after:content-[' ']
-    after:h-72
-    after:-right-32
-    after:w-72
-  `;
-
-  const solutionsBefore = `
-    before:absolute
-    before:bg-[url('/events/elasticon/images/pattern-gray.png')]
-    before:bg-contain
-    before:bg-no-repeat
-    before:content-[' ']
-    before:h-72
-    before:-left-28
-    before:-top-28
-    before:w-72
-  `;
 
   return (
     <>
@@ -71,18 +71,6 @@ export default function Home({ data }) {
               <Button href={homepageData?.hero.main_cta.href}>
                 {homepageData?.hero.main_cta.title}
               </Button>
-              {/* <Link
-                className="flex gap-2 hover:gap-4 items-center text-blue-400 ml-6"
-                href={homepageData?.hero.supporting_cta.href}
-              >
-                {homepageData?.hero.supporting_cta.title}
-                <Image
-                  alt="arrow icon"
-                  height={12}
-                  src="/events/elasticon/images/icon-right.svg"
-                  width={25}
-                />
-              </Link> */}
             </div>
           </>
         }
@@ -154,8 +142,7 @@ export default function Home({ data }) {
           </div>
         </div>
       </Panel>
-      {/* <Locations /> */}
-      <LocationsOverview />
+      <LocationsOverview data={eventsData} />
       <Panel>
         <Heading className="mb-10 text-center text-blue-900" size="h4">
           {homepageData.watch.headline}
@@ -187,6 +174,7 @@ export default function Home({ data }) {
 }
 
 export async function getStaticProps() {
+  const [eventsData] = await Paths("event");
   const footerData = await Query("footer", "blt6f73b6b55468ee3a");
   const globalData = await Query("site_config", "blt6e01f6ef8267a554");
 
@@ -238,6 +226,7 @@ export async function getStaticProps() {
   return {
     props: {
       data: {
+        eventsData,
         footerData,
         globalData,
         homepageData: allHomepageData,

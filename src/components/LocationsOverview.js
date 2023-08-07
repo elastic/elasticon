@@ -2,11 +2,6 @@ import { CheckIcon, ChevronUpDownIcon } from "@heroicons/react/20/solid";
 import { Fragment, useState } from "react";
 import { Listbox, Tab } from "@headlessui/react";
 import Image from "next/image";
-import Marquee from "react-fast-marquee";
-import cn from "classnames";
-
-import config from "../../next.config";
-
 import Heading from "./Heading";
 
 const continents = [
@@ -16,28 +11,18 @@ const continents = [
   "Public Sector",
 ];
 
-const locationsLists = [
-  [
-    "New York City, NY",
-    "Chicago, IL",
-    "Dallas, TX",
-    "Toronto, Canada",
-    "Sao Paulo, Brazil",
-  ],
-  [
-    "Frankfurt, Germany",
-    "Madrid, Spain",
-    "Amsterdam, Netherlands",
-    "Tel Aviv, Israel",
-    "London, UK",
-  ],
-  ["Bangalore, India", "Sydney, Australia", "Singapore", "Thailand"],
-  ["Washington, DC"],
-];
-
-export default function Locations() {
+export default function Locations({ data }) {
   const [selectedLocation, setSelectedLocation] = useState(continents[0]);
   const selectedIndex = continents.indexOf(selectedLocation);
+
+  const eventsAMER = data.filter((event) => event.region === "AMER");
+  const eventsAPAC = data.filter((event) => event.region === "APAC");
+  const eventsEMEA = data.filter((event) => event.region === "EMEA");
+  const eventsPUB = data.filter((event) => event.region === "Public Sector");
+
+  const events = [eventsAMER, eventsEMEA, eventsAPAC, eventsPUB];
+
+  console.log(events);
 
   return (
     <div
@@ -45,7 +30,7 @@ export default function Locations() {
       id="locations"
     >
       <Heading className="mb-10 pt-12 md:pt-20 text-center" size="h3">
-        Coming soon to you
+        Find an event near you
       </Heading>
       <Tab.Group selectedIndex={selectedIndex}>
         <Tab.List className="md:block border-b-2 border-blue-800 hidden text-center">
@@ -102,41 +87,36 @@ export default function Locations() {
           </Listbox>
         </div>
         <Tab.Panels className="my-12">
-          {locationsLists.map((area, index) => (
-            <Tab.Panel key={`area-${index}`}>
-              <div className="gap-10 grid md:grid-cols-2 max-w-2xl mx-auto">
-                {area.map((location, index) => (
-                  <Heading
-                    className={`font-normal text-peach`}
-                    key={`location-${index}`}
-                    size="h5"
+          {events.map((event, index) => (
+            <Tab.Panel key={`event=${index}`}>
+              <div className="gap-10 grid lg:grid-cols-2 max-w-6xl mx-auto">
+                {event.map((e, i) => (
+                  <a
+                    href={`/events/elasticon/${e.url}`}
+                    className="border-2 border-blue-800 hover:border-white flex flex-col sm:flex-row sm:items-center p-6 rounded-sm"
                   >
-                    {location}
-                  </Heading>
+                    <div className="flex-1 mb-8 sm:mb-0">
+                      <Heading
+                        className="font-normal mb-4 text-peach"
+                        size="h4"
+                      >
+                        {e.title}
+                      </Heading>
+                      <p className="font-bold text-lg">{e.date}</p>
+                      <p>{e.venue_name.title}</p>
+                    </div>
+                    <img
+                      alt={e.small_image.description}
+                      className="flex-shrink-0 w-48"
+                      src={e.small_image.url}
+                    />
+                  </a>
                 ))}
               </div>
             </Tab.Panel>
           ))}
         </Tab.Panels>
       </Tab.Group>
-      <div className="border-blue-800 border-y-2 relative">
-        <Marquee className="h-16 md:h-24">
-          <div className="flex flex-nowrap gap-10">
-            <p className="text-xl md:text-2xl text-teal">
-              Dates and event details coming soon!
-            </p>
-            <p className="text-xl md:text-2xl">Stay tuned for more details.</p>
-            <p className="text-xl md:text-2xl text-teal">
-              Dates and event details coming soon!
-            </p>
-            <p className="mr-10 text-xl md:text-2xl">
-              Stay tuned for more details.
-            </p>
-          </div>
-        </Marquee>
-        <div className="absolute bg-gradient-to-l from-blue-900 inset-y-0 right-0 w-1/4 z-10" />
-        <div className="absolute bg-gradient-to-r from-blue-900 inset-y-0 left-0 w-1/4 z-10" />
-      </div>
       <Image
         alt="illustrative star"
         className="mx-auto my-10"
