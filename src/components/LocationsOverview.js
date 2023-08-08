@@ -102,9 +102,11 @@ export default function Locations({ data }) {
                         {e.title}
                       </Heading>
                       <p className="font-bold text-lg">
-                        {new Date(e.date).toLocaleDateString("en-US", {
-                          dateStyle: "long",
-                        })}
+                        {e.date[0]
+                          ? new Date(e.date[0]).toLocaleDateString("en-US", {
+                              dateStyle: "long",
+                            })
+                          : "Coming soon"}
                       </p>
                       <p>{e.venue_name.title}</p>
                     </div>

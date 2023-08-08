@@ -17,9 +17,11 @@ export default function Location({
   footerData,
   globalData,
 }) {
-  const date = new Date(locationData.date).toLocaleDateString("en-US", {
-    dateStyle: "long",
-  });
+  const date = locationData.date[0]
+    ? new Date(locationData.date[0]).toLocaleDateString("en-US", {
+        dateStyle: "long",
+      })
+    : "Coming soon";
 
   const address = locationData.venue_address.replace(/\n/g, "<br>");
 
@@ -52,12 +54,16 @@ export default function Location({
                   Location
                 </Heading>
                 <p className="md:text-lg">
-                  <a
-                    className="border-b border-blue-800 hover:border-blue-400 hover:text-blue-400 pb-1"
-                    href={locationData.venue_name.href}
-                  >
-                    {locationData.venue_name.title}
-                  </a>
+                  {locationData.venue_name.title === "TBD" ? (
+                    "TBD"
+                  ) : (
+                    <a
+                      className="border-b border-blue-800 hover:border-blue-400 hover:text-blue-400 pb-1"
+                      href={locationData.venue_name.href}
+                    >
+                      {locationData.venue_name.title}
+                    </a>
+                  )}
                 </p>
                 <p
                   className="mt-5 opacity-80"
@@ -153,14 +159,16 @@ export default function Location({
           ))}
         </div>
       </Panel>
-      <div className="flex flex-col items-center mb-20">
-        <iframe
-          className="h-[800px] mb-10 w-full"
-          src={locationData.agenda_cvent_module}
-          title="Agenda"
-        />
-        <Button href="/register">Register now</Button>
-      </div>
+      {locationData.agenda_cvent_module && (
+        <div className="flex flex-col items-center mb-20">
+          <iframe
+            className="h-[800px] mb-10 w-full"
+            src={locationData.agenda_cvent_module}
+            title="Agenda"
+          />
+          <Button href="/register">Register now</Button>
+        </div>
+      )}
       <Footer
         data={footerData}
         globalData={globalData}
