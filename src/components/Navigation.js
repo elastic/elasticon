@@ -29,7 +29,7 @@ const navData = [
   },
 ];
 
-export default function Navigation({ location }) {
+export default function Navigation({ location, registration }) {
   const paddingX = "px-10 sm:px-14 md:px-20 lg:px-24";
   const paddingY = "py-4 md:py-6";
 
@@ -73,7 +73,7 @@ export default function Navigation({ location }) {
               <NavElements />
             </div> */}
 
-            <Button href="/location/registration">Register now</Button>
+            <Button href={registration}>Register now</Button>
           </div>
         )}
       </nav>

@@ -102,7 +102,11 @@ export default function Location({
               {replacePlaceholder(eventConfigData.description)}
             </p>
             <div className="flex items-center mb-10">
-              <Button href="/register">Register now</Button>
+              {locationData.registration_url && (
+                <Button href={locationData.registration_url}>
+                  Register now
+                </Button>
+              )}
               {locationData.agenda_cvent_module && (
                 <Link
                   className="flex gap-2 hover:gap-4 items-center text-blue-400 ml-6"
@@ -121,7 +125,10 @@ export default function Location({
           </>
         }
       >
-        <Navigation location="London" />
+        <Navigation
+          location={locationData.title}
+          registration={locationData.registration_url}
+        />
       </Hero>
       <Panel>
         <div className="grid md:grid-cols-2 gap-10">
@@ -168,7 +175,9 @@ export default function Location({
             src={locationData.agenda_cvent_module}
             title="Agenda"
           />
-          <Button href="/register">Register now</Button>
+          {locationData.registration_url && (
+            <Button href={locationData.registration_url}>Register now</Button>
+          )}
         </div>
       )}
       <Footer
