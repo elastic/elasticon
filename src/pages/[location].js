@@ -20,6 +20,7 @@ export default function Location({
   const date = locationData.date[0]
     ? new Date(locationData.date[0]).toLocaleDateString("en-US", {
         dateStyle: "long",
+        timeZone: "UTC",
       })
     : "Coming soon";
 
