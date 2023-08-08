@@ -88,37 +88,38 @@ export default function Locations({ data }) {
           {events.map((event, index) => (
             <Tab.Panel key={`event=${index}`}>
               <div className="gap-10 grid lg:grid-cols-2 max-w-6xl mx-auto">
-                {event.map((e, i) => (
-                  <a
-                    className="border-2 border-blue-800 hover:border-white flex flex-col sm:flex-row sm:items-center p-6 rounded-sm hover:shadow-[0_0_30px_0_rgba(255,255,255,0.2)]"
-                    href={`/events/elasticon/${e.url}`}
-                    key={`event-${i}`}
-                  >
-                    <div className="flex-1 mb-8 sm:mb-0">
-                      <Heading
-                        className="font-normal mb-4 text-peach"
-                        size="h4"
-                      >
-                        {e.title}
-                      </Heading>
-                      <p className="font-bold text-lg">
-                        {console.log(e.date[0])}
-                        {e.date[0]
-                          ? new Date(e.date[0]).toLocaleDateString("en-US", {
-                              dateStyle: "long",
-                              timeZone: "UTC",
-                            })
-                          : "Coming soon"}
-                      </p>
-                      <p>{e.venue_name.title}</p>
-                    </div>
-                    <img
-                      alt={e.small_image.description}
-                      className="flex-shrink-0 w-48"
-                      src={e.small_image.url}
-                    />
-                  </a>
-                ))}
+                {event
+                  .sort((a, b) => Date.parse(a.date[0]) - Date.parse(b.date[0]))
+                  .map((e, i) => (
+                    <a
+                      className="border-2 border-blue-800 hover:border-white flex flex-col sm:flex-row sm:items-center p-6 rounded-sm hover:shadow-[0_0_30px_0_rgba(255,255,255,0.2)]"
+                      href={`/events/elasticon/${e.url}`}
+                      key={`event-${i}`}
+                    >
+                      <div className="flex-1 mb-8 sm:mb-0">
+                        <Heading
+                          className="font-normal mb-4 text-peach"
+                          size="h4"
+                        >
+                          {e.title}
+                        </Heading>
+                        <p className="font-bold text-lg">
+                          {e.date[0]
+                            ? new Date(e.date[0]).toLocaleDateString("en-US", {
+                                dateStyle: "long",
+                                timeZone: "UTC",
+                              })
+                            : "Coming soon"}
+                        </p>
+                        <p>{e.venue_name.title}</p>
+                      </div>
+                      <img
+                        alt={e.small_image.description}
+                        className="flex-shrink-0 w-48"
+                        src={e.small_image.url}
+                      />
+                    </a>
+                  ))}
               </div>
             </Tab.Panel>
           ))}
