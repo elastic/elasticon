@@ -32,8 +32,6 @@ export default function Location({
     return text.replace(/{LOCATION}/g, locationData.title);
   }
 
-  console.log(locationData);
-
   return (
     <>
       <Hero
