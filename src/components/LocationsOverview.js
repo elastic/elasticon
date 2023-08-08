@@ -7,8 +7,8 @@ import Heading from "./Heading";
 const continents = [
   "Americas",
   "Europe, the Middle East, and Africa",
-  "Asia-Pacific",
-  "Public Sector",
+  // "Asia-Pacific",
+  // "Public Sector",
 ];
 
 export default function Locations({ data }) {
@@ -16,11 +16,11 @@ export default function Locations({ data }) {
   const selectedIndex = continents.indexOf(selectedLocation);
 
   const eventsAMER = data.filter((event) => event.region === "AMER");
-  const eventsAPAC = data.filter((event) => event.region === "APAC");
+  // const eventsAPAC = data.filter((event) => event.region === "APAC");
   const eventsEMEA = data.filter((event) => event.region === "EMEA");
-  const eventsPUB = data.filter((event) => event.region === "Public Sector");
+  // const eventsPUB = data.filter((event) => event.region === "Public Sector");
 
-  const events = [eventsAMER, eventsEMEA, eventsAPAC, eventsPUB];
+  const events = [eventsAMER, eventsEMEA];
 
   return (
     <div
