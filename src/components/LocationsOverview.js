@@ -5,8 +5,8 @@ import Image from "next/image";
 import Heading from "./Heading";
 
 const continents = [
-  "Americas",
   "Europe, the Middle East, and Africa",
+  "Americas",
   // "Asia-Pacific",
   // "Public Sector",
 ];
@@ -20,7 +20,7 @@ export default function Locations({ data }) {
   const eventsEMEA = data.filter((event) => event.region === "EMEA");
   // const eventsPUB = data.filter((event) => event.region === "Public Sector");
 
-  const events = [eventsAMER, eventsEMEA];
+  const events = [eventsEMEA, eventsAMER];
 
   return (
     <div
@@ -102,9 +102,11 @@ export default function Locations({ data }) {
                         {e.title}
                       </Heading>
                       <p className="font-bold text-lg">
+                        {console.log(e.date[0])}
                         {e.date[0]
                           ? new Date(e.date[0]).toLocaleDateString("en-US", {
                               dateStyle: "long",
+                              timeZone: "UTC",
                             })
                           : "Coming soon"}
                       </p>
