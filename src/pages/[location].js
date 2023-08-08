@@ -24,6 +24,9 @@ export default function Location({
     : "Coming soon";
 
   const address = locationData.venue_address.replace(/\n/g, "<br>");
+  const registration = locationData.registration_url
+    ? locationData.registration_url
+    : "/events/elasticon/register";
 
   function replacePlaceholder(text) {
     return text.replace(/{LOCATION}/g, locationData.title);
@@ -102,11 +105,7 @@ export default function Location({
               {replacePlaceholder(eventConfigData.description)}
             </p>
             <div className="flex items-center mb-10">
-              {locationData.registration_url && (
-                <Button href={locationData.registration_url}>
-                  Register now
-                </Button>
-              )}
+              <Button href={registration}>Register now</Button>
               {locationData.agenda_cvent_module && (
                 <Link
                   className="flex gap-2 hover:gap-4 items-center text-blue-400 ml-6"
@@ -125,10 +124,7 @@ export default function Location({
           </>
         }
       >
-        <Navigation
-          location={locationData.title}
-          registration={locationData.registration_url}
-        />
+        <Navigation location={locationData.title} registration={registration} />
       </Hero>
       <Panel>
         <div className="grid md:grid-cols-2 gap-10">
@@ -176,7 +172,7 @@ export default function Location({
             title="Agenda"
           />
           {locationData.registration_url && (
-            <Button href={locationData.registration_url}>Register now</Button>
+            <Button href={registration}>Register now</Button>
           )}
         </div>
       )}
