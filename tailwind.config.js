@@ -39,6 +39,8 @@ module.exports = {
       yellow: "#FEC514",
       zinc: {
         100: "#F5F7FA",
+        200: "#E8EBF0",
+        300: "#CDD3DE",
         400: "#98A2B3",
         900: "#1C1E23",
         950: "#141518",

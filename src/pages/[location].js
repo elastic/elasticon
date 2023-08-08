@@ -103,18 +103,20 @@ export default function Location({
             </p>
             <div className="flex items-center mb-10">
               <Button href="/register">Register now</Button>
-              <Link
-                className="flex gap-2 hover:gap-4 items-center text-blue-400 ml-6"
-                href="#agenda"
-              >
-                View agenda
-                <Image
-                  alt="arrow icon"
-                  height={12}
-                  src="/events/elasticon/images/icon-right.svg"
-                  width={25}
-                />
-              </Link>
+              {locationData.agenda_cvent_module && (
+                <Link
+                  className="flex gap-2 hover:gap-4 items-center text-blue-400 ml-6"
+                  href="#agenda"
+                >
+                  View agenda
+                  <Image
+                    alt="arrow icon"
+                    height={12}
+                    src="/events/elasticon/images/icon-right.svg"
+                    width={25}
+                  />
+                </Link>
+              )}
             </div>
           </>
         }
@@ -142,7 +144,7 @@ export default function Location({
           </div>
         </div>
       </Panel>
-      <Panel className="bg-zinc-100">
+      <Panel className="bg-zinc-100 mb-20">
         <Heading className="mb-14 text-blue-800 md:text-center" size="h3">
           {eventConfigData.features.heading}
         </Heading>
@@ -160,9 +162,9 @@ export default function Location({
         </div>
       </Panel>
       {locationData.agenda_cvent_module && (
-        <div className="flex flex-col items-center mb-20">
+        <div className="flex flex-col items-center my-10 md:my-20" id="agenda">
           <iframe
-            className="h-[800px] mb-10 w-full"
+            className="border-2 border-zinc-200 h-[85vh] mb-10 rounded-sm md:rounded-md lg:rounded-lg w-full"
             src={locationData.agenda_cvent_module}
             title="Agenda"
           />
