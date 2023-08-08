@@ -153,15 +153,14 @@ export default function Location({
           ))}
         </div>
       </Panel>
-      <Panel className="flex flex-col items-center">
-        <p
-          id="agenda"
-          className="border border-dashed border-[#FF0000] h-96 mb-10 text-center w-full"
-        >
-          Agenda
-        </p>
+      <div className="flex flex-col items-center mb-20">
+        <iframe
+          className="h-[800px] mb-10 w-full"
+          src={locationData.agenda_cvent_module}
+          title="Agenda"
+        />
         <Button href="/register">Register now</Button>
-      </Panel>
+      </div>
       <Footer
         data={footerData}
         globalData={globalData}
