@@ -1,38 +1,7 @@
-const afterClasses = `
-  after:-right-px
-  after:absolute
-  after:bg-[url('/events/elasticon/images/cut-right.svg')]
-  after:bg-contain
-  after:bg-no-repeat
-  after:bottom-96
-  after:content-[' ']
-  after:h-12
-  after:w-6
-  lg:after:bottom-44
-  lg:after:h-48
-  lg:after:w-24
-  md:after:bottom-44
-  md:after:h-36
-  md:after:w-16
-`;
-
-const beforeClasses = `
-  before:-left-px
-  before:absolute
-  before:bg-[url('/events/elasticon/images/cut-left.svg')]
-  before:bg-contain
-  before:bg-no-repeat
-  before:bottom-96
-  before:content-[' ']
-  before:h-12
-  before:w-6
-  lg:before:bottom-44
-  lg:before:h-48
-  lg:before:w-24
-  md:before:bottom-44
-  md:before:h-36
-  md:before:w-16
-`;
+const heroPaddingBottom = `pb-10 sm:pb-14 md:pb-20 lg:pb-24`;
+const heroPaddingTop = `pt-10`;
+const heroPaddingLeft = `pl-10 sm:pl-14 md:pl-20 lg:pl-24`;
+const heroPaddingRight = `pr-10 sm:pr-14 md:pr-20`;
 
 export default function Hero({
   children,
@@ -47,14 +16,12 @@ export default function Hero({
     >
       {children}
       <div
-        className={`lg:gap-24 grid lg:grid-cols-2 items-center md:pl-20 lg:pl-24 pt-8 ${
-          !footer && "pb-24 lg:pb-36"
-        }`}
+        className={`gap-10 md:gap-20 grid lg:grid-cols-2 items-center ${
+          !footer && heroPaddingBottom
+        } ${heroPaddingLeft} ${heroPaddingRight} ${heroPaddingTop}`}
       >
-        <div className="pl-10 sm:pl-14 md:pl-0 pr-10 sm:pr-14 lg:pr-0">
-          {mainContent}
-        </div>
-        <div className="flex items-center justify-end pl-10 md:pl-0">
+        <div>{mainContent}</div>
+        <div className="flex items-center justify-end">
           {/* eslint-disable-next-line */}
           <img alt={imageAlt} src={imageSrc} />
         </div>
