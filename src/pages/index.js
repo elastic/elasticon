@@ -59,9 +59,9 @@ export default function Home({ data }) {
             <Heading
               className="font-semibold mb-8 text-teal"
               color="peach"
-              size="h5"
+              size="h4"
             >
-              {globalData?.series_name} {globalData?.series_year}
+              {globalData?.series_name}
             </Heading>
             <Heading className="text-white" size="h1">
               {homepageData?.hero.headline}
