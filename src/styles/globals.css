@@ -25,3 +25,27 @@ html {
 .markdown-lg ul li {
   @apply mb-3;
 }
+
+.mktoFieldDescriptor,
+.mktoFieldWrap,
+.mktoButtonRow {
+  @apply w-full;
+}
+
+.mktoForm input,
+.mktoForm textarea,
+.mktoForm select {
+  @apply border border-zinc-200 !mb-4 !mt-1 !p-3 rounded shadow-inner !w-full;
+}
+
+.mktoForm button {
+  @apply bg-blue-600 hover:bg-blue-700 font-semibold px-4 py-3 rounded text-sm text-white w-full;
+}
+
+.mktoForm .mktoButtonRow span {
+  @apply !ml-0 !w-full;
+}
+
+.mktoOffset {
+  display: none;
+}

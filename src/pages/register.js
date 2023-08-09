@@ -43,7 +43,7 @@ export default function Register({ data }) {
       </div>
 
       <Panel className="border-2 border-zinc-200">
-        <form id="mktoForm_21030"></form>
+        <form className="max-w-2xl mx-auto" id="mktoForm_21030"></form>
       </Panel>
 
       <Footer data={footerData} />
