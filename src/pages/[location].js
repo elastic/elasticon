@@ -1,4 +1,5 @@
 import { ReactMarkdown } from "react-markdown/lib/react-markdown";
+import Head from "next/head";
 import Image from "next/image";
 import Link from "next/link";
 import Query, { Paths } from "../../lib/contentstack";
@@ -35,6 +36,13 @@ export default function Location({
 
   return (
     <>
+      <Head>
+        <title>{globalData.seo_metadata.title}</title>
+        <meta
+          name="description"
+          content={globalData.seo_metadata.description}
+        />
+      </Head>
       <Hero
         footer={
           <div className="flex flex-col lg:flex-row lg:items-center">
