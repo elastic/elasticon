@@ -26,7 +26,7 @@ export default function Location({
   const address = locationData.venue_address.replace(/\n/g, "<br>");
   const registration = locationData.registration_url
     ? locationData.registration_url
-    : "/events/elasticon/register";
+    : "/register";
 
   function replacePlaceholder(text) {
     return text.replace(/{LOCATION}/g, locationData.title);
