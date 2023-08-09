@@ -3,6 +3,7 @@ import Head from "next/head";
 import Image from "next/image";
 import Link from "next/link";
 import Query, { Paths } from "../../lib/contentstack";
+import dateFormat from "../../lib/dateFormat";
 
 import Button from "@/components/Button";
 import Heading from "@/components/Heading";
@@ -19,10 +20,7 @@ export default function Location({
   globalData,
 }) {
   const date = locationData.date[0]
-    ? new Date(locationData.date[0]).toLocaleDateString("en-US", {
-        dateStyle: "long",
-        timeZone: "UTC",
-      })
+    ? dateFormat(locationData.date[0], locationData.region)
     : "Coming soon";
 
   const address = locationData.venue_address.replace(/\n/g, "<br>");

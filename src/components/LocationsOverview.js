@@ -4,6 +4,8 @@ import { Listbox, Tab } from "@headlessui/react";
 import Image from "next/image";
 import Heading from "./Heading";
 
+import dateFormat from "../../lib/dateFormat";
+
 const continents = [
   "Europe, the Middle East, and Africa",
   "Americas",
@@ -105,10 +107,7 @@ export default function Locations({ data }) {
                         </Heading>
                         <p className="font-bold text-lg">
                           {e.date[0]
-                            ? new Date(e.date[0]).toLocaleDateString("en-US", {
-                                dateStyle: "long",
-                                timeZone: "UTC",
-                              })
+                            ? dateFormat(e.date[0], e.region)
                             : "Coming soon"}
                         </p>
                         <p>{e.venue_name.title}</p>
