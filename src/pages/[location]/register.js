@@ -57,7 +57,7 @@ export default function Register({ data }) {
         >
           Register for ElasticON {location}
         </Heading>
-        <form className="max-w-2xl mx-auto" id="mktoForm_21030"></form>
+        <form className="max-w-2xl mx-auto !w-full" id="mktoForm_21030"></form>
       </Panel>
 
       <Footer data={footerData} />

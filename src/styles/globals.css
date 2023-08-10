@@ -35,7 +35,7 @@ html {
 .mktoForm input,
 .mktoForm textarea,
 .mktoForm select {
-  @apply border border-zinc-200 !mb-4 !mt-1 !p-3 rounded shadow-inner !w-full;
+  @apply border border-zinc-200 !mb-4 !mt-1 !p-3 rounded shadow-inner !text-sm !w-full;
 }
 
 .mktoForm button {
