@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import Query from "../../lib/contentstack";
+import Query from "../../../lib/contentstack";
 
 import Footer from "@/components/Footer";
 import Heading from "@/components/Heading";
@@ -7,7 +7,7 @@ import Navigation from "@/components/Navigation";
 import Panel from "@/components/Panel";
 
 export default function Register({ data }) {
-  const { footerData, globalData } = data;
+  const { footerData, globalData, location } = data;
   const [scriptLoaded, setScriptLoaded] = useState(false);
 
   useEffect(() => {
@@ -37,12 +37,18 @@ export default function Register({ data }) {
             {globalData?.series_name}
           </Heading>
           <Heading className="text-white" size="h1">
-            Register for ElasticON
+            Registration
           </Heading>
         </div>
       </div>
 
       <Panel className="border-2 border-zinc-200">
+        <Heading
+          className="capitalize mb-14 text-blue-800 md:text-center"
+          size="h4"
+        >
+          Register for ElasticON {location}
+        </Heading>
         <form className="max-w-2xl mx-auto" id="mktoForm_21030"></form>
       </Panel>
 
@@ -51,7 +57,12 @@ export default function Register({ data }) {
   );
 }
 
-export async function getStaticProps() {
+export async function getStaticPaths() {
+  return { paths: [], fallback: "blocking" };
+}
+
+export async function getStaticProps({ params }) {
+  const { location } = params;
   const footerData = await Query("footer", "blt6f73b6b55468ee3a");
   const globalData = await Query("site_config", "blt6e01f6ef8267a554");
 
@@ -60,6 +71,7 @@ export async function getStaticProps() {
       data: {
         footerData,
         globalData,
+        location,
       },
     },
   };

@@ -2,8 +2,8 @@ import { ReactMarkdown } from "react-markdown/lib/react-markdown";
 import Head from "next/head";
 import Image from "next/image";
 import Link from "next/link";
-import Query, { Paths } from "../../lib/contentstack";
-import dateFormat from "../../lib/dateFormat";
+import Query, { Paths } from "../../../lib/contentstack";
+import dateFormat from "../../../lib/dateFormat";
 
 import Button from "@/components/Button";
 import Heading from "@/components/Heading";
@@ -26,7 +26,7 @@ export default function Location({
   const address = locationData.venue_address.replace(/\n/g, "<br>");
   const registration = locationData.registration_url
     ? locationData.registration_url
-    : "/register";
+    : `${locationData.url}/register`;
 
   function replacePlaceholder(text) {
     return text.replace(/{LOCATION}/g, locationData.title);
