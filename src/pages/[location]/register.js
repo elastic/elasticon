@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import Head from "next/head";
 import Query from "../../../lib/contentstack";
 
 import Footer from "@/components/Footer";
@@ -26,6 +27,13 @@ export default function Register({ data }) {
 
   return (
     <>
+      <Head>
+        <title>{globalData.seo_metadata.title}</title>
+        <meta
+          name="description"
+          content={globalData.seo_metadata.description}
+        />
+      </Head>
       <div className="bg-blue-900 mb-4 rounded-bl-sm md:rounded-bl-md lg:rounded-bl-lg rounded-br-sm md:rounded-br-md lg:rounded-br-lg">
         <Navigation />
         <div className="p-10 sm:p-14 md:p-20 lg:p-24">
