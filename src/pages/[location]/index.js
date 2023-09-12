@@ -8,6 +8,7 @@ import dateFormat from "../../../lib/dateFormat";
 import Button from "@/components/Button";
 import Heading from "@/components/Heading";
 import Hero from "@/components/Hero";
+import LogoBar from "@/components/LogoBar";
 import Navigation from "@/components/Navigation";
 import Panel from "@/components/Panel";
 import Footer from "@/components/Footer";
@@ -16,6 +17,7 @@ import Wave from "@/components/Wave";
 export default function Location({
   eventConfigData,
   locationData,
+  logoBarData,
   footerData,
   globalData,
 }) {
@@ -176,9 +178,16 @@ export default function Location({
             src={locationData.agenda_cvent_module}
             title="Agenda"
           />
-          {locationData.registration_url && (
-            <Button href={registration}>Register now</Button>
-          )}
+        </div>
+      )}
+      {logoBarData && logoBarData?.[0] && logoBarData?.[0]?.[0] && (
+        <div className="flex flex-col items-center my-10 md:my-20" id="sponsors">
+          <LogoBar data={logoBarData?.[0]?.[0]} />
+        </div>
+      )}
+      {locationData.registration_url && (
+        <div className="flex flex-col items-center my-10 md:my-20" id="register-now">
+          <Button href={registration}>Register now</Button>
         </div>
       )}
       <Footer
@@ -210,6 +219,7 @@ export async function getStaticPaths() {
 export async function getStaticProps({ params }) {
   const { location } = params;
   const [allLocations] = await Paths("event");
+  const logoBarData = await Paths("logo_bar");
   const footerData = await Query("footer", "blt6f73b6b55468ee3a");
   const globalData = await Query("site_config", "blt6e01f6ef8267a554");
 
@@ -240,6 +250,7 @@ export async function getStaticProps({ params }) {
     props: {
       eventConfigData,
       locationData,
+      logoBarData,
       footerData,
       globalData,
     },

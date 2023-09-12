@@ -49,3 +49,15 @@ html {
 .mktoOffset {
   display: none;
 }
+
+#logos #imgData {
+  display: none;
+}
+
+#logos img {
+  margin: 0 43px 0 11px !important;
+}
+
+#logos img:last-child {
+  margin: 0 0 0 11px !important;
+}
