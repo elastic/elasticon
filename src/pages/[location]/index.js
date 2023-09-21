@@ -178,9 +178,9 @@ export default function Location({
           />
         </div>
       )}
-      {logoBarData && logoBarData?.[0] && logoBarData?.[0]?.[0] && (
+      {logoBarData && (
         <div className="flex flex-col items-center my-10 md:my-20" id="sponsors">
-          <LogoBar data={logoBarData?.[0]?.[0]} />
+          <LogoBar data={logoBarData} />
         </div>
       )}
       {locationData.registration_url && (
@@ -220,7 +220,8 @@ export async function getStaticProps({ params }) {
   const footerData = await Query("footer", "blt6f73b6b55468ee3a");
   const globalData = await Query("site_config", "blt6e01f6ef8267a554");
   const locationData = allLocations.find((loc) => loc.url === location);
-  const logoBarData = await Paths("logo_bar");
+  const { uid: logoBarUid, _content_type_uid: logoBarContentType } = locationData.logo_bar_reference[0];
+  const logoBarData = await Query(logoBarContentType, logoBarUid);
 
   async function allEventConfigData() {
     try {
