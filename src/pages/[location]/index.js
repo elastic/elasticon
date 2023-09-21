@@ -37,10 +37,10 @@ export default function Location({
   return (
     <>
       <Head>
-        <title>{globalData.seo_metadata.title}</title>
+        <title>{locationData?.seo?.title_l10n || globalData.seo_metadata.title}</title>
         <meta
           name="description"
-          content={globalData.seo_metadata.description}
+          content={locationData?.seo?.description_l10n || globalData.seo_metadata.description}
         />
       </Head>
       <Hero
