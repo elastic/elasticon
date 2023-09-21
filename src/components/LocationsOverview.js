@@ -18,11 +18,11 @@ export default function Locations({ data }) {
   const selectedIndex = continents.indexOf(selectedLocation);
 
   const eventsAMER = data.filter((event) => event.region === "AMER");
-  const eventsAPAC = data.filter((event) => event.region === "APAC");
+  // const eventsAPAC = data.filter((event) => event.region === "APAC");
   const eventsEMEA = data.filter((event) => event.region === "EMEA");
   // const eventsPUB = data.filter((event) => event.region === "Public Sector");
 
-  const events = [eventsEMEA, eventsAMER, eventsAPAC];
+  const events = [eventsEMEA, eventsAMER];
 
   return (
     <div
