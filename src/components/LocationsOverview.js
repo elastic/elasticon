@@ -9,7 +9,7 @@ import dateFormat from "../../lib/dateFormat";
 const continents = [
   "Europe, the Middle East, and Africa",
   "Americas",
-  "Asia-Pacific",
+  // "Asia-Pacific",
   // "Public Sector",
 ];
 
