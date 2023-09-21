@@ -58,6 +58,7 @@ export default function Register({ data }) {
           Register for ElasticON {location}
         </Heading>
         <form className="max-w-2xl mx-auto !w-full" id="mktoForm_21030"></form>
+        <p className="mt-10 text-zinc-400 text-center text-xs max-w-3xl mx-auto">By submitting you acknowledge that you&apos;ve read and agree to our <a className="underline" href="https://www.elastic.co/legal/elastic-cloud-account-terms">Terms of Service</a>, and that Elastic may <a className="underline" href="https://www.elastic.co/legal/privacy-statement#how-we-use-the-information">contact you</a> about our related products and services, using the details you provide above. See <a className="underline" href="https://www.elastic.co/legal/privacy-statement/">Elastic&apos;s Privacy Statement</a> for more details or to opt-out at any time.</p>
       </Panel>
 
       <Footer data={footerData} />
