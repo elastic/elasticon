@@ -220,8 +220,12 @@ export async function getStaticProps({ params }) {
   const footerData = await Query("footer", "blt6f73b6b55468ee3a");
   const globalData = await Query("site_config", "blt6e01f6ef8267a554");
   const locationData = allLocations.find((loc) => loc.url === location);
-  const { uid: logoBarUid, _content_type_uid: logoBarContentType } = locationData.logo_bar_reference[0];
-  const logoBarData = await Query(logoBarContentType, logoBarUid);
+  let logoBarData
+  if (locationData.logo_bar_reference[0]) {
+    logoBarData = await Query(locationData.logo_bar_reference[0]._content_type_uid, locationData.logo_bar_reference[0].uid);
+  } else {
+    logoBarData = '';
+  }
 
   async function allEventConfigData() {
     try {
