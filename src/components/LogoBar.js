@@ -3,8 +3,8 @@ import Link from "next/link";
 import React from "react";
 
 export default function LogoBar ({ data }) {
-  const hasCtaBelowTitle = Boolean(data?.cta && data?.style.cta_group_location === 'below topic heading')
-  const hasCtaBelowLogos = Boolean(data?.ctacta_group && data?.style.cta_group_location === 'below logos')
+  const hasCtaBelowTitle = Boolean(data?.cta && data?.cta?.link && data?.cta?.link?.href && data?.style.cta_group_location === 'below topic heading')
+  const hasCtaBelowLogos = Boolean(data?.ctacta_group && data?.cta?.link && data?.cta?.link?.href && data?.style.cta_group_location === 'below logos')
 
   const tertiaryCta = () => (
     <Link
