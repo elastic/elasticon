@@ -9,6 +9,11 @@ const nextConfig = {
         destination: "/",
         permanent: true,
       },
+      {
+        source: "/bangalore",
+        destination: "/bengaluru",
+        permanent: true,
+      },
     ];
   }
 };
