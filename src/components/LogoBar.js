@@ -4,7 +4,6 @@ import Link from "next/link";
 import React from "react";
 
 export default function LogoBar ({ data }) {
-  console.log(data);
   const TertiaryCta = () => (
     <Link
       className="flex gap-2 hover:gap-4 items-center text-blue-600 hover:ml-2 font-bold"
