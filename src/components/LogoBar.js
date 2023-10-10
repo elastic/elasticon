@@ -27,7 +27,7 @@ export default function LogoBar ({ data }) {
 
       <div className='flex flex-row flex-wrap justify-center space-x-8 w-5/6' id="logos">
         {data.logo_bar.map((logo, index) => {
-          if (logo.logo.url) {
+          if (logo?.logo?.url) {
             return (
               <React.Fragment key={index}>
                 <Image
