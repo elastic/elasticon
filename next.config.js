@@ -2,6 +2,14 @@
 const nextConfig = {
   reactStrictMode: true,
   basePath: "/events/elasticon",
+  images: {
+    remotePatterns: [
+      {
+        protocol: "https",
+        hostname: "images.contentstack.io",
+      }
+    ]
+  },
   async redirects() {
     return [
       {
