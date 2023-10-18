@@ -25,7 +25,7 @@ export default function LogoBar ({ data }) {
         <TertiaryCta />
       )}
 
-      <div className='flex flex-row flex-wrap justify-center space-x-8 w-5/6' id="logos">
+      <div className='flex flex-row flex-wrap items-center justify-center space-x-8 w-5/6' id="logos">
         {data.logo_bar.map((logo, index) => {
           if (logo?.logo?.url) {
             return (
@@ -34,8 +34,8 @@ export default function LogoBar ({ data }) {
                   alt={logo.title_l10n}
                   className="px-3 py-6 max-md:px-2 max-md:py-2"
                   src={logo.logo.url}
-                  height="40"
-                  width="135"
+                  height={40}
+                  width={135}
                 />
               </React.Fragment>
             )
