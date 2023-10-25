@@ -2,6 +2,7 @@ import { CheckIcon, ChevronUpDownIcon } from "@heroicons/react/20/solid";
 import { Fragment, useState } from "react";
 import { Listbox, Tab } from "@headlessui/react";
 import Image from "next/image";
+import classNames from "classnames";
 import Heading from "./Heading";
 
 import dateFormat from "../../lib/dateFormat";
@@ -10,7 +11,6 @@ const continents = [
   "Europe, the Middle East, and Africa",
   "Americas",
   "Asia-Pacific",
-  // "Public Sector",
 ];
 
 export default function Locations({ data }) {
@@ -20,7 +20,6 @@ export default function Locations({ data }) {
   const eventsAMER = data.filter((event) => event.region === "AMER");
   const eventsAPAC = data.filter((event) => event.region === "APAC");
   const eventsEMEA = data.filter((event) => event.region === "EMEA");
-  // const eventsPUB = data.filter((event) => event.region === "Public Sector");
 
   const events = [eventsEMEA, eventsAMER, eventsAPAC];
 
@@ -38,9 +37,8 @@ export default function Locations({ data }) {
             <Tab as={Fragment} key={`tab-${index}`}>
               {({ selected }) => (
                 <button
-                  className={`inline-block -mb-0.5 mx-4 py-2 ${
-                    selected ? "border-b-2 border-teal" : ""
-                  }`}
+                  className={`inline-block -mb-0.5 mx-4 py-2 ${selected ? "border-b-2 border-teal" : ""
+                    }`}
                   onClick={() => setSelectedLocation(continent)}
                   onKeyUp={() => setSelectedLocation(continent)}
                 >
@@ -63,12 +61,11 @@ export default function Locations({ data }) {
             </Listbox.Button>
             <Listbox.Options className="absolute bg-white rounded-[4px] p-2 shadow text-black top-14 w-full z-10">
               {continents.map((c, i) => (
-                <Listbox.Option key={`conteinent-${i}`} value={c}>
+                <Listbox.Option key={`continent-${i}`} value={c}>
                   {({ active, selected }) => (
                     <div
-                      className={`cursor-pointer flex items-center p-2 hover:bg-blue-200 rounded-[2px] ${
-                        active && "bg-blue-200"
-                      }`}
+                      className={`cursor-pointer flex items-center p-2 hover:bg-blue-200 rounded-[2px] ${active && "bg-blue-200"
+                        }`}
                     >
                       <span className="flex-1">{c}</span>
                       {selected && (
@@ -92,33 +89,65 @@ export default function Locations({ data }) {
               <div className="gap-10 grid lg:grid-cols-2 max-w-6xl mx-auto">
                 {event
                   .sort((a, b) => Date.parse(a.date[0]) - Date.parse(b.date[0]))
-                  .map((e, i) => (
-                    <a
-                      className="border-2 border-blue-800 hover:border-white flex flex-col sm:flex-row sm:items-center p-6 rounded-sm hover:shadow-[0_0_30px_0_rgba(255,255,255,0.2)]"
-                      href={`/events/elasticon/${e.url}`}
-                      key={`event-${i}`}
-                    >
-                      <div className="flex-1 mb-8 sm:mb-0">
-                        <Heading
-                          className="font-normal mb-4 text-peach"
-                          size="h4"
-                        >
-                          {e.title}
-                        </Heading>
-                        <p className="font-bold text-lg">
-                          {e.date[0]
-                            ? dateFormat(e.date[0], e.region)
-                            : "Coming soon"}
-                        </p>
-                        <p>{e.venue_name.title}</p>
+                  .map((e, i) => {
+                    const eventDisabled = !!e.event_status?.event_disabled;
+                    const eventStatusMessage = e.event_status?.status_message;
+
+                    const panelClasses = classNames(
+                      "border-2 border-blue-800 flex flex-col sm:flex-row sm:items-center p-6 rounded-sm",
+                      {
+                        "hover:border-white hover:shadow-[0_0_30px_0_rgba(255,255,255,0.2)]": !eventDisabled,
+                      }
+                    )
+
+                    const LocationDetail = (e) => (
+                      <>
+                        <div className="flex-1 mb-8 sm:mb-0">
+                          <Heading
+                            className="font-normal mb-4 text-peach"
+                            size="h4"
+                          >
+                            {e.title}
+                          </Heading>
+                          {!eventDisabled ? (
+                            <>
+                              <p className="font-bold text-lg">
+                                {e.date[0]
+                                  ? dateFormat(e.date[0], e.region)
+                                  : "Coming soon"}
+                              </p>
+                              <p>{e.venue_name.title}</p>
+                            </>
+                          ) : (
+                            <>
+                              <p className="font-bold text-lg">
+                                {eventStatusMessage || "Coming soon"}
+                              </p>
+                            </>
+                          )}
+                        </div>
+                        <img
+                          alt={e.small_image.description}
+                          className="flex-shrink-0 w-48"
+                          src={e.small_image.url}
+                        />
+                      </>
+                    )
+
+                    return !eventDisabled ? (
+                      <a
+                        className={panelClasses}
+                        href={`/events/elasticon/${e.url}`}
+                        key={`event-${i}`}
+                      >
+                        <LocationDetail {...e} />
+                      </a>
+                    ) : (
+                      <div className={panelClasses} key={`event-${i}`}>
+                        <LocationDetail {...e} />
                       </div>
-                      <img
-                        alt={e.small_image.description}
-                        className="flex-shrink-0 w-48"
-                        src={e.small_image.url}
-                      />
-                    </a>
-                  ))}
+                    );
+                  })}
               </div>
             </Tab.Panel>
           ))}

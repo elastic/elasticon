@@ -22,6 +22,11 @@ const nextConfig = {
         destination: "/bengaluru",
         permanent: true,
       },
+      {
+        source: "/tel-aviv",
+        destination: "/",
+        permanent: false
+      }
     ];
   }
 };
