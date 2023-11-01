@@ -16,6 +16,7 @@ const nextConfig = {
         source: "/events/elasticon/public-sector",
         destination: "https://elasticpublicsectorsummit.upgather.com/",
         permanent: true,
+        basePath: false,
       },
       {
         source: "/global",
