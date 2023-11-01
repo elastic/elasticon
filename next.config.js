@@ -13,6 +13,11 @@ const nextConfig = {
   async redirects() {
     return [
       {
+        source: "/events/elasticon/public-sector",
+        destination: "https://elasticpublicsectorsummit.upgather.com/",
+        permanent: true,
+      },
+      {
         source: "/global",
         destination: "/",
         permanent: true,
