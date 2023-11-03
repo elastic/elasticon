@@ -54,7 +54,7 @@ export default function Home({ data }) {
           content={globalData.seo_metadata.description}
         />
       </Head>
-      {bannerData.shown && (
+      {bannerData && (
         <Banner data={bannerData} />
       )}
       <Hero
@@ -181,9 +181,16 @@ export default function Home({ data }) {
 
 export async function getStaticProps() {
   const [eventsData] = await Paths("event");
-  const bannerData = await Query("alert_banner", "blt627d8ffb27ca2405");
   const footerData = await Query("footer", "blt6f73b6b55468ee3a");
   const globalData = await Query("site_config", "blt6e01f6ef8267a554");
+
+  async function AlertBannerData() {
+    try {
+      return await Query("alert_banner", "blt627d8ffb27ca2405");
+    } catch (error) {
+      console.log(error);
+    }
+  }
 
   async function QueryHomepageData() {
     try {
@@ -228,6 +235,7 @@ export async function getStaticProps() {
     }
   }
 
+  const bannerData = await AlertBannerData() || null;
   const allHomepageData = await QueryHomepageData();
 
   return {
