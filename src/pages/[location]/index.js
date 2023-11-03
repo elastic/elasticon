@@ -5,6 +5,7 @@ import Link from "next/link";
 import Query, { Paths } from "../../../lib/contentstack";
 import dateFormat from "../../../lib/dateFormat";
 
+import Banner from "@/components/Banner";
 import Button from "@/components/Button";
 import Heading from "@/components/Heading";
 import Hero from "@/components/Hero";
@@ -15,6 +16,7 @@ import Footer from "@/components/Footer";
 import Wave from "@/components/Wave";
 
 export default function Location({
+  bannerData,
   eventConfigData,
   locationData,
   logoBarData,
@@ -41,6 +43,9 @@ export default function Location({
           content={locationData?.seo?.description_l10n || globalData.seo_metadata.description}
         />
       </Head>
+      {bannerData && (
+        <Banner data={bannerData} />
+      )}
       <Hero
         footer={
           <div className="flex flex-col lg:flex-row lg:items-center">
@@ -227,6 +232,14 @@ export async function getStaticProps({ params }) {
     logoBarData = '';
   }
 
+  async function AlertBannerData() {
+    try {
+      return await Query("alert_banner", "blt627d8ffb27ca2405");
+    } catch (error) {
+      console.log(error);
+    }
+  }
+
   async function allEventConfigData() {
     try {
       const mainData = await Query("event_config", "blt8e9accc77ae68704");
@@ -246,10 +259,12 @@ export async function getStaticProps({ params }) {
     }
   }
 
+  const bannerData = await AlertBannerData() || null;
   const eventConfigData = await allEventConfigData();
 
   return {
     props: {
+      bannerData,
       eventConfigData,
       locationData,
       logoBarData,
