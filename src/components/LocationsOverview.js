@@ -90,6 +90,7 @@ export default function Locations({ data }) {
                 {event
                   .sort((a, b) => Date.parse(a.date[0]) - Date.parse(b.date[0]))
                   .map((e, i) => {
+                    const url = e.url.startsWith("https://") ? e.url : `/events/elasticon/${e.url}`;
                     const eventDisabled = !!e.event_status?.event_disabled;
                     const eventStatusMessage = e.event_status?.status_message;
 
@@ -137,7 +138,7 @@ export default function Locations({ data }) {
                     return !eventDisabled ? (
                       <a
                         className={panelClasses}
-                        href={`/events/elasticon/${e.url}`}
+                        href={url}
                         key={`event-${i}`}
                       >
                         <LocationDetail {...e} />
