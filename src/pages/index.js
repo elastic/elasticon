@@ -4,6 +4,7 @@ import Query, { Paths } from "../../lib/contentstack";
 
 import config from "../../next.config";
 
+import Banner from "@/components/Banner";
 import Button from "@/components/Button";
 import Footer from "@/components/Footer";
 import Heading from "@/components/Heading";
@@ -38,9 +39,11 @@ const solutionsBefore = `
 `;
 
 export default function Home({ data }) {
-  const { eventsData, footerData, globalData, homepageData } = data;
+  const { bannerData, eventsData, footerData, globalData, homepageData } = data;
   const { benefitData, featuresData, invitationData, solutionData } =
     homepageData;
+
+  console.log(bannerData);
 
   return (
     <>
@@ -51,6 +54,9 @@ export default function Home({ data }) {
           content={globalData.seo_metadata.description}
         />
       </Head>
+      {bannerData.shown && (
+        <Banner data={bannerData} />
+      )}
       <Hero
         imageAlt={homepageData.hero.image.description}
         imageSrc={homepageData.hero.image.url}
@@ -175,6 +181,7 @@ export default function Home({ data }) {
 
 export async function getStaticProps() {
   const [eventsData] = await Paths("event");
+  const bannerData = await Query("alert_banner", "blt627d8ffb27ca2405");
   const footerData = await Query("footer", "blt6f73b6b55468ee3a");
   const globalData = await Query("site_config", "blt6e01f6ef8267a554");
 
@@ -226,6 +233,7 @@ export async function getStaticProps() {
   return {
     props: {
       data: {
+        bannerData,
         eventsData,
         footerData,
         globalData,
