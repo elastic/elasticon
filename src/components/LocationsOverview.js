@@ -6,12 +6,80 @@ import classNames from "classnames";
 import Heading from "./Heading";
 
 import dateFormat from "../../lib/dateFormat";
+import isPastDate from "../../lib/ifPastDate";
 
 const continents = [
   "Europe, the Middle East, and Africa",
   "Americas",
   "Asia-Pacific",
 ];
+
+const ExpiredBanner = () => (
+  <div className="absolute bg-blue-600 -left-9 px-10 py-1.5 -rotate-45 top-3 uppercase font-semibold text-sm tracking-wide">
+    <p>Ended</p>
+  </div>
+);
+
+const LocationDetail = ({ data, eventDisabled }) => {
+  const date = data.date[0] ? dateFormat(data.date[0], data.region) : "Coming soon";
+  const eventEnded = isPastDate(data.date[0]);
+  const eventStatusMessage = data.event_status?.status_message;
+  const venue = data.venue_name.title;
+
+  const dateAndVenue = (
+    <>
+      <p className="font-bold text-lg">{date}</p>
+      <p>{venue}</p>
+    </>
+  );
+
+  const eventStatus = (
+    <p className="font-bold text-lg">
+      {eventStatusMessage || "Coming soon"}
+    </p>
+  );
+
+  const content = eventDisabled ? eventStatus : dateAndVenue;
+
+  return (
+    <>
+      {eventEnded && <ExpiredBanner />}
+      <div className="flex-1 mb-8 sm:mb-0">
+        <Heading className="font-normal mb-4 text-peach" size="h4">
+          {data.title}
+        </Heading>
+        {content}
+      </div>
+      <img
+        alt={data.small_image.description}
+        className="flex-shrink-0 w-48"
+        src={data.small_image.url}
+      />
+    </>
+  );
+};
+
+const Location = ({ data }) => {
+  const eventDisabled = !!data.event_status?.event_disabled;
+  const url = data.url.startsWith("https://") ? data.url : `/events/elasticon/${data.url}`;
+
+  const panelClasses = classNames(
+    "border-2 border-blue-800 flex flex-col sm:flex-row sm:items-center p-6 relative rounded-sm overflow-hidden",
+    {
+      "hover:border-white hover:shadow-[0_0_30px_0_rgba(255,255,255,0.2)]": !eventDisabled,
+      "pointer-events-none": eventDisabled,
+    }
+  );
+
+  return (
+    <a
+      className={panelClasses}
+      href={url}
+    >
+      <LocationDetail data={data} eventDisabled={eventDisabled} />
+    </a>
+  );
+};
 
 export default function Locations({ data }) {
   const [selectedLocation, setSelectedLocation] = useState(continents[0]);
@@ -88,67 +156,15 @@ export default function Locations({ data }) {
             <Tab.Panel key={`event=${index}`}>
               <div className="gap-10 grid lg:grid-cols-2 max-w-6xl mx-auto">
                 {event
-                  .sort((a, b) => Date.parse(a.date[0]) - Date.parse(b.date[0]))
-                  .map((e, i) => {
-                    const url = e.url.startsWith("https://") ? e.url : `/events/elasticon/${e.url}`;
-                    const eventDisabled = !!e.event_status?.event_disabled;
-                    const eventStatusMessage = e.event_status?.status_message;
-
-                    const panelClasses = classNames(
-                      "border-2 border-blue-800 flex flex-col sm:flex-row sm:items-center p-6 rounded-sm",
-                      {
-                        "hover:border-white hover:shadow-[0_0_30px_0_rgba(255,255,255,0.2)]": !eventDisabled,
-                      }
-                    )
-
-                    const LocationDetail = (e) => (
-                      <>
-                        <div className="flex-1 mb-8 sm:mb-0">
-                          <Heading
-                            className="font-normal mb-4 text-peach"
-                            size="h4"
-                          >
-                            {e.title}
-                          </Heading>
-                          {!eventDisabled ? (
-                            <>
-                              <p className="font-bold text-lg">
-                                {e.date[0]
-                                  ? dateFormat(e.date[0], e.region)
-                                  : "Coming soon"}
-                              </p>
-                              <p>{e.venue_name.title}</p>
-                            </>
-                          ) : (
-                            <>
-                              <p className="font-bold text-lg">
-                                {eventStatusMessage || "Coming soon"}
-                              </p>
-                            </>
-                          )}
-                        </div>
-                        <img
-                          alt={e.small_image.description}
-                          className="flex-shrink-0 w-48"
-                          src={e.small_image.url}
-                        />
-                      </>
-                    )
-
-                    return !eventDisabled ? (
-                      <a
-                        className={panelClasses}
-                        href={url}
-                        key={`event-${i}`}
-                      >
-                        <LocationDetail {...e} />
-                      </a>
-                    ) : (
-                      <div className={panelClasses} key={`event-${i}`}>
-                        <LocationDetail {...e} />
-                      </div>
-                    );
-                  })}
+                  .sort((a, b) => {
+                    if (isPastDate(a.date[0])) return 1;
+                    if (isPastDate(b.date[0])) return -1;
+                    return Date.parse(a.date[0]) - Date.parse(b.date[0])
+                  })
+                  .map((e, i) => (
+                    <Location data={e} key={`location-${i}`}/>
+                  ))
+                }
               </div>
             </Tab.Panel>
           ))}

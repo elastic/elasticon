@@ -3,7 +3,7 @@ import Image from "next/image";
 import Link from "next/link";
 import React from "react";
 
-export default function LogoBar ({ data }) {
+export default function LogoBar ({ data, eventEnded, location, seriesName }) {
   const TertiaryCta = () => (
     <Link
       className="flex gap-2 hover:gap-4 items-center text-blue-600 hover:ml-2 font-bold"
@@ -17,9 +17,11 @@ export default function LogoBar ({ data }) {
     </Link>
   )
 
+  const eventEndedHeadingContent = `Thank you to our ${seriesName} ${location} sponsors`
+
   return (
     <>
-      <Heading className="mb-8" size="h4">{data.topic_heading_l10n}</Heading>
+      <Heading className="mb-8" size="h4">{eventEnded ? eventEndedHeadingContent : data.topic_heading_l10n}</Heading>
 
       {data.cta.link.href && (
         <TertiaryCta />

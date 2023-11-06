@@ -15,19 +15,23 @@ import Panel from "@/components/Panel";
 import Footer from "@/components/Footer";
 import Wave from "@/components/Wave";
 
+import isPastDate from "../../../lib/ifPastDate";
+
 export default function Location({
   bannerData,
-  eventConfigData,
+  eventConfigDataCurrent,
+  eventConfigDataEnded,
   locationData,
   logoBarData,
   footerData,
   globalData,
 }) {
+  const address = locationData.venue_address.replace(/\n/g, "<br>");
   const date = locationData.date[0]
     ? dateFormat(locationData.date[0], locationData.region)
     : "Coming soon";
-
-  const address = locationData.venue_address.replace(/\n/g, "<br>");
+  const eventEnded = isPastDate(locationData.date[0]);
+  const eventConfigData = eventEnded ? eventConfigDataEnded : eventConfigDataCurrent;
   const registration = locationData.registration_url;
 
   function replacePlaceholder(text) {
@@ -115,13 +119,15 @@ export default function Location({
               {replacePlaceholder(eventConfigData.description)}
             </p>
             <div className="flex items-center mb-10">
-              <Button href={registration}>Register now</Button>
+              {!eventEnded && (
+                <Button href={registration}>Register now</Button>
+              )}
               {locationData.agenda_cvent_module && (
                 <Link
-                  className="flex gap-2 hover:gap-4 items-center text-blue-400 ml-6"
-                  href="#agenda"
+                  className={`flex gap-2 hover:gap-4 items-center text-blue-400 ${!eventEnded && "ml-6"}`}
+                  href={eventEnded ? "https://www.elastic.co/enterprise-search/generative-ai" : "#agenda"}
                 >
-                  View agenda
+                  {eventEnded ? "Innovate with AI" : "View agenda"}
                   <Image
                     alt="arrow icon"
                     height={12}
@@ -134,7 +140,7 @@ export default function Location({
           </>
         }
       >
-        <Navigation location={locationData.title} registration={registration} />
+        <Navigation location={locationData.title} registration={registration} eventEnded={eventEnded} />
       </Hero>
       <Panel>
         <div className="grid md:grid-cols-2 gap-10">
@@ -150,10 +156,10 @@ export default function Location({
             <Heading className="mb-6 text-blue-800" size="h3">
               {eventConfigData.right_content.heading}
             </Heading>
-            <p className="mb-8">
+            <ReactMarkdown className="markdown mb-4">
               {replacePlaceholder(eventConfigData.right_content.content)}
-            </p>
-            <Wave />
+            </ReactMarkdown>
+            {!eventEnded && <Wave />}
           </div>
         </div>
       </Panel>
@@ -174,7 +180,7 @@ export default function Location({
           ))}
         </div>
       </Panel>
-      {locationData.agenda_cvent_module && (
+      {locationData.agenda_cvent_module && !eventEnded && (
         <div className="flex flex-col items-center my-10 md:my-20" id="agenda">
           <iframe
             className="border-2 border-zinc-200 h-[85vh] mb-10 rounded-sm md:rounded-md lg:rounded-lg w-full"
@@ -185,16 +191,22 @@ export default function Location({
       )}
       {logoBarData && (
         <div className="flex flex-col items-center my-10 md:my-20" id="sponsors">
-          <LogoBar data={logoBarData} />
+          <LogoBar
+            data={logoBarData}
+            eventEnded={eventEnded}
+            location={locationData.title}
+            seriesName={globalData.series_name}
+          />
         </div>
       )}
-      {locationData.registration_url && (
+      {locationData.registration_url && !eventEnded && (
         <div className="flex flex-col items-center my-10 md:my-20" id="register-now">
           <Button href={registration}>Register now</Button>
         </div>
       )}
       <Footer
         data={footerData}
+        eventEnded={eventEnded}
         globalData={globalData}
         location={locationData.title}
       />
@@ -240,18 +252,18 @@ export async function getStaticProps({ params }) {
     }
   }
 
-  async function allEventConfigData() {
+  async function eventConfigData(id) {
     try {
-      const mainData = await Query("event_config", "blt8e9accc77ae68704");
+      const currentData = await Query("event_config", id);
       const featuresData = await Promise.all(
-        mainData.features.features.map(async (ref) => {
+        currentData.features.features.map(async (ref) => {
           const referenceData = await Query(ref._content_type_uid, ref.uid);
           return referenceData;
         })
       );
 
       return {
-        ...mainData,
+        ...currentData,
         featuresData,
       };
     } catch (error) {
@@ -260,12 +272,14 @@ export async function getStaticProps({ params }) {
   }
 
   const bannerData = await AlertBannerData() || null;
-  const eventConfigData = await allEventConfigData();
+  const eventConfigDataCurrent = await eventConfigData("blt8e9accc77ae68704");
+  const eventConfigDataEnded = await eventConfigData("blt3a278874b9efb3f1");
 
   return {
     props: {
       bannerData,
-      eventConfigData,
+      eventConfigDataCurrent,
+      eventConfigDataEnded,
       locationData,
       logoBarData,
       footerData,
