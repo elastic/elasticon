@@ -29,7 +29,7 @@ const navData = [
   },
 ];
 
-export default function Navigation({ location, registration }) {
+export default function Navigation({ eventEnded, location, registration }) {
   const paddingX = "px-10 sm:px-14 md:px-20 lg:px-24";
   const paddingY = "py-4 md:py-6";
 
@@ -63,7 +63,7 @@ export default function Navigation({ location, registration }) {
           />
         </Link>
 
-        {location && (
+        {location && !eventEnded && (
           <div className="flex items-center">
             {/* <Disclosure.Button className="flex items-center justify-center lg:hidden mr-6">
               Menu
