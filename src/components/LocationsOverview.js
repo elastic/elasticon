@@ -93,16 +93,24 @@ export default function Locations({ data }) {
                     const url = e.url.startsWith("https://") ? e.url : `/events/elasticon/${e.url}`;
                     const eventDisabled = !!e.event_status?.event_disabled;
                     const eventStatusMessage = e.event_status?.status_message;
+                    const eventEnded = e.date[0] && Date.parse(e.date[0]) < Date.now();
 
                     const panelClasses = classNames(
-                      "border-2 border-blue-800 flex flex-col sm:flex-row sm:items-center p-6 rounded-sm",
+                      "border-2 border-blue-800 flex flex-col sm:flex-row sm:items-center p-6 relative rounded-sm overflow-hidden",
                       {
                         "hover:border-white hover:shadow-[0_0_30px_0_rgba(255,255,255,0.2)]": !eventDisabled,
                       }
                     )
 
+                    const ExpiredBanner = () => (
+                      <div className="absolute bg-blue-600 -left-9 px-10 py-1.5 -rotate-45 top-3 uppercase font-semibold text-sm tracking-wide">
+                        <p>Ended</p>
+                      </div>
+                    );
+
                     const LocationDetail = (e) => (
                       <>
+                        {eventEnded && <ExpiredBanner />}
                         <div className="flex-1 mb-8 sm:mb-0">
                           <Heading
                             className="font-normal mb-4 text-peach"
