@@ -34,7 +34,7 @@ module.exports = {
       },
       orange: "#FF957D",
       peach: "#FF957D",
-      pink: "#DD0A73",
+      pink: "#F04E98",
       teal: "#7DE2D1",
       yellow: "#FEC514",
       zinc: {
