@@ -15,6 +15,8 @@ import Panel from "@/components/Panel";
 import Footer from "@/components/Footer";
 import Wave from "@/components/Wave";
 
+import isPastDate from "../../../lib/ifPastDate";
+
 export default function Location({
   bannerData,
   eventConfigData,

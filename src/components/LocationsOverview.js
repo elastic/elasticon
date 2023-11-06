@@ -156,7 +156,11 @@ export default function Locations({ data }) {
             <Tab.Panel key={`event=${index}`}>
               <div className="gap-10 grid lg:grid-cols-2 max-w-6xl mx-auto">
                 {event
-                  .sort((a, b) => Date.parse(a.date[0]) - Date.parse(b.date[0]))
+                  .sort((a, b) => {
+                    if (isPastDate(a.date[0])) return 1;
+                    if (isPastDate(b.date[0])) return -1;
+                    return Date.parse(a.date[0]) - Date.parse(b.date[0])
+                  })
                   .map((e, i) => (
                     <Location data={e} key={`location-${i}`}/>
                   ))
