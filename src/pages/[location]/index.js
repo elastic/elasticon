@@ -125,9 +125,9 @@ export default function Location({
               {locationData.agenda_cvent_module && (
                 <Link
                   className={`flex gap-2 hover:gap-4 items-center text-blue-400 ${!eventEnded && "ml-6"}`}
-                  href="#agenda"
+                  href={eventEnded ? "https://www.elastic.co/enterprise-search/generative-ai" : "#agenda"}
                 >
-                  View agenda
+                  {eventEnded ? "Innovate with AI" : "View agenda"}
                   <Image
                     alt="arrow icon"
                     height={12}
@@ -180,7 +180,7 @@ export default function Location({
           ))}
         </div>
       </Panel>
-      {locationData.agenda_cvent_module && (
+      {locationData.agenda_cvent_module && !eventEnded && (
         <div className="flex flex-col items-center my-10 md:my-20" id="agenda">
           <iframe
             className="border-2 border-zinc-200 h-[85vh] mb-10 rounded-sm md:rounded-md lg:rounded-lg w-full"
@@ -191,7 +191,12 @@ export default function Location({
       )}
       {logoBarData && (
         <div className="flex flex-col items-center my-10 md:my-20" id="sponsors">
-          <LogoBar data={logoBarData} />
+          <LogoBar
+            data={logoBarData}
+            eventEnded={eventEnded}
+            location={locationData.title}
+            seriesName={globalData.series_name}
+          />
         </div>
       )}
       {locationData.registration_url && !eventEnded && (
