@@ -272,8 +272,8 @@ export async function getStaticProps({ params }) {
   }
 
   const bannerData = await AlertBannerData() || null;
-  const eventConfigDataCurrent = await eventConfigData("blt8e9accc77ae68704");
-  const eventConfigDataEnded = await eventConfigData("blt3a278874b9efb3f1");
+  const eventConfigDataCurrent = await eventConfigData("blt8e9accc77ae68704") || null;
+  const eventConfigDataEnded = await eventConfigData("blt3a278874b9efb3f1") || null;
 
   return {
     props: {

@@ -14,6 +14,9 @@ import LocationsOverview from "@/components/LocationsOverview";
 import Panel from "@/components/Panel";
 import Navigation from "@/components/Navigation";
 
+import adviceImage from "@/images/image-advice.png";
+import Image from "next/image";
+
 const solutionsAfter = `
   after:absolute
   after:bg-[url('/events/elasticon/images/pattern-gray.png')]
@@ -116,10 +119,9 @@ export default function Home({ data }) {
             </ReactMarkdown>
           </div>
           <div>
-            {/* eslint-disable-next-line */}
-            <img
+            <Image
               alt={homepageData.event_features.image.description}
-              src={config.basePath + "/images/image-advice.png"}
+              src={adviceImage}
             />
           </div>
         </div>
