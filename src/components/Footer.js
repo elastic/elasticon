@@ -1,10 +1,14 @@
 import Button from "@/components/Button";
 import Heading from "@/components/Heading";
 
+import footerBg from "@/images/pattern-footer.png";
+import Image from "next/image";
+
 export default function Footer({ data, eventEnded, globalData, location }) {
   return (
     <>
-      <div className="lg:bg-[url('/events/elasticon/images/pattern-footer.svg')] bg-[position:center_50%] bg-[size:90%] bg-no-repeat bg-zinc-900 text-center text-white p-16 md:p-28 rounded-tl-sm md:rounded-tl-md lg:rounded-tl-lg rounded-tr-sm md:rounded-tr-md lg:rounded-tr-lg">
+      <div className="relative bg-zinc-900 text-center text-white p-16 md:p-28 rounded-tl-sm md:rounded-tl-md lg:rounded-tl-lg rounded-tr-sm md:rounded-tr-md lg:rounded-tr-lg">
+        <Image src={footerBg} alt="" className="hidden lg:block absolute top-1/2 left-1/2 w-[90%] h-auto transform -translate-x-1/2 -translate-y-1/2" />
         <Heading className="mb-6" size="h3">
           {eventEnded ? `Didn't make it to ${location}?` : `Can't make it to ${location}?`}
         </Heading>
