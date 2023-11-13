@@ -3,6 +3,10 @@ const heroPaddingTop = `pt-10`;
 const heroPaddingLeft = `pl-10 sm:pl-14 md:pl-20 lg:pl-24`;
 const heroPaddingRight = `pr-10 sm:pr-14 md:pr-20`;
 
+import cutLeft from "@/images/cut-left.svg";
+import cutRight from "@/images/cut-right.svg";
+import Image from "next/image";
+
 export default function Hero({
   children,
   footer,
@@ -16,9 +20,8 @@ export default function Hero({
     >
       {children}
       <div
-        className={`gap-10 md:gap-20 grid lg:grid-cols-2 items-center ${
-          !footer && heroPaddingBottom
-        } ${heroPaddingLeft} ${heroPaddingRight} ${heroPaddingTop}`}
+        className={`gap-10 md:gap-20 grid lg:grid-cols-2 items-center ${!footer && heroPaddingBottom
+          } ${heroPaddingLeft} ${heroPaddingRight} ${heroPaddingTop}`}
       >
         <div>{mainContent}</div>
         <div className="flex items-center justify-end">
@@ -28,14 +31,8 @@ export default function Hero({
       </div>
       {footer && (
         <>
-          <img
-            src="/events/elasticon/images/cut-left.svg"
-            className="float-left h-12 w-6 md:h-24 md:w-12 lg:h-48 lg:w-24 -translate-x-[0.5px]"
-          />
-          <img
-            src="/events/elasticon/images/cut-right.svg"
-            className="float-right h-12 w-6 md:h-24 md:w-12 lg:h-48 lg:w-24 translate-x-[0.5px]"
-          />
+          <Image src={cutLeft} alt="" className="float-left h-12 w-6 md:h-24 md:w-12 lg:h-48 lg:w-24 -translate-x-[0.5px]" />
+          <Image src={cutRight} alt="" className="float-right h-12 w-6 md:h-24 md:w-12 lg:h-48 lg:w-24 translate-x-[0.5px]" />
           <div
             className={`clear-both pb-12 md:pb-20 px-10 sm:px-14 md:px-20 lg:px-24`}
           >

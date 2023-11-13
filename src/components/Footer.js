@@ -24,7 +24,7 @@ export default function Footer({ data, eventEnded, globalData, location }) {
           ) : (
             <>
               <Heading className="mb-6" size="h3">
-                We're looking forward to seeing you!
+                We&apos;re looking forward to seeing you!
               </Heading>
               <p className="mb-10">
                 Register now to take advantage of early bird pricing.
