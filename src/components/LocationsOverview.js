@@ -43,7 +43,7 @@ const LocationDetail = ({ data, eventDisabled }) => {
 
   return (
     <>
-      {eventEnded && <ExpiredBanner />}
+      {eventEnded && !eventDisabled && <ExpiredBanner />}
       <div className="flex-1 mb-8 sm:mb-0">
         <Heading className="font-normal mb-4 text-peach" size="h4">
           {data.title}
