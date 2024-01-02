@@ -9,9 +9,9 @@ import dateFormat from "../../lib/dateFormat";
 import isPastDate from "../../lib/ifPastDate";
 
 const continents = [
-  "Europe, the Middle East, and Africa",
   "Americas",
   "Asia-Pacific",
+  "Europe, the Middle East, and Africa",
 ];
 
 const ExpiredBanner = () => (
@@ -89,7 +89,7 @@ export default function Locations({ data }) {
   const eventsAPAC = data.filter((event) => event.region === "APAC");
   const eventsEMEA = data.filter((event) => event.region === "EMEA");
 
-  const events = [eventsEMEA, eventsAMER, eventsAPAC];
+  const events = [eventsAMER, eventsAPAC, eventsEMEA];
 
   return (
     <div
@@ -162,7 +162,7 @@ export default function Locations({ data }) {
                     return Date.parse(a.date[0]) - Date.parse(b.date[0])
                   })
                   .map((e, i) => (
-                    <Location data={e} key={`location-${i}`}/>
+                    <Location data={e} key={`location-${i}`} />
                   ))
                 }
               </div>
