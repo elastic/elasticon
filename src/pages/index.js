@@ -46,8 +46,6 @@ export default function Home({ data }) {
   const { benefitData, featuresData, invitationData, solutionData } =
     homepageData;
 
-  console.log(bannerData);
-
   return (
     <>
       <Head>
@@ -57,7 +55,7 @@ export default function Home({ data }) {
           content={globalData.seo_metadata.description}
         />
       </Head>
-      {bannerData && (
+      {bannerData && bannerData.show && (
         <Banner data={bannerData} />
       )}
       <Hero
