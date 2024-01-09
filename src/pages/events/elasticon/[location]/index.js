@@ -2,8 +2,8 @@ import { ReactMarkdown } from "react-markdown/lib/react-markdown";
 import Head from "next/head";
 import Image from "next/image";
 import Link from "next/link";
-import Query, { Paths } from "../../../lib/contentstack";
-import dateFormat from "../../../lib/dateFormat";
+import Query, { Paths } from "../../../../../lib/contentstack";
+import dateFormat from "../../../../../lib/dateFormat";
 
 import Banner from "@/components/Banner";
 import Button from "@/components/Button";
@@ -15,7 +15,7 @@ import Panel from "@/components/Panel";
 import Footer from "@/components/Footer";
 import Wave from "@/components/Wave";
 
-import isPastDate from "../../../lib/ifPastDate";
+import isPastDate from "../../../../../lib/ifPastDate";
 
 export default function Location({
   bannerData,
