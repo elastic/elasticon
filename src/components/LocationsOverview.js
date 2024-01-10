@@ -62,7 +62,6 @@ const LocationDetail = ({ data, eventDisabled }) => {
 
 const Location = ({ data }) => {
   const { locale } = useRouter();
-  console.log(locale);
   const eventDisabled = !!data.event_status?.event_disabled;
   const url = data.url.startsWith("https://") ? data.url : `/${locale}/events/elasticon/${data.url}`;
 
