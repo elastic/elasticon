@@ -110,7 +110,7 @@ export default function Location({
               color="peach"
               size="h5"
             >
-              Find answers for what&apos;s next
+              {eventConfigData.eyebrow_text}
             </Heading>
             <Heading className="text-white" size="h1">
               {globalData.series_name} {locationData.title}
@@ -120,14 +120,14 @@ export default function Location({
             </p>
             <div className="flex items-center mb-10">
               {!eventEnded && (
-                <Button href={registration}>Register now</Button>
+                <Button href={registration}>{eventConfigData.primary_cta_button_text}</Button>
               )}
               {locationData.agenda_cvent_module && (
                 <Link
                   className={`flex gap-2 hover:gap-4 items-center text-blue-400 ${!eventEnded && "ml-6"}`}
                   href={eventEnded ? "https://www.elastic.co/enterprise-search/generative-ai" : "#agenda"}
                 >
-                  {eventEnded ? "Innovate with AI" : "View agenda"}
+                  {eventEnded ? "Innovate with AI" : eventConfigData.secondary_cta_button_text}
                   <Image
                     alt="arrow icon"
                     height={12}
@@ -201,7 +201,7 @@ export default function Location({
       )}
       {locationData.registration_url && !eventEnded && (
         <div className="flex flex-col items-center my-10 md:my-20" id="register-now">
-          <Button href={registration}>Register now</Button>
+          <Button href={registration}>{eventConfigData.primary_cta_button_text}</Button>
         </div>
       )}
       <Footer
