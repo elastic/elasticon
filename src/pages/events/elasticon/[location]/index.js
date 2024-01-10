@@ -56,19 +56,19 @@ export default function Location({
             <div className="gap-4 grid md:grid-cols-4 grow text-white">
               <div className="mb-4 md:mb-0">
                 <Heading className="text-teal mb-4" size="h5">
-                  Date
+                  {eventConfigData.date_title}
                 </Heading>
                 <p className="md:text-lg">{date}</p>
               </div>
               <div className="mb-4 md:mb-0">
                 <Heading className="text-teal mb-4" size="h5">
-                  Cost
+                  {eventConfigData.cost_title}
                 </Heading>
                 <p className="md:text-lg">{locationData.cost}</p>
               </div>
               <div className="mb-4 md:mb-0">
                 <Heading className="text-teal mb-4" size="h5">
-                  Location
+                  {eventConfigData.location_title}
                 </Heading>
                 <p className="md:text-lg">
                   {locationData.venue_name.title === "TBD" ? (
