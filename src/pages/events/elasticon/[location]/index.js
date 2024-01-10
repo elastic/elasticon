@@ -214,15 +214,21 @@ export default function Location({
   );
 }
 
-export async function getStaticPaths() {
+export async function getStaticPaths(context) {
+  const { locales } = context;
   const [allLocations] = await Paths("event");
+  
+  const paths = [];
 
-  const paths = allLocations.map((location) => {
-    return {
-      params: {
-        location: location.url,
-      },
-    };
+  locales.forEach((locale) => {
+    allLocations.map((location) => {
+      paths.push({
+        params: {
+          location: location.url,
+        },
+        locale,
+      });
+    });
   });
 
   return {
@@ -231,12 +237,16 @@ export async function getStaticPaths() {
   };
 }
 
-export async function getStaticProps({ params }) {
-  const { location } = params;
+export async function getStaticProps(context) {
+  const { locale } = context;
+  const { location } = context.params;
   const [allLocations] = await Paths("event");
   const footerData = await Query("footer", "blt6f73b6b55468ee3a");
   const globalData = await Query("site_config", "blt6e01f6ef8267a554");
-  const locationData = allLocations.find((loc) => loc.url === location);
+
+  const locationUID = allLocations.filter((loc) => loc.url === location)[0].uid;
+  const locationData = await Query("event", locationUID, locale.toLowerCase());
+
   let logoBarData
   if (locationData.logo_bar_reference[0]) {
     logoBarData = await Query(locationData.logo_bar_reference[0]._content_type_uid, locationData.logo_bar_reference[0].uid);
@@ -254,10 +264,10 @@ export async function getStaticProps({ params }) {
 
   async function eventConfigData(id) {
     try {
-      const currentData = await Query("event_config", id);
+      const currentData = await Query("event_config", id, locale.toLowerCase());
       const featuresData = await Promise.all(
         currentData.features.features.map(async (ref) => {
-          const referenceData = await Query(ref._content_type_uid, ref.uid);
+          const referenceData = await Query(ref._content_type_uid, ref.uid, locale.toLowerCase());
           return referenceData;
         })
       );

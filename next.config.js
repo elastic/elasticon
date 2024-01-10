@@ -9,6 +9,10 @@ const nextConfig = {
       }
     ]
   },
+  i18n: {
+    locales: ["en-US", "pt", "pt-BR"],
+    defaultLocale: "en-US",
+  },
   async redirects() {
     return [
       {
