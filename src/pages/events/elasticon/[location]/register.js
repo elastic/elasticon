@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import Head from "next/head";
-import Query from "../../../lib/contentstack";
+import Query from "../../../../../lib/contentstack";
 
 import Footer from "@/components/Footer";
 import Heading from "@/components/Heading";

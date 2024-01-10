@@ -1,7 +1,6 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   reactStrictMode: true,
-  basePath: "/events/elasticon",
   images: {
     remotePatterns: [
       {
@@ -9,6 +8,10 @@ const nextConfig = {
         hostname: "images.contentstack.io",
       }
     ]
+  },
+  i18n: {
+    locales: ["en-US", "pt-BR"],
+    defaultLocale: "en-US",
   },
   async redirects() {
     return [

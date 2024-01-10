@@ -1,5 +1,6 @@
 import { CheckIcon, ChevronUpDownIcon } from "@heroicons/react/20/solid";
 import { Fragment, useState } from "react";
+import { useRouter } from "next/router";
 import { Listbox, Tab } from "@headlessui/react";
 import Image from "next/image";
 import classNames from "classnames";
@@ -60,8 +61,10 @@ const LocationDetail = ({ data, eventDisabled }) => {
 };
 
 const Location = ({ data }) => {
+  const { locale } = useRouter();
+  console.log(locale);
   const eventDisabled = !!data.event_status?.event_disabled;
-  const url = data.url.startsWith("https://") ? data.url : `/events/elasticon/${data.url}`;
+  const url = data.url.startsWith("https://") ? data.url : `/${locale}/events/elasticon/${data.url}`;
 
   const panelClasses = classNames(
     "border-2 border-blue-800 flex flex-col sm:flex-row sm:items-center p-6 relative rounded-sm overflow-hidden",

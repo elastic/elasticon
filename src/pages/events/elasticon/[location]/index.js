@@ -2,8 +2,8 @@ import { ReactMarkdown } from "react-markdown/lib/react-markdown";
 import Head from "next/head";
 import Image from "next/image";
 import Link from "next/link";
-import Query, { Paths } from "../../../lib/contentstack";
-import dateFormat from "../../../lib/dateFormat";
+import Query, { Paths } from "../../../../../lib/contentstack";
+import dateFormat from "../../../../../lib/dateFormat";
 
 import Banner from "@/components/Banner";
 import Button from "@/components/Button";
@@ -15,7 +15,7 @@ import Panel from "@/components/Panel";
 import Footer from "@/components/Footer";
 import Wave from "@/components/Wave";
 
-import isPastDate from "../../../lib/ifPastDate";
+import isPastDate from "../../../../../lib/ifPastDate";
 
 export default function Location({
   bannerData,
@@ -56,19 +56,19 @@ export default function Location({
             <div className="gap-4 grid md:grid-cols-4 grow text-white">
               <div className="mb-4 md:mb-0">
                 <Heading className="text-teal mb-4" size="h5">
-                  Date
+                  {eventConfigData.date_title}
                 </Heading>
                 <p className="md:text-lg">{date}</p>
               </div>
               <div className="mb-4 md:mb-0">
                 <Heading className="text-teal mb-4" size="h5">
-                  Cost
+                  {eventConfigData.cost_title}
                 </Heading>
                 <p className="md:text-lg">{locationData.cost}</p>
               </div>
               <div className="mb-4 md:mb-0">
                 <Heading className="text-teal mb-4" size="h5">
-                  Location
+                  {eventConfigData.location_title}
                 </Heading>
                 <p className="md:text-lg">
                   {locationData.venue_name.title === "TBD" ? (
@@ -110,7 +110,7 @@ export default function Location({
               color="peach"
               size="h5"
             >
-              Find answers for what&apos;s next
+              {eventConfigData.eyebrow_text}
             </Heading>
             <Heading className="text-white" size="h1">
               {globalData.series_name} {locationData.title}
@@ -120,14 +120,14 @@ export default function Location({
             </p>
             <div className="flex items-center mb-10">
               {!eventEnded && (
-                <Button href={registration}>Register now</Button>
+                <Button href={registration}>{eventConfigData.primary_cta_button_text}</Button>
               )}
               {locationData.agenda_cvent_module && (
                 <Link
                   className={`flex gap-2 hover:gap-4 items-center text-blue-400 ${!eventEnded && "ml-6"}`}
                   href={eventEnded ? "https://www.elastic.co/enterprise-search/generative-ai" : "#agenda"}
                 >
-                  {eventEnded ? "Innovate with AI" : "View agenda"}
+                  {eventEnded ? "Innovate with AI" : eventConfigData.secondary_cta_button_text}
                   <Image
                     alt="arrow icon"
                     height={12}
@@ -201,7 +201,7 @@ export default function Location({
       )}
       {locationData.registration_url && !eventEnded && (
         <div className="flex flex-col items-center my-10 md:my-20" id="register-now">
-          <Button href={registration}>Register now</Button>
+          <Button href={registration}>{eventConfigData.primary_cta_button_text}</Button>
         </div>
       )}
       <Footer
@@ -214,15 +214,21 @@ export default function Location({
   );
 }
 
-export async function getStaticPaths() {
+export async function getStaticPaths(context) {
+  const { locales } = context;
   const [allLocations] = await Paths("event");
+  
+  const paths = [];
 
-  const paths = allLocations.map((location) => {
-    return {
-      params: {
-        location: location.url,
-      },
-    };
+  locales.forEach((locale) => {
+    allLocations.map((location) => {
+      paths.push({
+        params: {
+          location: location.url,
+        },
+        locale,
+      });
+    });
   });
 
   return {
@@ -231,12 +237,16 @@ export async function getStaticPaths() {
   };
 }
 
-export async function getStaticProps({ params }) {
-  const { location } = params;
+export async function getStaticProps(context) {
+  const { locale } = context;
+  const { location } = context.params;
   const [allLocations] = await Paths("event");
   const footerData = await Query("footer", "blt6f73b6b55468ee3a");
   const globalData = await Query("site_config", "blt6e01f6ef8267a554");
-  const locationData = allLocations.find((loc) => loc.url === location);
+
+  const locationUID = allLocations.filter((loc) => loc.url === location)[0].uid;
+  const locationData = await Query("event", locationUID, locale.toLowerCase());
+
   let logoBarData
   if (locationData.logo_bar_reference[0]) {
     logoBarData = await Query(locationData.logo_bar_reference[0]._content_type_uid, locationData.logo_bar_reference[0].uid);
@@ -254,10 +264,10 @@ export async function getStaticProps({ params }) {
 
   async function eventConfigData(id) {
     try {
-      const currentData = await Query("event_config", id);
+      const currentData = await Query("event_config", id, locale.toLowerCase());
       const featuresData = await Promise.all(
         currentData.features.features.map(async (ref) => {
-          const referenceData = await Query(ref._content_type_uid, ref.uid);
+          const referenceData = await Query(ref._content_type_uid, ref.uid, locale.toLowerCase());
           return referenceData;
         })
       );
