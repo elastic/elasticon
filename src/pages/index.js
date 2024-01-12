@@ -1,6 +1,8 @@
 import { ReactMarkdown } from "react-markdown/lib/react-markdown";
 import Head from "next/head";
-import Query, { Paths } from "../../../../lib/contentstack";
+import Query, { Paths } from "../../lib/contentstack";
+
+import config from "../../next.config";
 
 import Banner from "@/components/Banner";
 import Button from "@/components/Button";

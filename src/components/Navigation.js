@@ -52,13 +52,13 @@ export default function Navigation({ eventEnded, location, registration }) {
       <nav
         className={`flex flex-row items-center justify-between text-white ${paddingX} ${paddingY}`}
       >
-        <Link href="/events/elasticon">
+        <Link href="/">
           <p className="sr-only">ElasticON</p>
           <Image
             alt="the classic elastic cluster logo with the word 'on' added to the right"
             className="h-auto w-48"
             height={40}
-            src={"/events/elasticon/images/logo.svg"}
+            src={config.basePath + "/images/logo.svg"}
             width={200}
           />
         </Link>

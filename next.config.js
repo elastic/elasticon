@@ -2,6 +2,7 @@
 const nextConfig = {
   assetPrefix: process.env.NEXT_PUBLIC_ASSET_PREFIX,
   reactStrictMode: true,
+  basePath: "/events/elasticon",
   images: {
     remotePatterns: [
       {
@@ -9,10 +10,6 @@ const nextConfig = {
         hostname: "images.contentstack.io",
       }
     ]
-  },
-  i18n: {
-    locales: ["en-US", "pt-BR"],
-    defaultLocale: "en-US",
   },
   async redirects() {
     return [
