@@ -1,21 +1,21 @@
 import localFont from "next/font/local";
 
-import "../../public/events/elasticon/globals.css";
+import "../../public/globals.css";
 
 const inter = localFont({
   src: [
     {
-      path: "../../public/events/elasticon/fonts/Inter-Regular.ttf",
+      path: "../../public/fonts/Inter-Regular.ttf",
       weight: "400",
       style: "normal",
     },
     {
-      path: "../../public/events/elasticon/fonts/Inter-Bold.ttf",
+      path: "../../public/fonts/Inter-Bold.ttf",
       weight: "800",
       style: "bold",
     },
     {
-      path: "../../public/events/elasticon/fonts/Inter-Black.ttf",
+      path: "../../public/fonts/Inter-Black.ttf",
       weight: "900",
       style: "black",
     },
@@ -26,17 +26,17 @@ const inter = localFont({
 const spaceGrotesk = localFont({
   src: [
     {
-      path: "../../public/events/elasticon/fonts/SpaceGrotesk-Regular.ttf",
+      path: "../../public/fonts/SpaceGrotesk-Regular.ttf",
       weight: "400",
       style: "normal",
     },
     {
-      path: "../../public/events/elasticon/fonts/SpaceGrotesk-SemiBold.ttf",
+      path: "../../public/fonts/SpaceGrotesk-SemiBold.ttf",
       weight: "700",
       style: "semibold",
     },
     {
-      path: "../../public/events/elasticon/fonts/SpaceGrotesk-Bold.ttf",
+      path: "../../public/fonts/SpaceGrotesk-Bold.ttf",
       weight: "800",
       style: "bold",
     },
