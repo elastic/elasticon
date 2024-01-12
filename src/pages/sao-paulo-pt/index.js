@@ -183,15 +183,17 @@ export default function Location({
             <Heading className="mb-6 text-blue-800" size="h3">
               O que esperar
             </Heading>
-            <p className="markdown mb-4">
-              Criado para você, o ElasticON Tour São Paulo mostrará como obter os resultados mais relevantes de busca, observabilidade e segurança a uma velocidade sem precedentes com soluções empresariais abertas e flexíveis, alimentadas pela Elasticsearch Platform e pela IA.
+            <div className="markdown mb-4">
+              <p>
+                Criado para você, o ElasticON Tour São Paulo mostrará como obter os resultados mais relevantes de busca, observabilidade e segurança a uma velocidade sem precedentes com soluções empresariais abertas e flexíveis, alimentadas pela Elasticsearch Platform e pela IA.
+              </p>
               <ul>
                 <li>Veja como seus colegas estão usando a Elastic para mostrar o caminho em seus setores</li>
                 <li>Conheça as mais recentes soluções, notícias e atualizações</li>
                 <li>Conecte-se com nossa equipe de especialistas</li>
                 <li>Saiba em primeira mão como a Elastic pode ajudar você a ser ainda mais eficiente e a tomar decisões mais inteligentes todos os dias</li>
               </ul>
-            </p>
+            </div>
           </div>
           <div>
             <Heading className="mb-6 text-blue-800" size="h3">
