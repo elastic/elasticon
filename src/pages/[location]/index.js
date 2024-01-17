@@ -28,7 +28,7 @@ export default function Location({
 }) {
   const address = locationData.venue_address.replace(/\n/g, "<br>");
   const date = locationData.date[0]
-    ? dateFormat(locationData.date[0], locationData.region)
+    ? dateFormat(locationData.date[0], locationData.region, true)
     : "Coming soon";
   const eventEnded = isPastDate(locationData.date[0]);
   const eventConfigData = eventEnded ? eventConfigDataEnded : eventConfigDataCurrent;
