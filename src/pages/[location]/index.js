@@ -47,7 +47,7 @@ export default function Location({
           content={locationData?.seo?.description_l10n || globalData.seo_metadata.description}
         />
       </Head>
-      {bannerData && (
+      {bannerData && bannerData.show && (
         <Banner data={bannerData} />
       )}
       <Hero
