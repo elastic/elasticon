@@ -1,4 +1,5 @@
 import { Disclosure } from "@headlessui/react";
+import { useRouter } from "next/router";
 
 import config from "../../next.config";
 
@@ -32,6 +33,9 @@ const navData = [
 export default function Navigation({ eventEnded, location, registration }) {
   const paddingX = "px-10 sm:px-14 md:px-20 lg:px-24";
   const paddingY = "py-4 md:py-6";
+
+  const { pathname } = useRouter();
+  const isPT = pathname.includes("/sao-paulo-pt");
 
   const NavElements = () => (
     <>
@@ -73,7 +77,7 @@ export default function Navigation({ eventEnded, location, registration }) {
               <NavElements />
             </div> */}
 
-            <Button href={registration}>Register now</Button>
+            <Button href={registration}>{isPT ? "Inscreva-se agora" : "Register now"}</Button>
           </div>
         )}
       </nav>
