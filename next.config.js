@@ -28,6 +28,11 @@ const nextConfig = {
         permanent: true,
       },
       {
+        source: "/sao-paulo",
+        destination: "/sao-paulo-pt",
+        permanent: true,
+      },
+      {
         source: "/tel-aviv",
         destination: "/",
         permanent: false
