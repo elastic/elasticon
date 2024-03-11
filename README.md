@@ -63,8 +63,9 @@ Vercel triggers builds whenever changes to a respective Contentstack stack or to
 If you face challenges and need access to the Vercel console for debugging or any other reason, please create a Help-at-Elastic ticket and reach out to Casey Zumwalt or John Barrier Wilson.
 
 ## Contacts
-	•	Denise Gonzalez: Primary contact for project management and communication.
-	•	Brian Potstra: Responsible for design.
-	•	Casey Zumwalt and John Barrier Wilson: for additional help and/or accessing Vercel console.
+
+- Denise Gonzalez: primary contact for project management and communication.
+- Brian Potstra: responsible for design.
+- Casey Zumwalt and/or John Barrier Wilson: additional help and/or accessing Vercel console.
 
 Happy coding!
