@@ -1,10 +1,19 @@
+/* eslint-disable @next/next/no-sync-scripts */
 import { Html, Head, Main, NextScript } from "next/document";
 import Script from "next/script";
 
 export default function Document() {
+
+  // Initialize Optimizely
+  const optimizelySnippet = 'https://cdn.optimizely.com/js/18132920325.js';
+
   return (
     <Html lang="en">
       <Head>
+        <link rel='preconnect' href='https://logx.optimizely.com' />
+        <link rel='preload' as='script' href={optimizelySnippet} />
+        <script type='text/javascript' src={optimizelySnippet}></script>
+
         <link rel="icon" href="/events/elasticon/favicon.ico" />
         <Script
           id="google-tag-manager"
