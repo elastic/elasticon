@@ -13,7 +13,21 @@ export default function Hero({
   imageAlt,
   imageSrc,
   mainContent,
+  videoSrc
 }) {
+  const getVideo = (
+    <div className="aspect-video overflow-hidden rounded-[12px] shadow-lg w-full">
+      <iframe
+        allowFullScreen
+        allowtransparency="true"
+        height="100%"
+        src={`//play.vidyard.com/${videoSrc?.player_uuid}.html?`}
+        title={videoSrc?.title}
+        width="100%"
+      ></iframe>
+    </div>
+  )
+
   return (
     <div
       className={`bg-blue-900 mb-4 overflow-hidden relative rounded-bl-sm md:rounded-bl-md lg:rounded-bl-lg rounded-br-sm md:rounded-br-md lg:rounded-br-lg`}
@@ -26,7 +40,8 @@ export default function Hero({
         <div>{mainContent}</div>
         <div className="flex items-center justify-end">
           {/* eslint-disable-next-line */}
-          <img alt={imageAlt} src={imageSrc} />
+          {imageSrc && <img alt={imageAlt} src={imageSrc} />}
+          {videoSrc?.player_uuid !== undefined && getVideo}
         </div>
       </div>
       {footer && (
