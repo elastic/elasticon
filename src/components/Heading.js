@@ -1,6 +1,8 @@
 export default function Heading({ children, className, color, size }) {
   let Tag = size ? size : "p";
 
+  const fontColor = color || "";
+
   const fontSizes = {
     h1: "text-5xl sm:text-6xl md:text-7xl",
     h2: "text-4xl sm:text-5xl md:text-6xl",
@@ -21,7 +23,7 @@ export default function Heading({ children, className, color, size }) {
   const tagProps = {
     className: `${
       className && className
-    } ${fontSize} ${fontWeight} font-display`,
+    } ${fontSize} ${fontWeight} ${fontColor} font-display`,
     children,
   };
 

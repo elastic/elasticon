@@ -20,10 +20,8 @@ export default function Button({ children, href, outlined = false }) {
   const fillClassNames = cn("bg-blue-600", "hover:bg-blue-700");
 
   const outlinedClassNames = cn(
-    "border-2",
-    "border-white",
-    "hover:border-blue-400",
-    "hover:text-blue-400"
+    "ring-2 ring-white ring-inset",
+    "transition hover:bg-zinc-100/10"
   );
 
   const classNames = cn(
