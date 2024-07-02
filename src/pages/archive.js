@@ -15,6 +15,8 @@ export default function VideoArchive({ data }) {
   const { globalData, archiveData } = data;
   const videoData = archiveData?.videoData;
 
+  if (archiveData === undefined) return ''
+
   const getPrimaryButton = (
     archiveData?.hero?.main_cta && (
       <Button href={archiveData?.hero?.main_cta?.href}>
@@ -41,7 +43,8 @@ export default function VideoArchive({ data }) {
           content={archiveData?.seo?.description_l10n || globalData?.seo_metadata?.description}
         />
       </Head>
-      <Hero
+      {archiveData?.hero?.headline && (
+        <Hero
         imageAlt={archiveData?.hero?.image?.description}
         imageSrc={archiveData?.hero?.image?.url}
         videoSrc={archiveData?.hero?.asset_vidyard}
@@ -66,8 +69,9 @@ export default function VideoArchive({ data }) {
           </>
         }
       >
-         <Navigation />
+        <Navigation />
       </Hero>
+      )}
       {archiveData?.text_image_video?.length > 0 && <TextImageVideo data={archiveData?.text_image_video} videoData={videoData} />}
 
       {archiveData?.videos?.list?.length > 0 && (
