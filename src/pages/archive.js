@@ -13,7 +13,7 @@ import TextImageVideo from "@/components/TextImageVideo";
 
 export default function VideoArchive({ data }) {
   const { globalData, archiveData } = data;
-  const { videoData } = archiveData;
+  const videoData = archiveData?.videoData;
 
   const getPrimaryButton = (
     archiveData?.hero?.main_cta && (
