@@ -29,14 +29,35 @@ const nextConfig = {
       },
       {
         source: "/sao-paulo",
-        destination: "/sao-paulo-pt",
+        destination: "/",
+        permanent: true,
+      },
+      {
+        source: "/sao-paulo-pt",
+        destination: "/",
         permanent: true,
       },
       {
         source: "/tel-aviv",
         destination: "/",
-        permanent: false
-      }
+        permanent: true,
+      },
+      {
+        source: "/chicago",
+        destination: "/",
+        permanent: true,
+      },
+      {
+        source: "/frankfurt",
+        destination: "/",
+        permanent: true,
+      },
+      {
+        source: "/toronto",
+        destination: "/",
+        permanent: true,
+      },
+
     ];
   }
 };
