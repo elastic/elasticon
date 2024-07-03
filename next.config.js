@@ -24,7 +24,7 @@ const nextConfig = {
       },
       {
         source: "/archive/",
-        destination: "/",
+        destination: "/archive",
         permanent: true,
       },
       {
