@@ -50,12 +50,7 @@ export default function VideoArchive({ data }) {
         videoSrc={archiveData?.hero?.asset_vidyard}
         mainContent={
           <>
-            <Heading
-              className="font-semibold mb-8 text-yellow"
-              size="h4"
-            >
-              {globalData?.series_name}
-            </Heading>
+            {archiveData?.hero?.topic_heading && <Heading className="font-semibold mb-8 text-yellow" size="h4">{archiveData?.hero?.topic_heading}</Heading>}
             <Heading className="text-white" size="h1">
               {archiveData?.hero?.headline}
             </Heading>
@@ -84,22 +79,23 @@ export default function VideoArchive({ data }) {
               {archiveData?.videos?.list?.map((item, index) => (
                 <Link href={item.url} key={index}>
                   <div className="video-gallery-item mb-4">
-                    <div className="aspect-video overflow-hidden rounded-[4px] shadow-sm mb-4">
-                      <iframe
-                        allowFullScreen
-                        allowtransparency="true"
+                    <div className="aspect-video overflow-hidden rounded-[4px] shadow-md mb-4">
+                      <img
+                        data-v="4"
+                        data-type="inline"
+                        data-uuid={item.vidyard_uuid}
+                        class="vidyard-player-embed"
                         height="100%"
-                        src={`//play.vidyard.com/${item.vidyard_uuid}.html?`}
+                        src={`//play.vidyard.com/${item.vidyard_uuid}.jpg`}
                         title={item.title}
-                        width="100%"
-                      ></iframe>
+                      />
                     </div>
                     <div className="video-item-content">
                       <Heading className="mb-4 md:mb-2" size="h5">
                         {item.title}
                       </Heading>
                       <div className="paragraph">{item.paragraph}</div>
-                      <div className="paragraph">{item.vidyard_length}</div>
+                      <div className="paragraph mt-2">{item.vidyard_length}</div>
                     </div>
                   </div>
                 </Link>
