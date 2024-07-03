@@ -23,6 +23,11 @@ const nextConfig = {
         permanent: true,
       },
       {
+        source: "/archive/",
+        destination: "/archive",
+        permanent: true,
+      },
+      {
         source: "/bangalore",
         destination: "/bengaluru",
         permanent: true,
