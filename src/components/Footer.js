@@ -22,15 +22,9 @@ export default function Footer({ data, eventEnded, globalData, location }) {
               </p>
             </>
           ) : (
-            <>
-              <Heading className="mb-6" size="h3">
-                We&apos;re looking forward to seeing you!
-              </Heading>
-              <p className="mb-10">
-                Register now to take advantage of early bird pricing.
-              </p>
-            </>
-
+            <Heading className="mb-10" size="h3">
+              We&apos;re looking forward to seeing you!
+            </Heading>
           )}
 
           <Button outlined href="/#locations">
