@@ -150,9 +150,13 @@ export default function Home({ data }) {
       </Panel>
       <LocationsOverview data={eventsData} />
       <Panel>
-        <Heading className="mb-10 text-center text-blue-900" size="h4">
-          {homepageData.watch.headline}
-        </Heading>
+        <div className="text-center mb-10">
+          <Heading className="mb-3 text-blue-900" size="h4">
+            {homepageData.watch.headline}
+          </Heading>
+          <p className="mb-5">{homepageData.watch.description}</p>
+          <Button href={homepageData.watch.cta.href}>{homepageData.watch.cta.title}</Button>
+        </div>
         <div className="gap-10 grid md:grid-cols-2">
           {homepageData.watchData.map((video, i) => (
             <div key={`watch-video-${i}`}>
