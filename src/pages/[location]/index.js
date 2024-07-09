@@ -65,6 +65,7 @@ export default function Location({
                   Cost
                 </Heading>
                 <p className="md:text-lg">{locationData.cost}</p>
+                {locationData.cost_footnote && <p className="text-sm">{locationData.cost_footnote}</p>}
               </div>
               <div className="mb-4 md:mb-0">
                 <Heading className="text-teal mb-4" size="h5">
