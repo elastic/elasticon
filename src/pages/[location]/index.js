@@ -110,7 +110,7 @@ export default function Location({
               color="peach"
               size="h5"
             >
-              Find answers for what&apos;s next
+              {eventConfigData.eyebrow_text}
             </Heading>
             <Heading className="text-white" size="h1">
               {globalData.series_name} {locationData.title}
