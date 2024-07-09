@@ -209,7 +209,7 @@ export default function Location({
         data={footerData}
         eventEnded={eventEnded}
         globalData={globalData}
-        location={locationData.title}
+        locationData={locationData}
       />
     </>
   );
