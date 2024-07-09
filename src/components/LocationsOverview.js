@@ -88,7 +88,19 @@ const Location = ({ data }) => {
 };
 
 export default function Locations({ data }) {
-  const [selectedLocation, setSelectedLocation] = useState(continents[0]);
+  const region = useRouter().query.region || "";
+
+  const getSelectedLocation = () => {
+    if (region === "EMEA") {
+      return continents[2];
+    } else if (region === "APAC") {
+      return continents[1];
+    } else {
+      return continents[0];
+    }
+  };
+
+  const [selectedLocation, setSelectedLocation] = useState(getSelectedLocation());
   const selectedIndex = continents.indexOf(selectedLocation);
 
   const eventsAMER = data.filter((event) => event.region === "AMER");
