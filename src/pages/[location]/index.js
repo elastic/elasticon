@@ -174,7 +174,7 @@ export default function Location({
               {/* eslint-disable-next-line */}
               <img alt={feature.icon.description} src={feature.icon.url} />
               <Heading className="my-4" size="h5">
-                {feature.title}
+                {feature.headline}
               </Heading>
               <p>{feature.description}</p>
             </div>
