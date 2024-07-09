@@ -1,3 +1,4 @@
+import { useEffect, useState } from "react";
 import { ReactMarkdown } from "react-markdown/lib/react-markdown";
 import Head from "next/head";
 import Image from "next/image";
@@ -26,10 +27,21 @@ export default function Location({
   footerData,
   globalData,
 }) {
+  const [formattedDate, setFormattedDate] = useState('Loading date...');
+
+  useEffect(() => {
+    // Ensure date formatting is done client-side
+    const dateToFormat = locationData.date[0] ? locationData.date[0] : null;
+    if (dateToFormat) {
+      const formatted = dateFormat(dateToFormat, locationData.region, true);
+      setFormattedDate(formatted);
+    } else {
+      setFormattedDate('Coming soon');
+    }
+  }, [locationData.date, locationData.region]);
+
   const address = locationData.venue_address.replace(/\n/g, "<br>");
-  const date = locationData.date[0]
-    ? dateFormat(locationData.date[0], locationData.region, true)
-    : "Coming soon";
+  const date = formattedDate; // Use state for date
   const eventEnded = isPastDate(locationData.date[0]);
   const eventConfigData = eventEnded ? eventConfigDataEnded : eventConfigDataCurrent;
   const registration = locationData.registration_url;
