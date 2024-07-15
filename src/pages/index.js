@@ -75,8 +75,8 @@ export default function Home({ data }) {
     const typed = new Typed(typedRef.current, {
       strings: heroTypedStrings.map((item) => item.text),
       typeSpeed: 75,
-      backSpeed: 50,
-      backDelay: 3000,
+      backSpeed: 15,
+      backDelay: 2250,
       loop: true,
       showCursor: true,
       preStringTyped: (arrayPos) => {
