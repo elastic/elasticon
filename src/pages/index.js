@@ -1,8 +1,8 @@
+import { useEffect, useRef } from "react";
 import { ReactMarkdown } from "react-markdown/lib/react-markdown";
 import Head from "next/head";
 import Query, { Paths } from "../../lib/contentstack";
-
-import config from "../../next.config";
+import Typed from "typed.js";
 
 import Banner from "@/components/Banner";
 import Button from "@/components/Button";
@@ -41,10 +41,61 @@ const solutionsBefore = `
   before:w-72
 `;
 
+const heroTypedStrings = [
+  {
+    text: "Vector Databases",
+    className: "text-blue-500",
+  },
+  {
+    text: "Customer Support",
+    className: "text-pink",
+  },
+  {
+    text: "Log Analytics",
+    className: "text-peach",
+  },
+  {
+    text: "Gen AI Applications",
+    className: "text-yellow",
+  },
+  {
+    text: "Security Analytics",
+    className: "text-teal",
+  },
+];
+
 export default function Home({ data }) {
   const { bannerData, eventsData, footerData, globalData, homepageData } = data;
   const { benefitData, featuresData, invitationData, solutionData } =
     homepageData;
+
+  const typedRef = useRef(null);
+
+  useEffect(() => {
+    const typed = new Typed(typedRef.current, {
+      strings: heroTypedStrings.map((item) => item.text),
+      typeSpeed: 75,
+      backSpeed: 50,
+      backDelay: 3000,
+      loop: true,
+      showCursor: true,
+      preStringTyped: (arrayPos) => {
+        // Removes all heroTypedString classes from the element and add the new one
+        // Preserves any existing classes
+        typedRef.current.className = typedRef.current.className.replace(
+          // e.g., "text-peach", "text-blue-500"
+          /text-[a-z]+(-[0-9]+)?/g,
+          ""
+        );
+        typedRef.current.classList.add(heroTypedStrings[arrayPos].className);
+      }
+    });
+
+    return () => {
+      // Clean up the Typed instance
+      typed.destroy();
+    }
+  }, []);
 
   return (
     <>
@@ -70,8 +121,15 @@ export default function Home({ data }) {
             >
               {globalData?.series_name}
             </Heading>
-            <Heading className="text-white" size="h1">
-              {homepageData?.hero.headline}
+            <Heading className="text-white flex flex-col" size="h1">
+              <span>Supercharge{" "}</span>
+              <span className="sm:sr-only">your data</span>
+              <span className="hidden sm:block typed-strings whitespace-nowrap" aria-hidden="true">
+                {/* Zero-width space character to prevent the line of text from disappearing */}
+                {"\u200B"}
+                <span ref={typedRef} />
+              </span>
+              <span>{" "}with Search&nbsp;AI</span>
             </Heading>
             <p className="text-white my-8">{homepageData?.hero.description}</p>
             <div className="flex items-center">
