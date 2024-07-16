@@ -61,3 +61,13 @@ html {
 #logos img:last-child {
   margin: 0 0 0 11px !important;
 }
+
+/* Typed.js cursor */
+.typed-cursor {
+  @apply text-white/50;
+}
+
+.text-gradient {
+  @apply bg-gradient-to-r from-blue-400 to-teal bg-clip-text;
+  color: transparent;
+}
