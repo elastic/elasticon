@@ -43,24 +43,28 @@ const solutionsBefore = `
 
 const heroTypedStrings = [
   {
+    text: "anything",
+    classNames: ["text-gradient"],
+  },
+  {
     text: "Vector Databases",
-    className: "text-blue-500",
+    classNames: ["text-blue-500"],
   },
   {
     text: "Customer Support",
-    className: "text-pink",
+    classNames: ["text-pink"],
   },
   {
     text: "Log Analytics",
-    className: "text-peach",
+    classNames: ["text-peach"],
   },
   {
     text: "Gen AI Applications",
-    className: "text-yellow",
+    classNames: ["text-yellow"],
   },
   {
     text: "Security Analytics",
-    className: "text-teal",
+    classNames: ["text-teal"],
   },
 ];
 
@@ -82,14 +86,16 @@ export default function Home({ data }) {
       loop: true,
       showCursor: true,
       preStringTyped: (arrayPos) => {
+        console.log(arrayPos);
+
         // Removes all heroTypedString classes from the element and add the new one
         // Preserves any existing classes
         typedRef.current.className = typedRef.current.className.replace(
-          // e.g., "text-peach", "text-blue-500"
-          /text-[a-z]+(-[0-9]+)?/g,
+          // e.g., "text-peach", "text-blue-500", "bg-yellow-500"
+          /text-[a-z]+|bg-[a-z]+/g,
           ""
         );
-        typedRef.current.classList.add(heroTypedStrings[arrayPos].className);
+        typedRef.current.classList.add(...heroTypedStrings[arrayPos].classNames);
       }
     });
 
@@ -126,14 +132,14 @@ export default function Home({ data }) {
             <Heading className="text-white flex flex-col" size="h1">
               <span className="sr-only">Supercharge anything with Search AI</span>
               <span aria-hidden="true">
-                <span>Supercharge{" "}</span>
+                <span className="relative">Supercharge{" "}</span>
                 <span className="sm:hidden">&lt;anything&gt;</span>
                 <span className="hidden sm:block typed-strings whitespace-nowrap">
                   {/* Zero-width space character to prevent the line of text from disappearing */}
                   {"\u200B"}
                   <span ref={typedRef} />
                 </span>
-                <span>{" "}with Search&nbsp;AI</span>
+                <span className="relative">{" "}with Search&nbsp;AI</span>
               </span>
             </Heading>
             <p className="text-white my-8">{homepageData?.hero.description}</p>

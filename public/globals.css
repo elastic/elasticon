@@ -66,3 +66,8 @@ html {
 .typed-cursor {
   @apply text-white/50;
 }
+
+.text-gradient {
+  @apply bg-gradient-to-r from-blue-400 to-teal bg-clip-text;
+  color: transparent;
+}
