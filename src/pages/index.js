@@ -127,6 +127,7 @@ export default function Home({ data }) {
               <span className="sr-only">Supercharge anything with Search AI</span>
               <span aria-hidden="true">
                 <span>Supercharge{" "}</span>
+                <span className="sm:hidden">&lt;anything&gt;</span>
                 <span className="hidden sm:block typed-strings whitespace-nowrap">
                   {/* Zero-width space character to prevent the line of text from disappearing */}
                   {"\u200B"}
