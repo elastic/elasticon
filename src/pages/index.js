@@ -69,6 +69,8 @@ export default function Home({ data }) {
   const { benefitData, featuresData, invitationData, solutionData } =
     homepageData;
 
+  console.log(homepageData)
+
   const typedRef = useRef(null);
 
   useEffect(() => {
@@ -122,14 +124,16 @@ export default function Home({ data }) {
               {globalData?.series_name}
             </Heading>
             <Heading className="text-white flex flex-col" size="h1">
-              <span>Supercharge{" "}</span>
-              <span className="sm:sr-only">your data</span>
-              <span className="hidden sm:block typed-strings whitespace-nowrap" aria-hidden="true">
-                {/* Zero-width space character to prevent the line of text from disappearing */}
-                {"\u200B"}
-                <span ref={typedRef} />
+              <span className="sr-only">Supercharge anything with Search AI</span>
+              <span aria-hidden="true">
+                <span>Supercharge{" "}</span>
+                <span className="hidden sm:block typed-strings whitespace-nowrap">
+                  {/* Zero-width space character to prevent the line of text from disappearing */}
+                  {"\u200B"}
+                  <span ref={typedRef} />
+                </span>
+                <span>{" "}with Search&nbsp;AI</span>
               </span>
-              <span>{" "}with Search&nbsp;AI</span>
             </Heading>
             <p className="text-white my-8">{homepageData?.hero.description}</p>
             <div className="flex items-center">
